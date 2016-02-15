@@ -1,0 +1,9 @@
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\ORM.dll.config
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\ORM.dll
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\ORM.pdb
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\EntityFramework.dll
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\EntityFramework.SqlServer.dll
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\EntityFramework.xml
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\EntityFramework.SqlServer.xml
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\obj\Debug\ORM.dll
+D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\obj\Debug\ORM.pdb
