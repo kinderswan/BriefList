@@ -13,9 +13,12 @@ namespace ORM.Configuration
         public UserProfileConfiguration()
         {
             ToTable("UserProfile");
+
             HasMany(e => e.OrmLists)
-                .WithRequired(e => e.OrmUserProfile)
-                .HasForeignKey(e => e.OrmUserProfileId);
+            .WithMany(e => e.OrmUserProfiles)
+            .Map(m => m.ToTable("UserProfileList")
+                .MapLeftKey("OrmUserProfileId")
+                .MapRightKey("OrmListId"));
         }
     }
 }

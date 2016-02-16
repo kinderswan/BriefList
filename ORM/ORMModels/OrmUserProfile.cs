@@ -21,7 +21,11 @@ namespace ORM.ORMModels
 
         public DateTime TimeRegister { get; set; }
 
+
+
         public virtual ICollection<OrmList> OrmLists { get; set; }
+
+
         public OrmUserProfile()
         {
             OrmLists = new HashSet<OrmList>();
