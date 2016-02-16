@@ -17,9 +17,9 @@ namespace ORM
             Debug.WriteLine("Context creating!");
         }
 
-        public virtual DbSet<OrmUserProfile> OrmCathegories { get; set; }
-        public virtual DbSet<OrmList> OrmLots { get; set; }
-        public virtual DbSet<OrmItem> OrmRoles { get; set; }
+        public virtual DbSet<OrmUserProfile> OrmUserProfiles { get; set; }
+        public virtual DbSet<OrmList> OrmLists { get; set; }
+        public virtual DbSet<OrmItem> OrmItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
