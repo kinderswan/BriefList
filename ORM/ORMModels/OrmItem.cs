@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    [Table("Item")]
     public partial class OrmItem
     {
         public int Id { get; set; }

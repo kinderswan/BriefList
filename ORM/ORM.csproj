@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ItemConfiguration.cs" />
+    <Compile Include="Configuration\ListConfiguration.cs" />
+    <Compile Include="Configuration\UserProfileConfiguration.cs" />
     <Compile Include="EntityModelContext.cs" />
     <Compile Include="ORMModels\OrmItem.cs" />
     <Compile Include="ORMModels\OrmList.cs" />

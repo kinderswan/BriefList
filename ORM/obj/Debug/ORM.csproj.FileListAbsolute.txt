@@ -7,3 +7,12 @@ D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\EntityFramewo
 D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\bin\Debug\EntityFramework.SqlServer.xml
 D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\obj\Debug\ORM.dll
 D:\С#\project\project(2015 Epam TodoList)\BriefList\ORM\obj\Debug\ORM.pdb
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\ORM.dll.config
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\ORM.dll
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\ORM.pdb
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\EntityFramework.dll
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\EntityFramework.xml
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pavel\Source\Repos\BriefList\ORM\obj\Debug\ORM.dll
+C:\Users\Pavel\Source\Repos\BriefList\ORM\obj\Debug\ORM.pdb

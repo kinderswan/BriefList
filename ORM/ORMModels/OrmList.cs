@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace ORM
 {
-    [Table("List")]
     public partial class OrmList
     {
         public OrmList()
