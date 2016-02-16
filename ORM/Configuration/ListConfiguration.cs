@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ORM.ORMModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
@@ -14,8 +15,7 @@ namespace ORM.Configuration
             ToTable("List");
             HasMany(e => e.OrmItems)
                 .WithRequired(e => e.OrmList)
-                .HasForeignKey(e => e.OrmListId)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.OrmListId);
         }
     }
 }

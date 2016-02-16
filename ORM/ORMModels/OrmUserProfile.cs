@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ORM
+namespace ORM.ORMModels
 {
-    public partial class OrmUserProfile   
+    public partial class OrmUserProfile
     {
         public int Id { get; set; }
 
@@ -21,11 +21,12 @@ namespace ORM
 
         public DateTime TimeRegister { get; set; }
 
-
+        public virtual ICollection<OrmList> OrmLists { get; set; }
         public OrmUserProfile()
         {
             OrmLists = new HashSet<OrmList>();
         }
-        public virtual ICollection<OrmList> OrmLists { get; set; }
+
+
     }
 }

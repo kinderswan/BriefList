@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ORM.ORMModels;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
@@ -14,8 +15,7 @@ namespace ORM.Configuration
             ToTable("UserProfile");
             HasMany(e => e.OrmLists)
                 .WithRequired(e => e.OrmUserProfile)
-                .HasForeignKey(e => e.OrmUserProfileId)
-                .WillCascadeOnDelete(false);
+                .HasForeignKey(e => e.OrmUserProfileId);
         }
     }
 }

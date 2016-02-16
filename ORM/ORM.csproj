@@ -49,8 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\CommentsConfiguration.cs" />
     <Compile Include="Configuration\ItemConfiguration.cs" />
+    <Compile Include="Configuration\ItemFileConfigurationcs.cs" />
     <Compile Include="Configuration\ListConfiguration.cs" />
+    <Compile Include="Configuration\SubItemConfiguration.cs" />
+    <Compile Include="ORMModels\OrmComments.cs" />
+    <Compile Include="ORMModels\OrmItemFile.cs" />
+    <Compile Include="ORMModels\OrmSubItem.cs" />
     <Compile Include="Configuration\UserProfileConfiguration.cs" />
     <Compile Include="EntityModelContext.cs" />
     <Compile Include="ORMModels\OrmItem.cs" />
