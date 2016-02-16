@@ -21,7 +21,7 @@ namespace ORM
         public virtual DbSet<OrmUserProfile> OrmUserProfiles { get; set; }
         public virtual DbSet<OrmList> OrmLists { get; set; }
         public virtual DbSet<OrmItem> OrmItems { get; set; }
-        //comment
+        //comment comment comment
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
