@@ -39,5 +39,11 @@ namespace WEB.Controllers
 
             return View();
         }
+
+        public ActionResult _Login()
+        {
+            var x = Request.IsAjaxRequest();
+            return View();
+        }
     }
 }

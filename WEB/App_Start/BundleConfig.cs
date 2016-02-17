@@ -26,6 +26,12 @@ namespace WEB
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/Success").Include(
+                "~/Scripts/Success.js"));
+
+            bundles.Add(new StyleBundle("~/bundles/Modal").Include(
+                "~/Scripts/bootstrap-modal.js"));
         }
     }
 }
