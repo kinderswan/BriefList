@@ -17,10 +17,4 @@
 <div id="modDialog" class="modal">
     <div id="dialogContent" class="modal-dialog"></div>
 </div>
-<div>
-    @Ajax.ActionLink("testSign in", "_Login", "Account", new AjaxOptions { OnFailure = "OnFailure", LoadingElementId = "loading", OnSuccess = "ModalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval") 
-}

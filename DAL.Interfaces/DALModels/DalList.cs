@@ -10,6 +10,5 @@ namespace DAL.Interfaces.DALModels
         public string Description { get; set; }
         public int OwnerId { get; set; } // consider to make this better
         
-
     }
 }

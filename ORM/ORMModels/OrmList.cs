@@ -11,6 +11,7 @@ namespace ORM.ORMModels
             OrmUserProfiles = new HashSet<OrmUserProfile>();
         }
 
+
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
@@ -19,9 +20,6 @@ namespace ORM.ORMModels
 
         public virtual ICollection<OrmItem> OrmItems { get; set; }
         public virtual ICollection<OrmUserProfile> OrmUserProfiles { get; set; }
-
-        // public int OrmUserProfileId { get; set; }
-        //  public virtual OrmUserProfile OrmUserProfile { get; set; }
 
     }
 }

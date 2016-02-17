@@ -26,7 +26,7 @@ namespace DAL.Mapping
             if (sub != null)
                 return new OrmSubItem()
                 { 
-                    ID = sub.ID,
+                    Id = sub.Id,
                     Title = sub.Title,
                     Completed = sub.Completed,
                     OrmItemId = sub.DalItemId
@@ -147,7 +147,7 @@ namespace DAL.Mapping
                 {
                     Completed = item.Completed,
                     DalItemId = item.OrmItemId,
-                    ID = item.ID,
+                    Id = item.Id,
                     Title = item.Title
                 };
             return null;
