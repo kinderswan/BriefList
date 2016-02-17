@@ -22,10 +22,9 @@ namespace WEB.Controllers
             return Content("Anonymous");   
         }
 
-     //   [HttpGet]
+        [HttpGet]
         public ActionResult _Login()
         {
-            var x = Request.IsAjaxRequest();
             return View();
         }
 

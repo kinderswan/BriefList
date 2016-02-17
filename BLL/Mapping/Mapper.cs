@@ -26,7 +26,7 @@ namespace BLL.Mapping
             if (sub != null)
                 return new BllSubItem()
                 {
-                    ID = sub.ID,
+                    Id = sub.Id,
                     Title = sub.Title,
                     Completed = sub.Completed,
                     BllItemId = sub.DalItemId
@@ -147,7 +147,7 @@ namespace BLL.Mapping
                 {
                     Completed = item.Completed,
                     DalItemId = item.BllItemId,
-                    ID = item.ID,
+                    Id = item.Id,
                     Title = item.Title
                 };
             return null;
