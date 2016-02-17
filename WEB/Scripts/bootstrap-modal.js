@@ -11,7 +11,7 @@
             $('body').addClass('modal-open')
             this.isShown = true
             escape.call(this)
-            backdrop.call(this, function () {
+            backdrop.call(this, function () { 
                 var transition = $.support.transition && that.$element.hasClass('fade')
                 if (!that.$element.parent().length) { that.$element.appendTo(document.body) }
                 that.$element.show()

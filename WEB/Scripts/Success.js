@@ -12,7 +12,7 @@ function OnFailure(response) {
 };
 
 function OnFailureSearch(response) {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0); 
     $("#changefail").html('<div class="alert alert-danger"> ' + 'Поиск не дал результатов' + '</div>').show()
     setTimeout(function () { $("#changefail").fadeOut('fast') }, 3000);
 };

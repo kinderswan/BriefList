@@ -19,7 +19,7 @@ namespace WEB.Controllers
         {
             //эт нужно!! 
             //if (Identiti.Identity.IsAuthenticated) return Content(Identiti.Identity.Name + "(" + Identiti.Identity.GetUserRole() + ")");
-            return Content("Anonymous");
+            return Content("Anonymous");   
         }
 
      //   [HttpGet]
