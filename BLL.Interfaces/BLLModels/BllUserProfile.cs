@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace BLL.BLLModels
+namespace BLL.Interfaces.BLLModels
 {
     public class BllUserProfile
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public string Name { get; set; }
 

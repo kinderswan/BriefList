@@ -1,7 +1,7 @@
-﻿using BLL.Services.Interfaces;
-using BLL.BLLModels;
-using BLL.Mapping;
+﻿using BLL.Mapping;
 using DAL.Interfaces.Interfaces;
+using BLL.Interfaces.Interfaces;
+using BLL.Interfaces.BLLModels;
 
 namespace BLL.Services
 {

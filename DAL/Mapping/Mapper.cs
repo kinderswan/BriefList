@@ -12,7 +12,7 @@ namespace DAL.Mapping
                 return new OrmUserProfile()
                 {
                     Email = profile.Email,
-                    Id = profile.Id,
+                    ID = profile.ID,
                     Name = profile.Name,
                     Password = profile.Password,
                     Photo = profile.Photo,
@@ -26,10 +26,10 @@ namespace DAL.Mapping
             if (sub != null)
                 return new OrmSubItem()
                 { 
-                    Id = sub.Id,
+                    ID = sub.ID,
                     Title = sub.Title,
                     Completed = sub.Completed,
-                    OrmItemId = sub.DalItemId
+                    OrmItemID = sub.DalItemID
                 };
             return null;
         }
@@ -39,8 +39,8 @@ namespace DAL.Mapping
                 return new OrmItem()
                 {
                     Completed = item.Completed,
-                    Id = item.Id,
-                    OrmListId = item.DalListId,
+                    ID = item.ID,
+                    OrmListID = item.DalListID,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
                     Title = item.Title,
@@ -53,9 +53,9 @@ namespace DAL.Mapping
             if (list != null)
                 return new OrmList
                 {
-                    Id = list.Id,
+                    ID = list.ID,
                     Description = list.Description,
-                    OwnerId = list.OwnerId,
+                    OwnerID = list.OwnerID,
                     Title = list.Title
                 };
             return null;
@@ -66,9 +66,9 @@ namespace DAL.Mapping
                 return new OrmComments
                 {
                     Comment = coms.Comment,
-                    Id = coms.Id,
-                    OrmItemId = coms.DalItemId,
-                    OwnerId = coms.OwnerId
+                    ID = coms.ID,
+                    OrmItemID = coms.DalItemID,
+                    OwnerID = coms.OwnerID
                 };
             return null;
         }
@@ -80,8 +80,8 @@ namespace DAL.Mapping
                 {
                     File = file.File,
                     Filename = file.Filename,
-                    Id = file.Id,
-                    OrmItemId = file.DalItemId
+                    ID = file.ID,
+                    OrmItemID = file.DalItemID
                 };
             return null;
         }
@@ -96,9 +96,9 @@ namespace DAL.Mapping
                 return new DalComments
                 {
                     Comment = coms.Comment,
-                    DalItemId = coms.OrmItemId,
-                    Id = coms.Id,
-                    OwnerId = coms.OwnerId
+                    DalItemID = coms.OrmItemID,
+                    ID = coms.ID,
+                    OwnerID = coms.OwnerID
                 };
             return null;
         }
@@ -108,8 +108,8 @@ namespace DAL.Mapping
                 return new DalItem
                 {
                     Completed = item.Completed,
-                    DalListId = item.OrmListId,
-                    Id = item.Id,
+                    DalListID = item.OrmListID,
+                    ID = item.ID,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
                     Title = item.Title
@@ -121,10 +121,10 @@ namespace DAL.Mapping
             if (file != null)
                 return new DalItemFile
                 {
-                    DalItemId = file.OrmItemId,
+                    DalItemID = file.OrmItemID,
                     File = file.File,
                     Filename = file.Filename,
-                    Id = file.Id
+                    ID = file.ID
                 };
             return null;
         }
@@ -134,8 +134,8 @@ namespace DAL.Mapping
                 return new DalList
                 {
                     Description = list.Description,
-                    Id = list.Id,
-                    OwnerId = list.OwnerId,
+                    ID = list.ID,
+                    OwnerID = list.OwnerID,
                     Title = list.Title
                 };
             return null;
@@ -146,8 +146,8 @@ namespace DAL.Mapping
                 return new DalSubItem
                 {
                     Completed = item.Completed,
-                    DalItemId = item.OrmItemId,
-                    Id = item.Id,
+                    DalItemID = item.OrmItemID,
+                    ID = item.ID,
                     Title = item.Title
                 };
             return null;
@@ -158,7 +158,7 @@ namespace DAL.Mapping
                 return new DalUserProfile
                 {
                     Email = user.Email,
-                    Id = user.Id,
+                    ID = user.ID,
                     Name = user.Name,
                     Password = user.Password,
                     Photo = user.Photo,

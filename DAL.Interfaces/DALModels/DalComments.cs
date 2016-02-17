@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 namespace DAL.Interfaces.DALModels
 {
     public class DalComments
-    {
-    
-        public int Id { get; set; }
+    {    
+        public int ID { get; set; }
         public string Comment { get; set; }
-        public int OwnerId { get; set; }
-        public int DalItemId { get; set; }
+        public int OwnerID { get; set; }
+        public int DalItemID { get; set; }
     }
 }

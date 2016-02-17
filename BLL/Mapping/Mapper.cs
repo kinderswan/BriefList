@@ -1,4 +1,4 @@
-﻿using BLL.BLLModels;
+﻿using BLL.Interfaces.BLLModels;
 using DAL.Interfaces.DALModels;
 
 namespace BLL.Mapping
@@ -12,7 +12,7 @@ namespace BLL.Mapping
                 return new BllUserProfile()
                 {
                     Email = profile.Email,
-                    Id = profile.Id,
+                    ID = profile.ID,
                     Name = profile.Name,
                     Password = profile.Password,
                     Photo = profile.Photo,
@@ -26,10 +26,10 @@ namespace BLL.Mapping
             if (sub != null)
                 return new BllSubItem()
                 {
-                    Id = sub.Id,
+                    ID = sub.ID,
                     Title = sub.Title,
                     Completed = sub.Completed,
-                    BllItemId = sub.DalItemId
+                    BllItemID = sub.DalItemID
                 };
             return null;
         }
@@ -39,8 +39,8 @@ namespace BLL.Mapping
                 return new BllItem()
                 {
                     Completed = item.Completed,
-                    Id = item.Id,
-                    BllListId = item.DalListId,
+                    ID = item.ID,
+                    BllListID = item.DalListID,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
                     Title = item.Title,
@@ -53,9 +53,9 @@ namespace BLL.Mapping
             if (list != null)
                 return new BllList
                 {
-                    Id = list.Id,
+                    ID = list.ID,
                     Description = list.Description,
-                    OwnerId = list.OwnerId,
+                    OwnerID = list.OwnerID,
                     Title = list.Title
                 };
             return null;
@@ -66,9 +66,9 @@ namespace BLL.Mapping
                 return new BllComments
                 {
                     Comment = coms.Comment,
-                    Id = coms.Id,
-                    BllItemId = coms.DalItemId,
-                    OwnerId = coms.OwnerId
+                    ID = coms.ID,
+                    BllItemID = coms.DalItemID,
+                    OwnerID = coms.OwnerID
                 };
             return null;
         }
@@ -80,8 +80,8 @@ namespace BLL.Mapping
                 {
                     File = file.File,
                     Filename = file.Filename,
-                    Id = file.Id,
-                    BllItemId = file.DalItemId
+                    ID = file.ID,
+                    BllItemID = file.DalItemID
                 };
             return null;
         }
@@ -96,9 +96,9 @@ namespace BLL.Mapping
                 return new DalComments
                 {
                     Comment = coms.Comment,
-                    DalItemId = coms.BllItemId,
-                    Id = coms.Id,
-                    OwnerId = coms.OwnerId
+                    DalItemID = coms.BllItemID,
+                    ID = coms.ID,
+                    OwnerID = coms.OwnerID
                 };
             return null;
         }
@@ -108,8 +108,8 @@ namespace BLL.Mapping
                 return new DalItem
                 {
                     Completed = item.Completed,
-                    DalListId = item.BllListId,
-                    Id = item.Id,
+                    DalListID = item.BllListID,
+                    ID = item.ID,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
                     Title = item.Title
@@ -121,10 +121,10 @@ namespace BLL.Mapping
             if (file != null)
                 return new DalItemFile
                 {
-                    DalItemId = file.BllItemId,
+                    DalItemID = file.BllItemID,
                     File = file.File,
                     Filename = file.Filename,
-                    Id = file.Id
+                    ID = file.ID
                 };
             return null;
         }
@@ -134,8 +134,8 @@ namespace BLL.Mapping
                 return new DalList
                 {
                     Description = list.Description,
-                    Id = list.Id,
-                    OwnerId = list.OwnerId,
+                    ID = list.ID,
+                    OwnerID = list.OwnerID,
                     Title = list.Title
                 };
             return null;
@@ -146,8 +146,8 @@ namespace BLL.Mapping
                 return new DalSubItem
                 {
                     Completed = item.Completed,
-                    DalItemId = item.BllItemId,
-                    Id = item.Id,
+                    DalItemID = item.BllItemID,
+                    ID = item.ID,
                     Title = item.Title
                 };
             return null;
@@ -158,7 +158,7 @@ namespace BLL.Mapping
                 return new DalUserProfile
                 {
                     Email = user.Email,
-                    Id = user.Id,
+                    ID = user.ID,
                     Name = user.Name,
                     Password = user.Password,
                     Photo = user.Photo,

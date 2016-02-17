@@ -3,16 +3,13 @@ using System.Collections.Generic;
 
 namespace ORM.ORMModels
 {
-    public partial class OrmUserProfile
+    public class OrmUserProfile
     {
         public OrmUserProfile()
         {
             OrmLists = new HashSet<OrmList>();
         }
-
-
-
-        public int Id { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

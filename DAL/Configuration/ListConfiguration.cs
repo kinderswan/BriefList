@@ -15,7 +15,7 @@ namespace DAL.Configuration
             ToTable("List");
             HasMany(e => e.OrmItems)
                 .WithRequired(e => e.OrmList)
-                .HasForeignKey(e => e.OrmListId);
+                .HasForeignKey(e => e.OrmListID);
         }
     }
 }
