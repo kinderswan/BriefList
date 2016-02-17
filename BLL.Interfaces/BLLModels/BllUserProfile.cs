@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 
-namespace BLL.BLLModels
+namespace BLL.Interfaces.BLLModels
 {
     public class BllUserProfile
     {

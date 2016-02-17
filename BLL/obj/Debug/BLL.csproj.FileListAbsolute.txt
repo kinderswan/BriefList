@@ -5,3 +5,5 @@ C:\Users\Pavel\Source\Repos\BriefList\BLL\obj\Debug\BLL.dll
 C:\Users\Pavel\Source\Repos\BriefList\BLL\obj\Debug\BLL.pdb
 C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\DAL.Interfaces.dll
 C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\DAL.Interfaces.pdb
+C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\BLL.Interfaces.dll
+C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\BLL.Interfaces.pdb
