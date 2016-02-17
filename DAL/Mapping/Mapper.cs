@@ -3,10 +3,10 @@ using ORM.ORMModels;
 
 namespace DAL.Mapping
 {
-    public static class Mapper
+    internal static class Mapper
     {
         #region Dal to ORM
-        public static OrmUserProfile ToOrmUserProfile(DalUserProfile profile)
+        internal static OrmUserProfile ToOrmUserProfile(DalUserProfile profile)
         {
             if (profile != null)
                 return new OrmUserProfile()
@@ -21,7 +21,7 @@ namespace DAL.Mapping
             return null;
         }
 
-        public static OrmSubItem ToOrmSubItem(DalSubItem sub)
+        internal static OrmSubItem ToOrmSubItem(DalSubItem sub)
         {
             if (sub != null)
                 return new OrmSubItem()
@@ -33,7 +33,7 @@ namespace DAL.Mapping
                 };
             return null;
         }
-        public static OrmItem ToOrmItem(DalItem item)
+        internal static OrmItem ToOrmItem(DalItem item)
         {
             if (item != null)
                 return new OrmItem()
@@ -48,7 +48,7 @@ namespace DAL.Mapping
             return null;
         }
 
-        public static OrmList ToOrmList(DalList list)
+        internal static OrmList ToOrmList(DalList list)
         {
             if (list != null)
                 return new OrmList
@@ -60,7 +60,7 @@ namespace DAL.Mapping
                 };
             return null;
         }
-        public static OrmComments ToOrmComments(DalComments coms)
+        internal static OrmComments ToOrmComments(DalComments coms)
         {
             if (coms != null)
                 return new OrmComments
@@ -73,7 +73,7 @@ namespace DAL.Mapping
             return null;
         }
 
-        public static OrmItemFile ToOrmItemFile(DalItemFile file)
+        internal static OrmItemFile ToOrmItemFile(DalItemFile file)
         {
             if (file != null)
                 return new OrmItemFile
@@ -90,7 +90,7 @@ namespace DAL.Mapping
         #region Orm to Dal
 
 
-        public static DalComments ToDalComments(OrmComments coms)
+        internal static DalComments ToDalComments(OrmComments coms)
         {
             if (coms != null)
                 return new DalComments
@@ -102,7 +102,7 @@ namespace DAL.Mapping
                 };
             return null;
         }
-        public static DalItem ToDalItem(OrmItem item)
+        internal static DalItem ToDalItem(OrmItem item)
         {
             if (item != null)
                 return new DalItem
@@ -116,7 +116,7 @@ namespace DAL.Mapping
                 };
             return null;
         }
-        public static DalItemFile ToDalItemFile(OrmItemFile file)
+        internal static DalItemFile ToDalItemFile(OrmItemFile file)
         {
             if (file != null)
                 return new DalItemFile
@@ -128,7 +128,7 @@ namespace DAL.Mapping
                 };
             return null;
         }
-        public static DalList ToDalList(OrmList list)
+        internal static DalList ToDalList(OrmList list)
         {
             if (list != null)
                 return new DalList
@@ -140,7 +140,8 @@ namespace DAL.Mapping
                 };
             return null;
         }
-        public static DalSubItem ToDalSubItem(OrmSubItem item)
+
+        internal static DalSubItem ToDalSubItem(OrmSubItem item)
         {
             if (item != null)
                 return new DalSubItem
@@ -152,7 +153,8 @@ namespace DAL.Mapping
                 };
             return null;
         }
-        public static DalUserProfile ToDalUserProfile(OrmUserProfile user)
+
+        internal static DalUserProfile ToDalUserProfile(OrmUserProfile user)
         {
             if (user != null)
                 return new DalUserProfile
@@ -166,6 +168,7 @@ namespace DAL.Mapping
                 };
             return null;
         }
+
         #endregion
 
     }

@@ -7,17 +7,18 @@ namespace BLL.Services
 {
     public class UserProfileService : IUserProfileService
     {
-        private readonly IUserProfileRepository _userRep;
-        private readonly IUnitOfWork _uow;
+        private readonly IUserProfileRepository userRep;
+        private readonly IUnitOfWork uow;
+
         public UserProfileService(IUserProfileRepository userRep, IUnitOfWork uow)
         {
-            _userRep = userRep;
-            _uow = uow;
+            this.userRep = userRep;
+            this.uow = uow;
         }
 
         public void CreateUserProfile(BllUserProfile userProfile)
         {
-            _userRep.Add(Mapper.ToDalUserProfile(userProfile));
+            userRep.Add(Mapper.ToDalUserProfile(userProfile));
         }
     }
 }

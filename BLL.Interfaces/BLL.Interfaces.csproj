@@ -46,6 +46,11 @@
     <Compile Include="BLLModels\BllSubItem.cs" />
     <Compile Include="BLLModels\Blltem.cs" />
     <Compile Include="BLLModels\BllUserProfile.cs" />
+    <Compile Include="Interfaces\ICommentsService.cs" />
+    <Compile Include="Interfaces\IItemFileService.cs" />
+    <Compile Include="Interfaces\IItemService.cs" />
+    <Compile Include="Interfaces\IListService.cs" />
+    <Compile Include="Interfaces\ISubItemService.cs" />
     <Compile Include="Interfaces\IUserProfileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

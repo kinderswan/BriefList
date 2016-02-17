@@ -12,6 +12,8 @@ namespace ORM.ORMModels
         public string Title { get; set; }
         public bool Completed { get; set; }
         public int OrmItemID { get; set; }
+
+
         public virtual OrmItem OrmItem { get; set; }
     }
 }

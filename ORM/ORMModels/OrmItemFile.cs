@@ -12,6 +12,8 @@ namespace ORM.ORMModels
         public string Filename { get; set; }
         public byte[] File { get; set; }
         public int OrmItemID { get; set; }
+
+
         public virtual OrmItem OrmItem { get; set; }
     }
 }

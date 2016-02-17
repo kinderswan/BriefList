@@ -3,10 +3,10 @@ using DAL.Interfaces.DALModels;
 
 namespace BLL.Mapping
 {
-    public static class Mapper
+    internal static class Mapper
     {
         #region 
-        public static BllUserProfile ToBllUserProfile(DalUserProfile profile)
+        internal static BllUserProfile ToBllUserProfile(DalUserProfile profile)
         {
             if (profile != null)
                 return new BllUserProfile()
@@ -21,7 +21,7 @@ namespace BLL.Mapping
             return null;
         }
 
-        public static BllSubItem ToBllSubItem(DalSubItem sub)
+        internal static BllSubItem ToBllSubItem(DalSubItem sub)
         {
             if (sub != null)
                 return new BllSubItem()
@@ -33,7 +33,7 @@ namespace BLL.Mapping
                 };
             return null;
         }
-        public static BllItem ToBllItem(DalItem item)
+        internal static BllItem ToBllItem(DalItem item)
         {
             if (item != null)
                 return new BllItem()
@@ -47,8 +47,7 @@ namespace BLL.Mapping
                 };
             return null;
         }
-
-        public static BllList ToBllList(DalList list)
+        internal static BllList ToBllList(DalList list)
         {
             if (list != null)
                 return new BllList
@@ -60,7 +59,7 @@ namespace BLL.Mapping
                 };
             return null;
         }
-        public static BllComments ToBllComments(DalComments coms)
+        internal static BllComments ToBllComments(DalComments coms)
         {
             if (coms != null)
                 return new BllComments
@@ -73,7 +72,7 @@ namespace BLL.Mapping
             return null;
         }
 
-        public static BllItemFile ToBllItemFile(DalItemFile file)
+        internal static BllItemFile ToBllItemFile(DalItemFile file)
         {
             if (file != null)
                 return new BllItemFile
@@ -90,7 +89,7 @@ namespace BLL.Mapping
         #region 
 
 
-        public static DalComments ToDalComments(BllComments coms)
+        internal static DalComments ToDalComments(BllComments coms)
         {
             if (coms != null)
                 return new DalComments
@@ -102,7 +101,7 @@ namespace BLL.Mapping
                 };
             return null;
         }
-        public static DalItem ToDalItem(BllItem item)
+        internal static DalItem ToDalItem(BllItem item)
         {
             if (item != null)
                 return new DalItem
@@ -116,7 +115,7 @@ namespace BLL.Mapping
                 };
             return null;
         }
-        public static DalItemFile ToDalItemFile(BllItemFile file)
+        internal static DalItemFile ToDalItemFile(BllItemFile file)
         {
             if (file != null)
                 return new DalItemFile
@@ -128,7 +127,8 @@ namespace BLL.Mapping
                 };
             return null;
         }
-        public static DalList ToDalList(BllList list)
+
+        internal static DalList ToDalList(BllList list)
         {
             if (list != null)
                 return new DalList
@@ -140,7 +140,8 @@ namespace BLL.Mapping
                 };
             return null;
         }
-        public static DalSubItem ToDalSubItem(BllSubItem item)
+
+        internal static DalSubItem ToDalSubItem(BllSubItem item)
         {
             if (item != null)
                 return new DalSubItem
@@ -152,7 +153,8 @@ namespace BLL.Mapping
                 };
             return null;
         }
-        public static DalUserProfile ToDalUserProfile(BllUserProfile user)
+
+        internal static DalUserProfile ToDalUserProfile(BllUserProfile user)
         {
             if (user != null)
                 return new DalUserProfile
