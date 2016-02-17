@@ -1,4 +1,7 @@
-﻿namespace BLL.Interfaces.BLLModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace BLL.BLLModels
 {
     public class BllList // todo: many to many
     {

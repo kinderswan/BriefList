@@ -1,5 +1,5 @@
-﻿using BLL.Interfaces.BLLModels;
-using BLL.Interfaces.Interfaces;
+﻿using BLL.Services.Interfaces;
+using BLL.BLLModels;
 using BLL.Mapping;
 using DAL.Interfaces.Interfaces;
 

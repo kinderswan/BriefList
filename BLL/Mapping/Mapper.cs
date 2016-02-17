@@ -1,4 +1,4 @@
-﻿using BLL.Interfaces.BLLModels;
+﻿using BLL.BLLModels;
 using DAL.Interfaces.DALModels;
 
 namespace BLL.Mapping

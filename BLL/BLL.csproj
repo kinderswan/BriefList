@@ -40,15 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLLModels\BllComments.cs" />
+    <Compile Include="BLLModels\Blltem.cs" />
+    <Compile Include="BLLModels\BllItemFile.cs" />
+    <Compile Include="BLLModels\BllList.cs" />
+    <Compile Include="BLLModels\BllSubItem.cs" />
+    <Compile Include="BLLModels\BllUserProfile.cs" />
     <Compile Include="Mapping\Mapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Interfaces\IUserProfileService.cs" />
     <Compile Include="Services\UserProfileService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BLL.Interfaces\BLL.Interfaces.csproj">
-      <Project>{ad866b2d-f013-4eab-8a64-0cafd97c52bc}</Project>
-      <Name>BLL.Interfaces</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DAL.Interfaces\DAL.Interfaces.csproj">
       <Project>{528c7d0a-a19a-4d97-8e1a-05540590bd87}</Project>
       <Name>DAL.Interfaces</Name>
