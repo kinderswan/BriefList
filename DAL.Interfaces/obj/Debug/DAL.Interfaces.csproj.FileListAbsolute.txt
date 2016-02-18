@@ -3,3 +3,8 @@ C:\Users\Pavel\Source\Repos\BriefList\DAL.Interfaces\bin\Debug\DAL.Interfaces.pd
 C:\Users\Pavel\Source\Repos\BriefList\DAL.Interfaces\obj\Debug\DAL.Interfaces.dll
 C:\Users\Pavel\Source\Repos\BriefList\DAL.Interfaces\obj\Debug\DAL.Interfaces.pdb
 C:\Users\Pavel\Source\Repos\BriefList\DAL.Interfaces\obj\Debug\DAL.Interfaces.csprojResolveAssemblyReference.cache
+D:\С#\project\BriefListGit\DAL.Interfaces\bin\Debug\DAL.Interfaces.dll
+D:\С#\project\BriefListGit\DAL.Interfaces\bin\Debug\DAL.Interfaces.pdb
+D:\С#\project\BriefListGit\DAL.Interfaces\obj\Debug\DAL.Interfaces.csprojResolveAssemblyReference.cache
+D:\С#\project\BriefListGit\DAL.Interfaces\obj\Debug\DAL.Interfaces.dll
+D:\С#\project\BriefListGit\DAL.Interfaces\obj\Debug\DAL.Interfaces.pdb

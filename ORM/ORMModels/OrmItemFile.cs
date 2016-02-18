@@ -2,10 +2,10 @@
 {
     public class OrmItemFile
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Filename { get; set; }
         public byte[] File { get; set; }
-        public int OrmItemID { get; set; }
+        public int OrmItemId { get; set; }
 
 
         public virtual OrmItem OrmItem { get; set; }

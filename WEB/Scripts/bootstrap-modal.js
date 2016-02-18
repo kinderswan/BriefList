@@ -1,10 +1,10 @@
 ﻿!function ($) {
-    "use strict"; var Modal = function (content, options) {
+    "use strict"; var modal = function (content, options) {
         this.options = options
         this.$element = $(content).delegate('[data-dismiss="modal"]', 'click.dismiss.modal', $.proxy(this.hide, this))
     }
-    Modal.prototype = {
-        constructor: Modal, toggle: function () { return this[!this.isShown ? 'show' : 'hide']() }, show: function () {
+    modal.prototype = {
+        constructor: modal, toggle: function () { return this[!this.isShown ? 'show' : 'hide']() }, show: function () {
             var that = this, e = $.Event('show')
             this.$element.trigger(e)
             if (this.isShown || e.isDefaultPrevented()) return
@@ -71,13 +71,13 @@
     $.fn.modal = function (option) {
         return this.each(function () {
             var $this = $(this), data = $this.data('modal'), options = $.extend({}, $.fn.modal.defaults, $this.data(), typeof option == 'object' && option)
-            if (!data) $this.data('modal', (data = new Modal(this, options)))
+            if (!data) $this.data('modal', (data = new modal(this, options)))
             if (typeof option == 'string') data[option]()
             else if (options.show) data.show()
         })
     }
     $.fn.modal.defaults = { backdrop: true, keyboard: true, show: true }
-    $.fn.modal.Constructor = Modal
+    $.fn.modal.Constructor = modal
     $(function () {
         $('body').on('click.modal.data-api', '[data-toggle="modal"]', function (e) {
             var $this = $(this), href, $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')), option = $target.data('modal') ? 'toggle' : $.extend({}, $target.data(), $this.data())

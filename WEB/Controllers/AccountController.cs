@@ -8,12 +8,6 @@ namespace WEB.Controllers
 {
     public class AccountController : Controller
     {
-        // GET: Account
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         [ChildActionOnly]
         public ActionResult Nikneim()
         {

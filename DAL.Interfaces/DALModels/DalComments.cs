@@ -2,9 +2,9 @@
 {
     public class DalComments
     {    
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Comment { get; set; }
-        public int OwnerID { get; set; }
-        public int DalItemID { get; set; }
+        public int OwnerId { get; set; }
+        public int DalItemId { get; set; }
     }
 }

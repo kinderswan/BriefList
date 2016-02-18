@@ -10,7 +10,7 @@ namespace ORM.ORMModels
             OrmLists = new HashSet<OrmList>();
         }
         
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

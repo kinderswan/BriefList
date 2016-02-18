@@ -12,3 +12,17 @@ C:\Users\Pavel\Source\Repos\BriefList\DAL\bin\Debug\ORM.dll
 C:\Users\Pavel\Source\Repos\BriefList\DAL\bin\Debug\ORM.pdb
 C:\Users\Pavel\Source\Repos\BriefList\DAL\bin\Debug\DAL.Interfaces.dll
 C:\Users\Pavel\Source\Repos\BriefList\DAL\bin\Debug\DAL.Interfaces.pdb
+D:\С#\project\BriefListGit\DAL\bin\Debug\DAL.dll.config
+D:\С#\project\BriefListGit\DAL\bin\Debug\DAL.dll
+D:\С#\project\BriefListGit\DAL\bin\Debug\DAL.pdb
+D:\С#\project\BriefListGit\DAL\bin\Debug\DAL.Interfaces.dll
+D:\С#\project\BriefListGit\DAL\bin\Debug\EntityFramework.dll
+D:\С#\project\BriefListGit\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\С#\project\BriefListGit\DAL\bin\Debug\ORM.dll
+D:\С#\project\BriefListGit\DAL\bin\Debug\DAL.Interfaces.pdb
+D:\С#\project\BriefListGit\DAL\bin\Debug\ORM.pdb
+D:\С#\project\BriefListGit\DAL\bin\Debug\EntityFramework.xml
+D:\С#\project\BriefListGit\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\С#\project\BriefListGit\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\С#\project\BriefListGit\DAL\obj\Debug\DAL.dll
+D:\С#\project\BriefListGit\DAL\obj\Debug\DAL.pdb

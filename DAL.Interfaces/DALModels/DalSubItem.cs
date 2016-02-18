@@ -2,9 +2,9 @@
 {
     public class DalSubItem
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public string  Title { get; set; }
         public bool Completed { get; set; }
-        public int DalItemID { get; set; }
+        public int DalItemId { get; set; }
     }
 }

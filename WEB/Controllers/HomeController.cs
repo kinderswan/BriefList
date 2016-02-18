@@ -5,24 +5,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL.Interfaces.BLLModels;
+using BLL.Interfaces.Interfaces;
 
 namespace WEB.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IUserProfileService _userProfileService;
+        public HomeController(IUserProfileService userProfileService)
+        {
+            this._userProfileService = userProfileService;
+        }
+
+
         public ActionResult Index()
         {
-     /*       EntityModelContext db = new EntityModelContext();
-            db.Set<OrmList>().Add(new OrmList()
+            _userProfileService.CreateUserProfile(new BllUserProfile
             {
-                Id = 2,
-                Description = "This role is a visitor of auction",
-                OrmUserProfiles = new List<OrmUserProfile>()
-                {
-                    new OrmUserProfile() { Id=2, Name="vad", Email="tito@tut.by", Password="APqUWHeWTozEWzwv0SFfkXKGaavpRbijLRsmT/6ucSQ344UtCgqm5YOw74Bp4Z2rBg==",TimeRegister = DateTime.Now  }
-                }
+                TimeRegister = DateTime.Now,
+                Password = "000000", 
+                Name = "tyttty",                
             });
-            db.SaveChanges();*/
             return View();
         }
 

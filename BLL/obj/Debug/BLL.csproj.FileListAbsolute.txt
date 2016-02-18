@@ -7,3 +7,12 @@ C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\DAL.Interfaces.dll
 C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\DAL.Interfaces.pdb
 C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\BLL.Interfaces.dll
 C:\Users\Pavel\Source\Repos\BriefList\BLL\bin\Debug\BLL.Interfaces.pdb
+D:\С#\project\BriefListGit\BLL\bin\Debug\BLL.dll
+D:\С#\project\BriefListGit\BLL\bin\Debug\BLL.pdb
+D:\С#\project\BriefListGit\BLL\bin\Debug\BLL.Interfaces.dll
+D:\С#\project\BriefListGit\BLL\bin\Debug\DAL.Interfaces.dll
+D:\С#\project\BriefListGit\BLL\bin\Debug\BLL.Interfaces.pdb
+D:\С#\project\BriefListGit\BLL\bin\Debug\DAL.Interfaces.pdb
+D:\С#\project\BriefListGit\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+D:\С#\project\BriefListGit\BLL\obj\Debug\BLL.dll
+D:\С#\project\BriefListGit\BLL\obj\Debug\BLL.pdb

@@ -19,6 +19,7 @@ namespace BLL.Services
         public void CreateUserProfile(BllUserProfile userProfile)
         {
             _userRep.Add(Mapper.ToDalUserProfile(userProfile));
+            _uow.Commit();
         }
     }
 }
