@@ -7,6 +7,8 @@ using DAL.Mapping;
 using System.Data.Entity;
 using DAL.Interfaces.Interfaces;
 using DAL.Interfaces.DALModels;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace DAL.Repository
 {
@@ -16,7 +18,7 @@ namespace DAL.Repository
 
         public void Add(DalUserProfile entity)
         {
-            DbSet.Add(Mapper.ToOrmUserProfile(entity));
+           DbSet.Add(Mapper.ToOrmUserProfile(entity));
         }
 
         public void Delete(Expression<Func<DalUserProfile, bool>> where)
@@ -25,6 +27,11 @@ namespace DAL.Repository
         }
 
         public void Delete(DalUserProfile entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<DalUserProfile> Get(string name)
         {
             throw new NotImplementedException();
         }
@@ -53,5 +60,16 @@ namespace DAL.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<bool> UserEmailExist(string email)
+        {
+             return await DbSet.FirstOrDefaultAsync(dbuser => dbuser.Email.Equals(email)) != null;
+        }
+
+        public async Task<bool> UserNameExist(string name)
+        {
+            return await DbSet.FirstOrDefaultAsync(dbuser => dbuser.Name.Equals(name)) != null;
+        }
+
     }
 }

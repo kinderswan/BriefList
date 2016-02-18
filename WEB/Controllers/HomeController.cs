@@ -18,15 +18,8 @@ namespace WEB.Controllers
             this._userProfileService = userProfileService;
         }
 
-
         public ActionResult Index()
         {
-            _userProfileService.CreateUserProfile(new BllUserProfile
-            {
-                TimeRegister = DateTime.Now,
-                Password = "000000", 
-                Name = "tyttty",                
-            });
             return View();
         }
 
