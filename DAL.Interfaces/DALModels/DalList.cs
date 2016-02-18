@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DAL.Interfaces.DALModels
+﻿namespace DAL.Interfaces.DALModels
 {
     public class DalList
     {

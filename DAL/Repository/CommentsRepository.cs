@@ -38,7 +38,7 @@ namespace DAL.Repository
 
         public IEnumerable<DalComments> GetAll()
         {
-            return DbSet.ToList().Select(e => Mapper.ToDalComments(e));
+            return DbSet.ToList().Select(Mapper.ToDalComments);
         }
 
         public DalComments GetById(int id)

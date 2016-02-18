@@ -17,9 +17,7 @@ namespace DAL.Infrastructure
         }
         protected override void DisposeCore()
         {
-            if (_dbContext != null)
-                _dbContext.Dispose();
+            _dbContext?.Dispose();
         }
-
     }
 }

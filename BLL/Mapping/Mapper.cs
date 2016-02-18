@@ -9,7 +9,7 @@ namespace BLL.Mapping
         internal static BllUserProfile ToBllUserProfile(DalUserProfile profile)
         {
             if (profile != null)
-                return new BllUserProfile()
+                return new BllUserProfile
                 {
                     Email = profile.Email,
                     ID = profile.ID,
@@ -24,7 +24,7 @@ namespace BLL.Mapping
         internal static BllSubItem ToBllSubItem(DalSubItem sub)
         {
             if (sub != null)
-                return new BllSubItem()
+                return new BllSubItem
                 {
                     ID = sub.ID,
                     Title = sub.Title,
@@ -36,14 +36,14 @@ namespace BLL.Mapping
         internal static BllItem ToBllItem(DalItem item)
         {
             if (item != null)
-                return new BllItem()
+                return new BllItem
                 {
                     Completed = item.Completed,
                     ID = item.ID,
                     BllListID = item.DalListID,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
-                    Title = item.Title,
+                    Title = item.Title
                 };
             return null;
         }

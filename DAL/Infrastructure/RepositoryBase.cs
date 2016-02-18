@@ -5,7 +5,6 @@ namespace DAL.Infrastructure
     public abstract class RepositoryBase<T> where T : class
     {
         #region Properties
-        private readonly DbContext _dataContext;
         protected IDbSet<T> DbSet;
         #endregion
 
@@ -30,7 +29,7 @@ namespace DAL.Infrastructure
         //    _dbSet.Remove(entity);
         //}
 
-        //public virtual void Delete(Expression<Func<T, bool>> where)
+        //public virtual void DeleteById(Expression<Func<T, bool>> where)
         //{
         //    IEnumerable<T> objects = _dbSet.Where<T>(where).AsEnumerable();
         //    foreach (T obj in objects)

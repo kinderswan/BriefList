@@ -9,16 +9,13 @@ namespace ORM.ORMModels
         {
             OrmLists = new HashSet<OrmList>();
         }
-
-
+        
         public int ID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public byte[] Photo { get; set; }
         public DateTime TimeRegister { get; set; }
-
-
         public virtual ICollection<OrmList> OrmLists { get; set; }
 
     }
