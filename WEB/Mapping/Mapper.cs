@@ -4,9 +4,9 @@ using WEB.Models;
 
 namespace WEB.Mapping
 {
-    public static class Mapper
+    internal static class Mapper
     {
-        public static BllUserProfile ToBllUserProfileLoginModel(LoginModel model)
+        internal static BllUserProfile ToBllUserProfileLoginModel(LoginModel model)
         {
             if (model != null)
                 return new BllUserProfile
@@ -18,7 +18,7 @@ namespace WEB.Mapping
             return null;
         }
 
-        public static BllUserProfile ToBllUserProfileRegisterModel(RegisterModel model)
+        internal static BllUserProfile ToBllUserProfileRegisterModel(RegisterModel model)
         {
             if (model != null)
                 return new BllUserProfile

@@ -7,6 +7,7 @@ using DAL.Mapping;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading.Tasks;
 using DAL.Interfaces.DALModels;
 using DAL.Interfaces.Interfaces;
 
@@ -31,9 +32,9 @@ namespace DAL.Repository
             return DbSet.ToList().Select(Mapper.ToDalItemFile);
         }
 
-        public DalItemFile Get(int id)
+        public async Task<DalItemFile> Get(int id)
         {
-            return Mapper.ToDalItemFile(DbSet.FirstOrDefault(t => t.Id == id));
+            return Mapper.ToDalItemFile(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         }
 
         public IEnumerable<DalItemFile> GetMany(Expression<Func<DalItemFile, bool>> where)

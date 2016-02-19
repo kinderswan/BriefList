@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading.Tasks;
 using DAL.Interfaces.Interfaces;
 using DAL.Interfaces.DALModels;
 using DAL.Mapping;
@@ -31,11 +32,10 @@ namespace DAL.Repository
             return DbSet.AsEnumerable().Select(Mapper.ToDalSubItem);
         }
 
-        public DalSubItem Get(int id)
+        public async Task<DalSubItem> Get(int id)
         {
-            return Mapper.ToDalSubItem(DbSet.FirstOrDefault(t => t.Id == id));
+            return Mapper.ToDalSubItem(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         }
-
         public IEnumerable<DalSubItem> GetMany(Expression<Func<DalSubItem, bool>> where)
         {
             throw new NotImplementedException();

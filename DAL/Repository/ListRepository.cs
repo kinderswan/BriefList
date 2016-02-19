@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Threading.Tasks;
 using DAL.Interfaces.Interfaces;
 using DAL.Interfaces.DALModels;
 using DAL.Mapping;
@@ -31,9 +32,9 @@ namespace DAL.Repository
             return DbSet.AsEnumerable().Select(Mapper.ToDalList);
         }
 
-        public DalList Get(int id)
+        public async Task<DalList> Get(int id)
         {
-            return Mapper.ToDalList(DbSet.FirstOrDefault(t => t.Id == id));
+            return Mapper.ToDalList(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         }
 
         public IEnumerable<DalList> GetMany(Expression<Func<DalList, bool>> where)

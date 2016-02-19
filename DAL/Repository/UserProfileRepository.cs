@@ -7,6 +7,7 @@ using DAL.Mapping;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using DAL.Interfaces.Interfaces;
 using DAL.Interfaces.DALModels;
 using System.Threading.Tasks;
@@ -23,11 +24,6 @@ namespace DAL.Repository
            DbSet.Add(Mapper.ToOrmUserProfile(entity));
         }
 
-        public Task<DalUserProfile> Get(string name)
-        {
-            throw new NotImplementedException();
-        }
-
         public DalUserProfile Get(Expression<Func<DalUserProfile, bool>> where)
         {
             throw new NotImplementedException();
@@ -38,9 +34,14 @@ namespace DAL.Repository
             return DbSet.AsEnumerable().Select(Mapper.ToDalUserProfile);
         }
 
-        public DalUserProfile Get(int id)
+        public async Task<DalUserProfile> Get(string name)
         {
-            return Mapper.ToDalUserProfile(DbSet.FirstOrDefault(t => t.Id == id));
+            return Mapper.ToDalUserProfile(await DbSet.FirstOrDefaultAsync(t => t.Name == name));
+        }
+
+        public async Task<DalUserProfile> Get(int id)
+        {
+          return Mapper.ToDalUserProfile(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         }
 
         public IEnumerable<DalUserProfile> GetMany(Expression<Func<DalUserProfile, bool>> where)

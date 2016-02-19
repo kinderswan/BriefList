@@ -2,7 +2,7 @@
 
 <div id="hidethisdiv" class="modal-content">
     <div class="modal-header">
-        <button id="hidemodal" class="close" onclick="CloseWindow()" data-dismiss="modal-content" area-hidden="true">X</button>
+        <button id="hidemodal" class="close" onclick="CloseWindowL()" data-dismiss="modal-content" area-hidden="true">X</button>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
@@ -39,7 +39,7 @@
 </div>
 
 <script>
-    function CloseWindow() {
+    function CloseWindowL() {
         $('#modDialog').hide();
     }
 </script>
