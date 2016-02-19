@@ -3,3 +3,8 @@ D:\С#\project\BriefListGit\BLL.Interfaces\bin\Debug\BLL.Interfaces.pdb
 D:\С#\project\BriefListGit\BLL.Interfaces\obj\Debug\BLL.Interfaces.dll
 D:\С#\project\BriefListGit\BLL.Interfaces\obj\Debug\BLL.Interfaces.pdb
 D:\С#\project\BriefListGit\BLL.Interfaces\obj\Debug\BLL.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\Pavel\Source\Repos\BriefList\BLL.Interfaces\bin\Debug\BLL.Interfaces.dll
+C:\Users\Pavel\Source\Repos\BriefList\BLL.Interfaces\bin\Debug\BLL.Interfaces.pdb
+C:\Users\Pavel\Source\Repos\BriefList\BLL.Interfaces\obj\Debug\BLL.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\Pavel\Source\Repos\BriefList\BLL.Interfaces\obj\Debug\BLL.Interfaces.dll
+C:\Users\Pavel\Source\Repos\BriefList\BLL.Interfaces\obj\Debug\BLL.Interfaces.pdb

@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BriefListSeed.cs" />
     <Compile Include="Configuration\CommentsConfiguration.cs" />
     <Compile Include="Configuration\ItemConfiguration.cs" />
     <Compile Include="Configuration\ItemFileConfigurationcs.cs" />

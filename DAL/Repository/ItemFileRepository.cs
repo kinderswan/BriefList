@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using DAL.Mapping;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using DAL.Interfaces.DALModels;
 using DAL.Interfaces.Interfaces;
 
@@ -19,16 +21,6 @@ namespace DAL.Repository
             DbSet.Add(Mapper.ToOrmItemFile(entity));
         }
 
-        public void Delete(Expression<Func<DalItemFile, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(DalItemFile entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public DalItemFile Get(Expression<Func<DalItemFile, bool>> where)
         {
             throw new NotImplementedException();
@@ -36,12 +28,12 @@ namespace DAL.Repository
 
         public IEnumerable<DalItemFile> GetAll()
         {
-            throw new NotImplementedException();
+            return DbSet.ToList().Select(Mapper.ToDalItemFile);
         }
 
-        public DalItemFile GetById(int id)
+        public DalItemFile Get(int id)
         {
-            throw new NotImplementedException();
+            return Mapper.ToDalItemFile(DbSet.FirstOrDefault(t => t.Id == id));
         }
 
         public IEnumerable<DalItemFile> GetMany(Expression<Func<DalItemFile, bool>> where)
@@ -51,7 +43,7 @@ namespace DAL.Repository
 
         public void Update(DalItemFile entity)
         {
-            throw new NotImplementedException();
+            DbSet.AddOrUpdate(Mapper.ToOrmItemFile(entity));
         }
     }
 }

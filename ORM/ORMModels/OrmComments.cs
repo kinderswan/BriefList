@@ -1,6 +1,6 @@
 ﻿namespace ORM.ORMModels
 {
-    public class OrmComments
+    public class OrmComments : IOrmEntity
     {   
         public int Id { get; set; }
         public string Comment { get; set; }

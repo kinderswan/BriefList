@@ -20,30 +20,18 @@ namespace DAL.Repository
         {
             DbSet.Add(Mapper.ToOrmComments(entity));
         }
-
-        public void Delete(Expression<Func<DalComments, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(DalComments entity)
-        {
-            DbSet.Remove(Mapper.ToOrmComments(entity));
-        }
-
         public DalComments Get(Expression<Func<DalComments, bool>> where)
         {
             throw new NotImplementedException();
         }
-
         public IEnumerable<DalComments> GetAll()
         {
             return DbSet.ToList().Select(Mapper.ToDalComments);
         }
 
-        public DalComments GetById(int id)
+        public DalComments Get(int id)
         {
-            return Mapper.ToDalComments(DbSet.Find(id));
+            return Mapper.ToDalComments(DbSet.FirstOrDefault(t => t.Id == id));
         }
 
         public IEnumerable<DalComments> GetMany(Expression<Func<DalComments, bool>> where)

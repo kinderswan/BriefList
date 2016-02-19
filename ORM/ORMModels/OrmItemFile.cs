@@ -1,6 +1,6 @@
 ﻿namespace ORM.ORMModels
 {
-    public class OrmItemFile
+    public class OrmItemFile : IOrmEntity
     {
         public int Id { get; set; }
         public string Filename { get; set; }

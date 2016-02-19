@@ -1,6 +1,6 @@
 ﻿namespace ORM.ORMModels
 {
-    public class OrmSubItem
+    public class OrmSubItem : IOrmEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }

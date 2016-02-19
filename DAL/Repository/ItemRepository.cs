@@ -4,8 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using DAL.Interfaces.Interfaces;
 using DAL.Interfaces.DALModels;
+using DAL.Mapping;
 
 namespace DAL.Repository
 {
@@ -15,17 +18,7 @@ namespace DAL.Repository
 
         public void Add(DalItem entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Expression<Func<DalItem, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(DalItem entity)
-        {
-            throw new NotImplementedException();
+            DbSet.Add(Mapper.ToOrmItem(entity));
         }
 
         public DalItem Get(Expression<Func<DalItem, bool>> where)
@@ -35,12 +28,12 @@ namespace DAL.Repository
 
         public IEnumerable<DalItem> GetAll()
         {
-            throw new NotImplementedException();
+            return DbSet.ToList().Select(Mapper.ToDalItem);
         }
 
-        public DalItem GetById(int id)
+        public DalItem Get(int id)
         {
-            throw new NotImplementedException();
+            return Mapper.ToDalItem(DbSet.FirstOrDefault(t => t.Id == id));
         }
 
         public IEnumerable<DalItem> GetMany(Expression<Func<DalItem, bool>> where)
@@ -50,7 +43,7 @@ namespace DAL.Repository
 
         public void Update(DalItem entity)
         {
-            throw new NotImplementedException();
+            DbSet.AddOrUpdate(Mapper.ToOrmItem(entity));
         }
     }
 }

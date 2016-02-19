@@ -2,7 +2,7 @@
 
 namespace ORM.ORMModels
 {
-    public class OrmList
+    public class OrmList : IOrmEntity
     {
         public OrmList()
         {

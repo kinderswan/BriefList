@@ -5,6 +5,8 @@ using DAL.Infrastructure;
 using ORM.ORMModels;
 using DAL.Mapping;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using DAL.Interfaces.Interfaces;
 using DAL.Interfaces.DALModels;
 using System.Threading.Tasks;
@@ -21,16 +23,6 @@ namespace DAL.Repository
            DbSet.Add(Mapper.ToOrmUserProfile(entity));
         }
 
-        public void Delete(Expression<Func<DalUserProfile, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(DalUserProfile entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public Task<DalUserProfile> Get(string name)
         {
             throw new NotImplementedException();
@@ -43,12 +35,12 @@ namespace DAL.Repository
 
         public IEnumerable<DalUserProfile> GetAll()
         {
-            throw new NotImplementedException();
+            return DbSet.AsEnumerable().Select(Mapper.ToDalUserProfile);
         }
 
-        public DalUserProfile GetById(int id)
+        public DalUserProfile Get(int id)
         {
-            throw new NotImplementedException();
+            return Mapper.ToDalUserProfile(DbSet.FirstOrDefault(t => t.Id == id));
         }
 
         public IEnumerable<DalUserProfile> GetMany(Expression<Func<DalUserProfile, bool>> where)
@@ -58,7 +50,7 @@ namespace DAL.Repository
 
         public void Update(DalUserProfile entity)
         {
-            throw new NotImplementedException();
+            DbSet.AddOrUpdate(Mapper.ToOrmUserProfile(entity));
         }
 
         public async Task<bool> UserEmailExist(string email)

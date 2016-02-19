@@ -26,3 +26,5 @@ D:\С#\project\BriefListGit\DAL\bin\Debug\EntityFramework.SqlServer.xml
 D:\С#\project\BriefListGit\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 D:\С#\project\BriefListGit\DAL\obj\Debug\DAL.dll
 D:\С#\project\BriefListGit\DAL\obj\Debug\DAL.pdb
+C:\Users\Pavel\Source\Repos\BriefList\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Pavel\Source\Repos\BriefList\DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml

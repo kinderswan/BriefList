@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ORMModels\IOrmEntity.cs" />
     <Compile Include="ORMModels\OrmComments.cs" />
     <Compile Include="ORMModels\OrmItem.cs" />
     <Compile Include="ORMModels\OrmItemFile.cs" />

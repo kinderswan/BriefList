@@ -1,8 +1,10 @@
 ﻿using System.Data.Entity;
-
+using System.Data.Entity.Migrations;
+using System.Linq;
+using ORM.ORMModels;
 namespace DAL.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> where T : class, IOrmEntity
     {
         #region Properties
         protected IDbSet<T> DbSet;
@@ -11,6 +13,10 @@ namespace DAL.Infrastructure
         protected RepositoryBase(DbContext dbContext)
         {
             DbSet = dbContext.Set<T>();
+        }
+        public virtual void Delete(int id)
+        {
+            DbSet.Remove(DbSet.FirstOrDefault(t => t.Id == id));
         }
 
         //#region Implementation

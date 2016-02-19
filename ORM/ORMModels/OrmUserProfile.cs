@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ORM.ORMModels
 {
-    public class OrmUserProfile
+    public class OrmUserProfile : IOrmEntity
     {
         public OrmUserProfile()
         {

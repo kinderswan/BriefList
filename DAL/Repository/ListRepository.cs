@@ -4,8 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using DAL.Interfaces.Interfaces;
 using DAL.Interfaces.DALModels;
+using DAL.Mapping;
 
 namespace DAL.Repository
 {
@@ -18,16 +21,6 @@ namespace DAL.Repository
             throw new NotImplementedException();
         }
 
-        public void Delete(Expression<Func<DalList, bool>> where)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(DalList entity)
-        {
-            throw new NotImplementedException();
-        }
-
         public DalList Get(Expression<Func<DalList, bool>> where)
         {
             throw new NotImplementedException();
@@ -35,12 +28,12 @@ namespace DAL.Repository
 
         public IEnumerable<DalList> GetAll()
         {
-            throw new NotImplementedException();
+            return DbSet.AsEnumerable().Select(Mapper.ToDalList);
         }
 
-        public DalList GetById(int id)
+        public DalList Get(int id)
         {
-            throw new NotImplementedException();
+            return Mapper.ToDalList(DbSet.FirstOrDefault(t => t.Id == id));
         }
 
         public IEnumerable<DalList> GetMany(Expression<Func<DalList, bool>> where)
@@ -50,7 +43,7 @@ namespace DAL.Repository
 
         public void Update(DalList entity)
         {
-            throw new NotImplementedException();
+            DbSet.AddOrUpdate(Mapper.ToOrmList(entity));
         }
     }
 }
