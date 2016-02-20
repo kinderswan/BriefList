@@ -19,22 +19,8 @@ namespace WEB.Controllers
             this._userProfileService = userProfileService;
         }
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
-
-
-        private ClaimsPrincipal Identiti
-        {
-            get
-            {
-                return (ClaimsPrincipal)Thread.CurrentPrincipal;
-            }
-        }
+        private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
+        private ClaimsPrincipal Identiti => (ClaimsPrincipal)Thread.CurrentPrincipal;
 
 
         [ChildActionOnly]
@@ -45,10 +31,10 @@ namespace WEB.Controllers
         }
 
         [HttpGet]
-        public ActionResult _Login()
-        {
-            return View();
-        }
+        public ActionResult _Login() => View();
+        [HttpGet]
+        public ActionResult _Register() => View();
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -72,14 +58,6 @@ namespace WEB.Controllers
             return View(model);
         }
 
-
-
-        [HttpGet]
-        public ActionResult _Register()
-        {
-            return View();
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> _Register(RegisterModel model)
@@ -96,7 +74,6 @@ namespace WEB.Controllers
             return View(model);
         }
 
-
         public ActionResult Logoff()
         {
             if (User.Identity.IsAuthenticated)
@@ -107,5 +84,4 @@ namespace WEB.Controllers
         }
 
     }
-
 }
