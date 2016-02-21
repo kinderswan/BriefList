@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "MainPage";
+}
+<html ng-app="myApp">
+@section Header
+{
+    <h2>MainPage</h2>
+}
+
+@section Center
+{
+    <body>
+    <div ng-controller="listsController">
+        <p>Название: {{phone.name}}</p>
+        <p>Цена: {{phone.price}} $</p>
+        <p>Производитель: {{phone.company.name}}</p>
+    </div>
+    <script>
+        angular.module('myApp', []);
+    </script>
+        <script src="~/Scripts/controllers/listsController.js"></script>
+    </body>
+    }
+</html>

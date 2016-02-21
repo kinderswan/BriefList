@@ -13,7 +13,7 @@ namespace WEB.App_Start
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "ApplicationCookie",
-                LoginPath = new PathString("/Home/Index"),
+                LoginPath = new PathString("/Home/StartPage"),
             });
         }
     }

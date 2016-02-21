@@ -51,7 +51,7 @@ namespace WEB.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("StartPage", "Home");
                 }
                 else ModelState.AddModelError("", "Incorrect login or password");
             }
@@ -67,7 +67,7 @@ namespace WEB.Controllers
                 if (!(await _userProfileService.UserNameExist(model.Name) && await _userProfileService.UserEmailExist(model.Email)))
                 {
                     _userProfileService.CreateUserProfile(Mapper.ToBllUserProfileRegisterModel(model));
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("StartPage", "Home");
                 }
                 ModelState.AddModelError("", "User with this login or email already exist");
             }
@@ -80,7 +80,7 @@ namespace WEB.Controllers
             {
                 AuthenticationManager.SignOut();
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("StartPage", "Home");
         }
 
     }

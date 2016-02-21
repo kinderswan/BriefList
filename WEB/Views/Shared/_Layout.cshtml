@@ -5,7 +5,15 @@
     <meta charset=utf-8>
     <title>@ViewBag.Title – приложение ASP.NET</title>
     <link rel="stylesheet" href="style.css" />
-
+    @RenderSection("scripts", required: false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/ajaxfunctions")
+    @Scripts.Render("~/bundles/Modal")
     <!--[if IE]>
      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <!--[endif]-->
@@ -29,7 +37,7 @@
 
             <div id="navbarCollapse" class="collapse navbar-collapse" width="150">
                 <ul class="nav navbar-nav">
-                    <li class="active">@Html.ActionLink("All List", "Index", "Home")</li>
+                    <li class="active">@Html.ActionLink("All List", "StartPage", "Home")</li>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="glyphicon glyphicon-user"></span>@Html.Action("Nikneim", "Account", new { @class = "login" })
@@ -51,7 +59,7 @@
                             <div class="form-group">
                                 <input type="text" name="Find" class="form-control" placeholder="Search Lists">
                             </div>
-                            <input type="submit" value="Find List" class="btn btn-default"></input>
+                            <input type="submit" value="Find List" class="btn btn-default"/>
                         </form>
                     </li>
                 </ul>
@@ -59,8 +67,8 @@
                     @if (!HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                        <!--<li><a href="/Account/_Register"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>--> 
-                        <li>@Ajax.RawActionLink(string.Format("<span class='glyphicon glyphicon - registration - mark'></span> Register"), "_Register", "Account", null, new AjaxOptions { OnFailure = "OnFailure", LoadingElementId = "loading", OnSuccess = "ModalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })</li>
-                        <li>@Ajax.RawActionLink(string.Format("<span class='glyphicon glyphicon-log-in'></span> Sign in"), "_Login", "Account", null,new AjaxOptions { OnFailure = "OnFailure", LoadingElementId = "loading", OnSuccess = "ModalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })</li>
+                        <li>@Ajax.RawActionLink(string.Format("<span class='glyphicon glyphicon - registration - mark'></span> Register"), "_Register", "Account", null, new AjaxOptions { OnFailure = "onFailure", LoadingElementId = "loading", OnSuccess = "modalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })</li>
+                        <li>@Ajax.RawActionLink(string.Format("<span class='glyphicon glyphicon-log-in'></span> Sign in"), "_Login", "Account", null,new AjaxOptions { OnFailure = "onFailure", LoadingElementId = "loading", OnSuccess = "modalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })</li>
                     }
                     else
                     {  
@@ -71,8 +79,12 @@
         </div>
     </nav>
     <div style="margin-left:15px">
-
-        @RenderBody()
+        @RenderSection("Header",required:false)
+        @RenderSection("RightSide", required: false)
+        @RenderSection("Center")
+        @RenderSection("LeftSide", required: false)
+        @RenderSection("Footer", required: false)
+        @*RenderBody()*@
     </div>
     <hr />
     <footer class="navbar navbar-fixed-bottom navbar-inverse" style="position: absolute;">
@@ -130,14 +142,7 @@
     </footer>
 
 
-    @RenderSection("scripts", required: false)
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/Success")
-    @Scripts.Render("~/bundles/Modal")
+
 
 </body>
 </html>

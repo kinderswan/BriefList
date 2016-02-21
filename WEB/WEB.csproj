@@ -225,6 +225,7 @@
     <Content Include="Scripts\bootstrap-modal.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\controllers\listsController.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -994,7 +995,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\Success.js" />
+    <Content Include="Scripts\ajaxfunctions.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1007,10 +1008,11 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\StartPage.cshtml" />
     <Content Include="Views\Account\_Login.cshtml" />
     <Content Include="Views\Account\_Register.cshtml" />
     <Content Include="Scripts\version.json" />
+    <Content Include="Views\Home\MainPage.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

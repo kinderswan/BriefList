@@ -5,16 +5,9 @@ namespace WEB.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IUserProfileService _userProfileService;
-        public HomeController(IUserProfileService userProfileService)
-        {
-            this._userProfileService = userProfileService;
-        }
-
-        public ActionResult Index()
+        public ActionResult StartPage()
         {
             return View();
         }
-
     }
 }
