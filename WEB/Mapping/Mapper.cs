@@ -31,5 +31,20 @@ namespace WEB.Mapping
                 };
             return null;
         }
+
+        internal static ListModel ToListModel(BllList model)
+        {
+            if (model != null)
+                return new ListModel
+                {
+                    Id = model.Id,
+                    Description = model.Description,
+                    Title = model.Title,
+                    //не так!это не надо!!!
+                   // OwnerId = model.OwnerId,
+
+                };
+            return null;
+        }
     }
 }

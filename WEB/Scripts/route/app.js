@@ -1,9 +1,9 @@
-﻿var questApp = angular.module('myApp', ["ngRoute"])
+﻿var myApp = angular.module('myApp', ["ngRoute"])
     .config(function($routeProvider){
-        $routeProvider.when('/ShowLists',
+        $routeProvider.when('/_ShowLists',
         {
-            templateUrl:'Views/Lists/ShowLists.cshtml',
-            controller:'ListController'
+            templateUrl:'~/Views/Lists/_ShowLists.cshtml',
+            controller:'listController'
         });
 
 })

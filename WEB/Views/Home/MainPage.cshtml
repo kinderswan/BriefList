@@ -9,17 +9,15 @@
 
 @section Center
 {
-    <body>
-    <div ng-controller="ListController">
-        <nav><a href="#/ShowLists">Lists</a></nav>
+    <body> 
+        <nav><a href="#/_ShowLists">Lists</a></nav>
         <ng-view></ng-view>
-    </div>
-    <script>
-        angular.module('myApp', []);
-    </script>
-    <script src="~/Scripts/angular-route.min.js"></script>
+
+
+        <script src="~/Scripts/angular-route.min.js"></script>
         <script src="~/Scripts/route/app.js"></script>
-        <script src="~/Scripts/controllers/listsController.js"></script>
+        <script src="~/Scripts/services/dataService.js"></script>
+        <script src="~/Scripts/controllers/listController.js"></script>
     </body>
     }
 </html>

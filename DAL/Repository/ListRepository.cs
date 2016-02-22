@@ -17,24 +17,17 @@ namespace DAL.Repository
     {
         public ListRepository(DbContext dbContext) : base(dbContext) { }
 
-        public void Add(DalList entity)
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<DalList> GetAll() => DbSet.AsEnumerable().Select(Mapper.ToDalList);
+        public async Task<DalList> Get(int id) => Mapper.ToDalList(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
+        public void Update(DalList entity) => DbSet.AddOrUpdate(Mapper.ToOrmList(entity));
+        public IEnumerable<DalList> GetAllListsNames() => DbSet.Select(dblist => new OrmList { Id = dblist.Id, Title = dblist.Title }).AsEnumerable().Select(Mapper.ToDalList);
+        public void Add(DalList entity) => DbSet.Add(Mapper.ToOrmList(entity));
+
+
 
         public DalList Get(Expression<Func<DalList, bool>> where)
         {
             throw new NotImplementedException();
-        }
-
-        public IEnumerable<DalList> GetAll()
-        {
-            return DbSet.AsEnumerable().Select(Mapper.ToDalList);
-        }
-
-        public async Task<DalList> Get(int id)
-        {
-            return Mapper.ToDalList(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         }
 
         public IEnumerable<DalList> GetMany(Expression<Func<DalList, bool>> where)
@@ -42,9 +35,5 @@ namespace DAL.Repository
             throw new NotImplementedException();
         }
 
-        public void Update(DalList entity)
-        {
-            DbSet.AddOrUpdate(Mapper.ToOrmList(entity));
-        }
-    }
+  }
 }

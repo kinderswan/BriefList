@@ -1,4 +1,9 @@
-﻿using BLL.Interfaces.Interfaces;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using BLL.Interfaces.BLLModels;
+using BLL.Interfaces.Interfaces;
+using BLL.Mapping;
 using DAL.Interfaces.Interfaces;
 
 namespace BLL.Services
@@ -13,5 +18,7 @@ namespace BLL.Services
             _listRep = listRep;
             _uow = uow;
         }
+
+        public IEnumerable<BllList> GetAllListsNames() => _listRep.GetAllListsNames().Select(Mapper.ToBllList);
     }
 }
