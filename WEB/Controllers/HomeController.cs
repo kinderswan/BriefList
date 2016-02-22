@@ -5,9 +5,7 @@ namespace WEB.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult StartPage()
-        {
-            return View();
-        }
+        public ActionResult StartPage()=>View();
+        public ActionResult MainPage() => View();
     }
 }

@@ -10,14 +10,15 @@
 @section Center
 {
     <body>
-    <div ng-controller="listsController">
-        <p>Название: {{phone.name}}</p>
-        <p>Цена: {{phone.price}} $</p>
-        <p>Производитель: {{phone.company.name}}</p>
+    <div ng-controller="ListController">
+        <nav><a href="#/ShowLists">Lists</a></nav>
+        <ng-view></ng-view>
     </div>
     <script>
         angular.module('myApp', []);
     </script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+        <script src="~/Scripts/route/app.js"></script>
         <script src="~/Scripts/controllers/listsController.js"></script>
     </body>
     }

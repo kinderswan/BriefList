@@ -176,12 +176,14 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelperExtension\HelperExtensions.cs" />
     <Compile Include="Infrastucture\NinjectDependencyResolver.cs" />
     <Compile Include="Mapping\Mapper.cs" />
+    <Compile Include="Models\ListModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RegisterModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -996,6 +998,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ajaxfunctions.js" />
+    <Content Include="Scripts\route\app.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1013,6 +1016,7 @@
     <Content Include="Views\Account\_Register.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\MainPage.cshtml" />
+    <Content Include="Views\List\ShowLists.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
