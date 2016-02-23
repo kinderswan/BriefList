@@ -18,7 +18,7 @@
      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
       <!--[endif]-->
 </head>
-<body scroll="yes">
+<body scroll="yes" ng-body>
     <nav class="navbar navbar-fixed-top navbar-inverse" style="position:absolute;">
 
         <div class="container-fluid">
@@ -31,7 +31,6 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/fonts/Auction.jpg" width="71" height="50" alt="ToDo">
 
             </div>
 
@@ -40,15 +39,15 @@
                     <li class="active">@Html.ActionLink("All List", "StartPage", "Home")</li>
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="glyphicon glyphicon-user"></span>@Html.Action("Nikneim", "Account", new { @class = "login" })
+                            <span class="glyphicon glyphicon-user"></span>@Html.Action("Nickname", "Account", new { @class = "login" })
                             <b class="caret"></b>
                         </a>
 
                         <ul role="menu" class="dropdown-menu">
-                                <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> AddList</a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-ok"></span> SendList</a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Share List</a></li>
-                                <li><a href="#"><span class="glyphicon glyphicon-ok"></span> ...</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> AddList</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-ok"></span> SendList</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-ok"></span> Share List</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-ok"></span> ...</a></li>
 
                             <li><a href="/Cabinet/Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 
@@ -59,19 +58,19 @@
                             <div class="form-group">
                                 <input type="text" name="Find" class="form-control" placeholder="Search Lists">
                             </div>
-                            <input type="submit" value="Find List" class="btn btn-default"/>
+                            <input type="submit" value="Find List" class="btn btn-default" />
                         </form>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (!HttpContext.Current.User.Identity.IsAuthenticated)
                     {
-                       <!--<li><a href="/Account/_Register"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>--> 
+                       <!--<li><a href="/Account/_Register"><span class="glyphicon glyphicon-registration-mark"></span> Register</a></li>-->
                         <li>@Ajax.RawActionLink(string.Format("<span class='glyphicon glyphicon - registration - mark'></span> Register"), "_Register", "Account", null, new AjaxOptions { OnFailure = "onFailure", LoadingElementId = "loading", OnSuccess = "modalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })</li>
-                        <li>@Ajax.RawActionLink(string.Format("<span class='glyphicon glyphicon-log-in'></span> Sign in"), "_Login", "Account", null,new AjaxOptions { OnFailure = "onFailure", LoadingElementId = "loading", OnSuccess = "modalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })</li>
+                        <li>@Ajax.RawActionLink(string.Format("<span class='glyphicon glyphicon-log-in'></span> Sign in"), "_Login", "Account", null, new AjaxOptions { OnFailure = "onFailure", LoadingElementId = "loading", OnSuccess = "modalOnSuccess", UpdateTargetId = "dialogContent" }, new { @class = "btn", @role = "button" })</li>
                     }
                     else
-                    {  
+                    {
                         <li><a href="/Account/Logoff"><span class="glyphicon glyphicon-log-out"></span> Sign Out </a></li>
                     }
                 </ul>
@@ -79,7 +78,7 @@
         </div>
     </nav>
     <div style="margin-left:15px">
-        @RenderSection("Header",required:false)
+        @RenderSection("Header", required: false)
         @RenderSection("RightSide", required: false)
         @RenderSection("Center")
         @RenderSection("LeftSide", required: false)
@@ -88,53 +87,6 @@
     </div>
     <hr />
     <footer class="navbar navbar-fixed-bottom navbar-inverse" style="position: absolute;">
-        <div id="navbarCollapse" class="collapse navbar-collapse" width="150">
-            <ul class="nav navbar-nav">
-
-                <li>
-                    <ol style="color: #6b6b6b; text-align:center">Auction</ol>
-                    <ol><img src="~/fonts/Auction.jpg" width="71" height="50" alt="Auction"></ol>
-                </li>
-                <li>
-                    <ol style="color: #6b6b6b;">Важная информация</ol>
-
-                    <ol>
-                        <!--Не доделано!!!-->
-                        @Html.ActionLink("Sort", "SomeMethod", "SomeController")
-                    </ol>
-
-                    <ol>
-                        <!--Не доделано!!!-->
-                        @Html.ActionLink("Что-то полезное", "SomeMethod", "SomeController")
-                    </ol>
-
-                    <ol>
-                        <!--Не доделано!!!-->
-                        @Html.ActionLink("ALL Users for select list", "SomeMethod", "SomeController")
-                    </ol>
-
-                </li>
-                <li>
-                    <ol style="color: #6b6b6b;">Полезные сылки</ol>
-
-                    <ol>
-                        <!--Не доделано!!!-->
-                        @Html.ActionLink("Что-то полезное", "SomeMethod", "SomeController")
-                    </ol>
-
-                    <ol>
-                        <!--Не доделано!!!-->
-                        @Html.ActionLink("Что-то полезное", "SomeMethod", "SomeController")
-                    </ol>
-
-                    <ol>
-                        <!--Не доделано!!!-->
-                        @Html.ActionLink("Что-то полезное", "SomeMethod", "SomeController")
-                    </ol>
-                </li>
-
-            </ul>
-        </div>
         <div class="container-fluid" style="color: #6b6b6b; text-align:right; text-decoration:solid">
             ASP.NET(Plotnikov and Gamanovih)  &copy; @DateTime.Now.Year
         </div>
