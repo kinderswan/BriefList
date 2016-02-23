@@ -1,8 +1,10 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using BLL.Interfaces.BLLModels;
 using BLL.Interfaces.Interfaces;
 using Microsoft.Owin.Security;
 using WEB.Mapping;
@@ -20,13 +22,16 @@ namespace WEB.Controllers
         }
 
         private IAuthenticationManager AuthenticationManager => HttpContext.GetOwinContext().Authentication;
-        private ClaimsPrincipal Identiti => (ClaimsPrincipal)Thread.CurrentPrincipal;
+        private ClaimsPrincipal Identity => (ClaimsPrincipal)Thread.CurrentPrincipal;
 
 
         [ChildActionOnly]
-        public ActionResult Nikneim()
-        {           
-            if (Identiti.Identity.IsAuthenticated) return Content(Identiti.Identity.Name);
+        public ActionResult Nickname()
+        {
+            if (Identity.Identity.IsAuthenticated)
+            {
+                return Content(Identity.Identity.Name);
+            }
             return Content("Anonymous");
         }
 
@@ -44,7 +49,7 @@ namespace WEB.Controllers
             {
                 ClaimsIdentity claim = await _userProfileService.Autorization(Mapper.ToBllUserProfileLoginModel(model));
 
-                if (claim!=null)
+                if (claim != null)
                 {
                     AuthenticationManager.SignOut();
                     AuthenticationManager.SignIn(new AuthenticationProperties
@@ -53,7 +58,7 @@ namespace WEB.Controllers
                     }, claim);
                     return RedirectToAction("StartPage", "Home");
                 }
-                else ModelState.AddModelError("", "Incorrect login or password");
+                ModelState.AddModelError("", "Incorrect login or password");
             }
             return View(model);
         }
