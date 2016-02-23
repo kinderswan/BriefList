@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Threading.Tasks;
 using DAL.Interfaces.Interfaces;
@@ -20,7 +21,9 @@ namespace DAL.Repository
         public IEnumerable<DalList> GetAll() => DbSet.AsEnumerable().Select(Mapper.ToDalList);
         public async Task<DalList> Get(int id) => Mapper.ToDalList(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         public void Update(DalList entity) => DbSet.AddOrUpdate(Mapper.ToOrmList(entity));
-        public IEnumerable<DalList> GetAllListsNames() => DbSet.Select(dblist => new OrmList { Id = dblist.Id, Title = dblist.Title }).AsEnumerable().Select(Mapper.ToDalList);
+        public IEnumerable<DalList> GetAllListsNames()=> DbSet.Select(dblist => new { Id = dblist.Id, Title = dblist.Title}).AsEnumerable().Select(lt => new OrmList {Title = lt.Title, Id = lt.Id}).Select(Mapper.ToDalList);
+
+
         public void Add(DalList entity) => DbSet.Add(Mapper.ToOrmList(entity));
 
 

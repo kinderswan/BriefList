@@ -9,11 +9,19 @@ namespace WEB
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
             routes.MapRoute(
                 name: "Default",   
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "StartPage", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "/showLists",
+                url: "List/_ShowLists",
+                defaults: new { controller = "List", action = "_ShowLists" }
+                );
+
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿var myApp = angular.module('myApp', ["ngRoute"])
     .config(function($routeProvider){
-        $routeProvider.when('/_ShowLists',
+        $routeProvider.when('showLists',
         {
-            templateUrl:'~/Views/Lists/_ShowLists.cshtml',
-            controller:'listController'
+            templateUrl:'List/_ShowLists',
+            controller:'ListController'
         });
 
 })

@@ -1,4 +1,4 @@
-﻿myApp.controller('listController',
+﻿myApp.controller('ListController',
     function listController($scope, dataService) {
 
         var promiseObj = dataService.getData();
