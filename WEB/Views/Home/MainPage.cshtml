@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "MainPage";
+}
+<html ng-app="myApp">
+@section Header
+{
+    <h2>MainPage</h2>
+}
+
+@section Center
+{
+    <body>
+    <nav><a href="/showLists">ShowLists</a></nav>
+        <ng-view></ng-view>
+
+
+        <script src="~/Scripts/angular-route.min.js"></script>
+        <script src="~/Scripts/route/app.js"></script>
+        <script src="~/Scripts/services/dataService.js"></script>
+        <script src="~/Scripts/controllers/listController.js"></script>
+    </body>
+    }
+</html>

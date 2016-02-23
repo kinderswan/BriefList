@@ -1,0 +1,10 @@
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\ORM.dll
+C:\Users\Pavel\Source\Repos\BriefList\ORM\bin\Debug\ORM.pdb
+C:\Users\Pavel\Source\Repos\BriefList\ORM\obj\Debug\ORM.dll
+C:\Users\Pavel\Source\Repos\BriefList\ORM\obj\Debug\ORM.pdb
+C:\Users\Pavel\Source\Repos\BriefList\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+D:\С#\project\BriefListGit\ORM\bin\Debug\ORM.dll
+D:\С#\project\BriefListGit\ORM\bin\Debug\ORM.pdb
+D:\С#\project\BriefListGit\ORM\obj\Debug\ORM.csprojResolveAssemblyReference.cache
+D:\С#\project\BriefListGit\ORM\obj\Debug\ORM.dll
+D:\С#\project\BriefListGit\ORM\obj\Debug\ORM.pdb
