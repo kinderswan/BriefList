@@ -1,14 +1,9 @@
-﻿myApp.controller('ListController',
-    function listController($scope, dataService) {
+﻿var myApp=angular.module('myApp');
+myApp.controller("ListController", function ($scope, $http) {
 
-        var promiseObj = dataService.getData();
-        promiseObj.then(function (value) { $scope.lists = value; });
-
-        $scope.voteUp = function (answer) {
-            answer.rate++;
-        };
-        $scope.voteDown = function (answer) {
-            answer.rate--;
-        };
+    $http.get("http://localhost:5157/List/Showlists")
+        .then(function (response) {
+        $scope.phones = response.data;
+    });
     }
-)
+);

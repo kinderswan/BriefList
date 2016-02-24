@@ -27,15 +27,14 @@ namespace WEB
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/bundles/ajaxfunctions").Include(
+            bundles.Add(new ScriptBundle("~/bundles/ajaxfunctions").Include(
                 "~/Scripts/ajaxfunctions.js"));
 
-            bundles.Add(new StyleBundle("~/bundles/Modal").Include(
+            bundles.Add(new ScriptBundle("~/bundles/Modal").Include(
                 "~/Scripts/bootstrap-modal.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
-                       "~/Scripts/angular.min.js"));
-
+                "~/Scripts/angular.min.js"));
         }
     }
 }

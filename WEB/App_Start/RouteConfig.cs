@@ -15,11 +15,11 @@ namespace WEB
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "StartPage", id = UrlParameter.Optional }
             );
-
+            
             routes.MapRoute(
                 name: "/showLists",
-                url: "List/_ShowLists",
-                defaults: new { controller = "List", action = "_ShowLists" }
+                url: "List/ShowLists",
+                defaults: new { controller = "List", action = "ShowLists" }
                 );
 
         }

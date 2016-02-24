@@ -1,16 +1,15 @@
-﻿myApp.factory('dataService', function ($http, $q) {
-    return {
-        getData: function () {
-            var deferred = $q.defer();
-            $http({ method: 'GET', url: '/List/_ShowLists' }).
-             success(function (data, status, headers, config) {
-                 deferred.resolve(data.lists);
-             }).
-            error(function (data, status, headers, config) {
-                deferred.reject(status);
-            });
+﻿myApp.factory('StudentService', ['$http', function ($http) {
 
-            return deferred.promise;
-        }
-    }
-})
+    var StudentService = {};
+
+    StudentService.getStudents = function () {
+
+        return $http.get("/showLists");
+        
+    };
+
+    return StudentService;
+
+
+
+}]);
