@@ -17,12 +17,12 @@ namespace WEB.Controllers
         }
 
         [HttpGet]
-        public JsonResult _ShowLists()
+        public JsonResult ShowLists()
         {
             var lists = _listService.GetAllListsNames().Select(Mapper.ToListModel);
             if (!lists.Any())
             {
-                return Json("Not Found", JsonRequestBehavior.AllowGet);
+                 return Json("Not Found", JsonRequestBehavior.AllowGet);
             }
             return Json(lists, JsonRequestBehavior.AllowGet);
         }

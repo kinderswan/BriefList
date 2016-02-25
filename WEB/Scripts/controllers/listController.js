@@ -1,14 +1,10 @@
-﻿myApp.controller('ListController',
-    function listController($scope, dataService) {
+﻿var myApp=angular.module('myApp');
+myApp.controller("ListController", function ($scope,listService) {
 
-        var promiseObj = dataService.getData();
-        promiseObj.then(function (value) { $scope.lists = value; });
+    var promiseObj = listService.getData();
+    promiseObj.then(function (value) {
+        $scope.phones = value.data;
+    });
 
-        $scope.voteUp = function (answer) {
-            answer.rate++;
-        };
-        $scope.voteDown = function (answer) {
-            answer.rate--;
-        };
     }
-)
+);

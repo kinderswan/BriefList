@@ -1,23 +1,29 @@
 ﻿@{
     ViewBag.Title = "MainPage";
 }
-<html ng-app="myApp">
-@section Header
-{
-    <h2>MainPage</h2>
-}
 
-@section Center
-{
+    <html ng-app="myApp">
+    <head>
+        
+        <script>
+            var myApp = angular.module('myApp', []);
+        </script>
+        <script src="~/Scripts/controllers/ListController.js"></script>
+        <script src="~/Scripts/services/listService.js"></script>
+    </head>
+
     <body>
-    <nav><a href="/showLists">ShowLists</a></nav>
-        <ng-view></ng-view>
 
+    <div ng-controller="ListController">
 
-        <script src="~/Scripts/angular-route.min.js"></script>
-        <script src="~/Scripts/route/app.js"></script>
-        <script src="~/Scripts/services/dataService.js"></script>
-        <script src="~/Scripts/controllers/listController.js"></script>
+        <div ng-repeat="phone in phones">
+            <p>{{phone.Title}}</p>
+        </div>
+
+    </div>
+
+        
     </body>
-    }
-</html>
+    </html>
+
+

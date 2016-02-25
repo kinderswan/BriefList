@@ -8,6 +8,6 @@ namespace ORM.ORMModels
 {
     public interface IOrmEntity
     {
-        int Id { get; set; }
+        int Id { get; }
     }
 }

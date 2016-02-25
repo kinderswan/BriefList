@@ -78,12 +78,8 @@
         </div>
     </nav>
     <div style="margin-left:15px">
-        @RenderSection("Header", required: false)
-        @RenderSection("RightSide", required: false)
-        @RenderSection("Center")
-        @RenderSection("LeftSide", required: false)
-        @RenderSection("Footer", required: false)
-        @*RenderBody()*@
+
+        @RenderBody()
     </div>
     <hr />
     <footer class="navbar navbar-fixed-bottom navbar-inverse" style="position: absolute;">
