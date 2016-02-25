@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BLL.Interfaces.BLLModels;
 using BLL.Interfaces.Interfaces;
 using BLL.Mapping;
@@ -20,5 +21,10 @@ namespace BLL.Services
         }
 
         public IEnumerable<BllList> GetAllListsNames() => _listRep.GetAllListsNames().Select(Mapper.ToBllList);
+        public async Task<IEnumerable<BllList>> GetAllLists() => (await _listRep.GetAll()).Select(Mapper.ToBllList);
+        public async Task<IEnumerable<BllList>> GetUserLists(int id)
+        {
+            return (await _listRep.GetAll()).Where(t => t.OwnerId == id).Select(Mapper.ToBllList);
+        }
     }
 }

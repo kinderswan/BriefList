@@ -18,10 +18,10 @@ namespace DAL.Repository
     {
         public ListRepository(DbContext dbContext) : base(dbContext) { }
 
-        public IEnumerable<DalList> GetAll() => DbSet.AsEnumerable().Select(Mapper.ToDalList);
+        public async Task<IEnumerable<DalList>> GetAll() => await Task.Run(() => DbSet.AsEnumerable().Select(Mapper.ToDalList));
         public async Task<DalList> Get(int id) => Mapper.ToDalList(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         public void Update(DalList entity) => DbSet.AddOrUpdate(Mapper.ToOrmList(entity));
-        public IEnumerable<DalList> GetAllListsNames()=> DbSet.Select(dblist => new { Id = dblist.Id, Title = dblist.Title}).AsEnumerable().Select(lt => new OrmList {Title = lt.Title, Id = lt.Id}).Select(Mapper.ToDalList);
+        public IEnumerable<DalList> GetAllListsNames() => DbSet.Select(dblist => new { Id = dblist.Id, Title = dblist.Title }).AsEnumerable().Select(lt => new OrmList { Title = lt.Title, Id = lt.Id }).Select(Mapper.ToDalList);
 
 
         public void Add(DalList entity) => DbSet.Add(Mapper.ToOrmList(entity));
@@ -38,5 +38,5 @@ namespace DAL.Repository
             throw new NotImplementedException();
         }
 
-  }
+    }
 }

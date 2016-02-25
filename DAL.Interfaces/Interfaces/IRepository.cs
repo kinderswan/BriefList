@@ -13,7 +13,7 @@ namespace DAL.Interfaces.Interfaces
         void Delete(int id);
         Task<T> Get(int id);
         T Get(Expression<Func<T, bool>> where);
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
         IEnumerable<T> GetMany(Expression<Func<T, bool>> where);
     }
 }
