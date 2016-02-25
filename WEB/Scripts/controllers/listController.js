@@ -1,9 +1,10 @@
 ﻿var myApp=angular.module('myApp');
-myApp.controller("ListController", function ($scope, $http) {
+myApp.controller("ListController", function ($scope,listService) {
 
-    $http.get("http://localhost:5157/List/Showlists")
-        .then(function (response) {
-        $scope.phones = response.data;
+    var promiseObj = listService.getData();
+    promiseObj.then(function (value) {
+        $scope.phones = value.data;
     });
+
     }
 );

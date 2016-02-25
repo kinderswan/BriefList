@@ -16,7 +16,7 @@ namespace WEB.Controllers
             this._listService = listService;
         }
 
-        
+        [HttpGet]
         public JsonResult ShowLists()
         {
             var lists = _listService.GetAllListsNames().Select(Mapper.ToListModel);
