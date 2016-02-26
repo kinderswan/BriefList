@@ -29,30 +29,27 @@ namespace WEB.Controllers.Api
 
         #region get
         [HttpGet]
+        [Route("api/users")]
         public async Task<IEnumerable<ApiUserProfile>> GetUsers()
         {
             return (await _userService.GetUserProfiles()).Select(Mapper.ToApiUserProfile);
         }
 
         [HttpGet]
+        [Route("api/users/{id}")]
         public async Task<ApiUserProfile> GetUser(int id)
         {
             return Mapper.ToApiUserProfile(await _userService.GetUserProfile(id));
         }
 
         [HttpGet]
+        [Route("api/users/{name}")]
         public async Task<ApiUserProfile> GetUser(string name)
         {
             return Mapper.ToApiUserProfile(await _userService.GetUserProfile(name));
         }
 
-        [HttpGet]
-        [Route("api/users/{userId}/lists")]
-        public async Task<IEnumerable<ApiList>> GetUserLists(int userId)
-        {
-            return (await _listService.GetUserLists(userId)).Select(Mapper.ToApiList);
-        }
-
+        
         [HttpGet]
         [Route("api/users/{userId}/lists/{id}")]
         public async Task<ApiList> GetUserList(int userId, int id)
@@ -98,6 +95,10 @@ namespace WEB.Controllers.Api
             _userService.DeleteUserProfile(id);
         }
 
+        #endregion
+
+        #region post
+        
         #endregion
     }
 }

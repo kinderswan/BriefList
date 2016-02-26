@@ -7,5 +7,7 @@ namespace WEB.Controllers
     {
         public ActionResult StartPage()=>View();
         public ActionResult MainPage() => View();
+
+        public ActionResult Index() => View();
     }
 }
