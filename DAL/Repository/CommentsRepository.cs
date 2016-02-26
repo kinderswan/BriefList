@@ -25,10 +25,7 @@ namespace DAL.Repository
         {
             throw new NotImplementedException();
         }
-        public IEnumerable<DalComments> GetAll()
-        {
-            return DbSet.ToList().Select(Mapper.ToDalComments);
-        }
+        public async Task<IEnumerable<DalComments>> GetAll() => await Task.Run(() => DbSet.ToList().Select(Mapper.ToDalComments));
 
         public async Task<DalComments> Get(int id)
         {

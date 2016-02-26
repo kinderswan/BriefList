@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Helpers;
@@ -26,6 +28,23 @@ namespace BLL.Services
             _uow.Commit();
         }
 
+        public void DeleteUserProfile(int id)
+        {
+            _userRep.Delete(id);
+            _uow.Commit();
+        }
+        public async Task<IEnumerable<BllUserProfile>> GetUserProfiles() => (await _userRep.GetAll()).Select(Mapper.ToBllUserProfile);
+
+        public async Task<BllUserProfile> GetUserProfile(int id)
+        {
+            return Mapper.ToBllUserProfile(await _userRep.Get(id));
+        }
+
+        public async Task<BllUserProfile> GetUserProfile(string name)
+        {
+            return Mapper.ToBllUserProfile(await _userRep.Get(name));
+        }
+
         public async Task<ClaimsIdentity> Autorization(BllUserProfile blluserprofile)
         {
             ClaimsIdentity claim = null;
@@ -44,6 +63,8 @@ namespace BLL.Services
         public async Task<bool> UserNameExist(string name)=>await _userRep.UserNameExist(name);
 
         public async Task<bool> UserEmailExist(string email)=>await _userRep.UserEmailExist(email);
+
+        
 
     }
 }

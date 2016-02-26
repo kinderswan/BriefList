@@ -1,4 +1,5 @@
-﻿using WEB.Infrastucture;
+﻿using System.Web.Http;
+using WEB.Infrastucture;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WEB.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WEB.App_Start.NinjectWebCommon), "Stop")]
@@ -48,6 +49,7 @@ namespace WEB.App_Start
                 kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
 
                 RegisterServices(kernel);
+                GlobalConfiguration.Configuration.DependencyResolver = new Ninject.Web.WebApi.NinjectDependencyResolver(kernel);
                 return kernel;
             }
             catch
