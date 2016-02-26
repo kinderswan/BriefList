@@ -17,33 +17,22 @@ namespace DAL.Repository
     {
         public SubItemRepository(DbContext dbContext) : base(dbContext) { }
 
-        public void Add(DalSubItem entity)
-        {
-            throw new NotImplementedException();
-        }
+        public void Add(DalSubItem entity) => DbSet.Add(Mapper.ToOrmSubItem(entity));
 
         public DalSubItem Get(Expression<Func<DalSubItem, bool>> where)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<DalSubItem> GetAll()
-        {
-            return DbSet.AsEnumerable().Select(Mapper.ToDalSubItem);
-        }
+        public async Task<IEnumerable<DalSubItem>> GetAll() => await Task.Run(() => DbSet.AsEnumerable().Select(Mapper.ToDalSubItem));
 
-        public async Task<DalSubItem> Get(int id)
-        {
-            return Mapper.ToDalSubItem(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
-        }
+        public async Task<DalSubItem> Get(int id) => Mapper.ToDalSubItem(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
+
         public IEnumerable<DalSubItem> GetMany(Expression<Func<DalSubItem, bool>> where)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(DalSubItem entity)
-        {
-            DbSet.AddOrUpdate(Mapper.ToOrmSubItem(entity));
-        }
+        public void Update(DalSubItem entity) => DbSet.AddOrUpdate(Mapper.ToOrmSubItem(entity));
     }
 }
