@@ -193,6 +193,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\ListsController.cs" />
+    <Compile Include="Controllers\Api\ToDoItemsController.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListController.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\LoginPage.css" />
     <Content Include="Content\Register.css" />
+    <Content Include="Content\StartPage.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -1051,6 +1053,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\Start.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

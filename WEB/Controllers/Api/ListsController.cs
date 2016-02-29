@@ -33,5 +33,12 @@ namespace WEB.Controllers.Api
             return (await _listService.GetUserLists(userId)).Select(Mapper.ToApiList);
         }
 
+        [HttpGet]
+        [Route("api/users/{userId}/lists/{id}")]
+        public async Task<ApiList> GetUserList(int userId, int id)
+        {
+            return Mapper.ToApiList((await _listService.GetUserLists(userId)).FirstOrDefault(t => t.Id == id));
+        }
+
     }
 }

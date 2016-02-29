@@ -44,5 +44,10 @@ namespace BLL.Services
             }
             return new List<BllItem>();
         }
+
+        public async Task<IEnumerable<BllItem>> GetListToDoItems(int listId)
+        {
+            return (await _itemRep.GetAll()).Where(t => t.DalListId == listId).Select(Mapper.ToBllItem);
+        }
     }
 }

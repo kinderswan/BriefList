@@ -8,6 +8,7 @@ namespace BLL.Interfaces.Interfaces
     {
         Task<IEnumerable<BllItem>> GetToDoItems();
         Task<IEnumerable<BllItem>> GetUserToDoItems(int id);
+        Task<IEnumerable<BllItem>> GetListToDoItems(int listId);
         Task<IEnumerable<BllItem>> GetUserListToDoItems(int userId, int listId);
     }
 }
