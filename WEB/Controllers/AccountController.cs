@@ -37,8 +37,12 @@ namespace WEB.Controllers
 
         [HttpGet]
         public ActionResult _Login() => View();
+
+        [HttpGet]
+        public ActionResult Login() => View();
         [HttpGet]
         public ActionResult _Register() => View();
+        public ActionResult Register() => View();
 
 
         [HttpPost]

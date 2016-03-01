@@ -2,7 +2,7 @@
     return {
         getData: function () {
             var deferred = $q.defer();
-            $http.get("/List/Showlists")
+            $http.get("/api/users/2/lists")
                 .then(function(resp) {
                     deferred.resolve( resp );
                 }),

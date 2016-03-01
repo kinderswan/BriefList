@@ -2,7 +2,7 @@
     .config(function($routeProvider){
         $routeProvider.when('showLists',
         {
-            templateUrl:'List/_ShowLists',
+            templateUrl:'api/users/2/lists',
             controller:'ListController'
         });
 
