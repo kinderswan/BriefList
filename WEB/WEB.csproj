@@ -191,6 +191,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Template\Error.html" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -252,6 +253,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\controllers\listController.js" />
+    <Content Include="Scripts\controllers\RouteController.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -1023,8 +1025,10 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\ajaxfunctions.js" />
     <Content Include="Scripts\route\app.js" />
-    <Content Include="Scripts\services\dataService.js" />
+    <Content Include="Scripts\services\listService.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Template\Home.html" />
+    <Content Include="Template\Route.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1042,6 +1046,9 @@
     <Content Include="Scripts\version.json" />
     <Content Include="Views\Home\MainPage.cshtml" />
     <Content Include="Views\List\_ShowLists.cshtml" />
+    <Content Include="Views\Users\_GetUsersById.cshtml" />
+    <Content Include="Views\Users\_GetUsersByName.cshtml" />
+    <Content Include="Views\Users\GetUsersById.html" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

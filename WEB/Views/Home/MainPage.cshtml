@@ -2,28 +2,29 @@
     ViewBag.Title = "MainPage";
 }
 
-    <html ng-app="myApp">
-    <head>
-        
-        <script>
-            var myApp = angular.module('myApp', []);
-        </script>
-        <script src="~/Scripts/controllers/ListController.js"></script>
-        <script src="~/Scripts/services/listService.js"></script>
-    </head>
+<html ng-app="myApp">
+<head>
 
-    <body>
 
-    <div ng-controller="ListController">
+</head>
 
-        <div ng-repeat="phone in phones">
-            <p>{{phone.Title}}</p>
-        </div>
+<body>
 
-    </div>
+    <div ng-view></div>
 
-        
-    </body>
-    </html>
+
+
+    <a href="#!/home">home</a>
+    <a href="#!/route/2">order</a>
+
+
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/route/app.js"></script>
+    <script src="~/Scripts/controllers/RouteController.js"></script>
+    <script src="~/Scripts/services/listService.js"></script>
+    
+</body>
+</html>
+
 
 
