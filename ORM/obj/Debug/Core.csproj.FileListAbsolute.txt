@@ -1,5 +1,0 @@
-C:\Users\Pavel\Source\Repos\BriefList\Core\bin\Debug\Core.dll
-C:\Users\Pavel\Source\Repos\BriefList\Core\bin\Debug\Core.pdb
-C:\Users\Pavel\Source\Repos\BriefList\Core\obj\Debug\Core.csprojResolveAssemblyReference.cache
-C:\Users\Pavel\Source\Repos\BriefList\Core\obj\Debug\Core.dll
-C:\Users\Pavel\Source\Repos\BriefList\Core\obj\Debug\Core.pdb

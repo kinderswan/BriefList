@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WEB", "WEB\WEB.csproj", "{B5C3ADA1-EBF4-4CC7-8177-80A4D4C4D560}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.BriefList.WebUI", "Epam.BriefList.WebUI\Epam.BriefList.WebUI.csproj", "{B5C3ADA1-EBF4-4CC7-8177-80A4D4C4D560}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORM", "ORM\ORM.csproj", "{54286C04-EFCC-48F0-A9B5-4CC65339F98C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.BriefList.Orm", "Epam.BriefList.Orm\Epam.BriefList.Orm.csproj", "{54286C04-EFCC-48F0-A9B5-4CC65339F98C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{D24B3342-17DF-4875-A701-FAFB3BF22A4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.BriefList.DataAccess.MSSQLProvider", "Epam.BriefList.DataAccess.MSSQLProvider\Epam.BriefList.DataAccess.MSSQLProvider.csproj", "{D24B3342-17DF-4875-A701-FAFB3BF22A4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{73FBBF64-92C4-4303-8084-F31699B36C09}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.BriefList.Services", "Epam.BriefList.Services\Epam.BriefList.Services.csproj", "{73FBBF64-92C4-4303-8084-F31699B36C09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL.Interfaces", "DAL.Interfaces\DAL.Interfaces.csproj", "{528C7D0A-A19A-4D97-8E1A-05540590BD87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.BriefList.DataAccess.API", "Epam.BriefList.DataAccess.API\Epam.BriefList.DataAccess.API.csproj", "{528C7D0A-A19A-4D97-8E1A-05540590BD87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL.Interfaces", "BLL.Interfaces\BLL.Interfaces.csproj", "{2A4AD172-75B2-4E7C-A5E1-47ACDDD3BA3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.BriefList.Services.API", "Epam.BriefList.Services.API\Epam.BriefList.Services.API.csproj", "{2A4AD172-75B2-4E7C-A5E1-47ACDDD3BA3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DependencyResolver", "DependencyResolver\DependencyResolver.csproj", "{353E10CE-4420-4BD1-B370-5B6F8FE7DB07}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Epam.BriefList.DependencyResolver", "Epam.BriefList.DependencyResolver\Epam.BriefList.DependencyResolver.csproj", "{353E10CE-4420-4BD1-B370-5B6F8FE7DB07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
