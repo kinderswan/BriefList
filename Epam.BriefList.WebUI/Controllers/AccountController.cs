@@ -43,7 +43,7 @@ namespace Epam.BriefList.WebUI.Controllers
 
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         public async Task<ActionResult> _Login(LoginModel model)
         {
             if (ModelState.IsValid)
