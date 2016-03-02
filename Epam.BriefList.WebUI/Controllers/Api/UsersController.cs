@@ -10,6 +10,7 @@ using Epam.BriefList.WebUI.Models.ApiModels;
 
 namespace Epam.BriefList.WebUI.Controllers.Api
 {
+    [Authorize]
     public class UsersController : ApiController
     {
         private readonly IUserProfileService _userService;
@@ -36,19 +37,15 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         }
 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetUser(int id)
+        public  async Task<IHttpActionResult> GetUser(int id)
         {
-            var helper = new HttpResponseGetHelper<ApiUserProfile>(User.Identity.IsAuthenticated, Request);
-            helper.Method( async () => Mapper.ToApiUserProfile(await _userService.GetUserProfile(id)));
-            return await helper.Result();
+            return Json(Mapper.ToApiUserProfile(await _userService.GetUserProfile(id)));
         }
 
         [HttpGet]
-        public async Task<HttpResponseMessage> GetUser(string name)
+        public async Task<IHttpActionResult> GetUser(string name)
         {
-            var helper = new HttpResponseGetHelper<ApiUserProfile>(User.Identity.IsAuthenticated, Request);
-            helper.Method(async () => Mapper.ToApiUserProfile(await _userService.GetUserProfile(name)));
-            return await helper.Result();
+            return Json(Mapper.ToApiUserProfile(await _userService.GetUserProfile(name)));
         }
 
 
