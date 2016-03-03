@@ -66,7 +66,7 @@ namespace Epam.BriefList.WebUI.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [AntiForgeryValidate]
         public async Task<ActionResult> _Register(RegisterModel model)
         {
             if (ModelState.IsValid)

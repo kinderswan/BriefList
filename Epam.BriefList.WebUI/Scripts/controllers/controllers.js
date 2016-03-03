@@ -33,4 +33,20 @@
                 }
             };
         }
-    ]);
+    ])
+
+.controller('RegisterController', [
+    '$scope', 'registerService', function($scope, registerService) {
+
+        $scope.save = function(model, registerForm) {
+            if (registerForm.$valid) {
+                var promiseObj = registerService.postRegister(model);
+                promiseObj.then(function (value) {
+                    alert(model.Name + ", You register");
+                    return value.data;
+                });
+
+            }
+        };
+    }
+]);
