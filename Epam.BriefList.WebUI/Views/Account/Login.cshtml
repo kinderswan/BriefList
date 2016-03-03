@@ -1,4 +1,5 @@
-﻿@using Microsoft.Owin.Infrastructure
+﻿@using Epam.BriefList.WebUI.HelperExtension
+@using Microsoft.Owin.Infrastructure
 
 @{
     ViewBag.Title="Sign In";
@@ -17,10 +18,10 @@
         <div class="logo"></div>
         
 
-    <div ng-controller="LoginController" class="card login">
+    <div ng-controller="LoginController" class="card login" @Html.RequestVerificationToken()>
 
         <form name="loginForm" class="auth-form login">
-            @*Html.AntiForgeryToken()*@
+
             <input name="_csrf" value="fBBePuQ4-tHZAtuuIqy6Oitxroyw8blmLvy8" type="hidden">
 
             <div class="row email">
@@ -69,11 +70,6 @@
                 <input class="button big blue" ng-click="save(model, loginForm)" value="Enter" type="submit">
             </div>
 
-            <span class="link forgot-password">
-                    <a href="/forgotpassword">
-                        Forgot Password?
-                    </a>
-                </span>
         </form>
 
 
@@ -87,6 +83,7 @@
 
 
         <script>var myApp = angular.module('myApp', [])</script>
+        <script src="~/Scripts/directive/directives.js"></script>
         <script src="~/Scripts/controllers/controllers.js"></script>
         <script src="~/Scripts/services/loginService.js"></script>
 

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Epam.BriefList.Services.API.Interfaces;
+using Epam.BriefList.WebUI.Filters;
 using Epam.BriefList.WebUI.Mapping;
 using Epam.BriefList.WebUI.Models;
 using Microsoft.Owin.Security;
@@ -43,7 +44,7 @@ namespace Epam.BriefList.WebUI.Controllers
 
 
         [HttpPost]
-       // [ValidateAntiForgeryToken]
+        [AntiForgeryValidate]
         public async Task<ActionResult> _Login(LoginModel model)
         {
             if (ModelState.IsValid)
