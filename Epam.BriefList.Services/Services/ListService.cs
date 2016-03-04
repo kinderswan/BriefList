@@ -21,9 +21,7 @@ namespace Epam.BriefList.Services.Services
 
         public IEnumerable<BllList> GetAllListsNames() => _listRep.GetAllListsNames().Select(Mapper.ToBllList);
         public async Task<IEnumerable<BllList>> GetAllLists() => (await _listRep.GetAll()).Select(Mapper.ToBllList);
-        public async Task<IEnumerable<BllList>> GetUserLists(int id)
-        {
-            return (await _listRep.GetAll()).Where(t => t.OwnerId == id).Select(Mapper.ToBllList);
-        }
+        public async Task<IEnumerable<BllList>> GetUserLists(int id) => (await _listRep.GetByOwnerId(id)).Select(Mapper.ToBllList);
+        
     }
 }
