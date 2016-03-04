@@ -18,14 +18,13 @@
         });
 
     })
-
     .controller('LoginController', [
         '$scope', 'loginService', function($scope, loginService) {
 
             $scope.save = function(model, loginForm) {
                 if (loginForm.$valid) {
                     var promiseObj = loginService.postLogin(model);
-                    promiseObj.then(function (value) {
+                    promiseObj.then(function(value) {
                         alert(model.Name + ", You enter");
                         return value.data;
                     });
@@ -34,44 +33,77 @@
             };
         }
     ])
+    .controller('RegisterController', [
+        '$scope', 'registerService', function($scope, registerService) {
 
-.controller('RegisterController', [
-    '$scope', 'registerService', function($scope, registerService) {
+            $scope.save = function(model, registerForm) {
+                if (registerForm.$valid) {
+                    var promiseObj = registerService.postRegister(model);
+                    promiseObj.then(function(value) {
+                        alert(model.Name + ", You register");
+                        return value.data;
+                    });
 
-        $scope.save = function(model, registerForm) {
-            if (registerForm.$valid) {
-                var promiseObj = registerService.postRegister(model);
-                promiseObj.then(function (value) {
-                    alert(model.Name + ", You register");
-                    return value.data;
+                }
+            };
+        }
+    ])
+    .controller('GetListController', [
+        '$scope', 'userListService', function($scope, userListService) {
+
+            $scope.message = 'GetListController';
+
+            $scope.getAllLists = function(userId) {
+                var promiseObj = userListService.getUserLists(userId);
+                promiseObj.then(function(value) {
+                    $scope.lists = value.data;
                 });
+            };
 
-            }
-        };
-    }
-])
+            $scope.save = function(model, listForm) {
+                console.log($scope.message);
+                if (listForm.$valid) {
+                    var promiseObj = userListService.addList(model);
+                    promiseObj.then(function(value) {
+                        alert(model.Title + ", You add list");
+                        return value.data;
+                    });
 
-.controller('GetListController', ['$scope', 'userListService', function ($scope, userListService) {
+                }
+            };
 
-    $scope.message = 'GetListController';
+        }
+    ])
+    .controller('GetItemController', [
+        '$scope', '$routeParams', 'itemService', function($scope, $routeParams, itemService) {
 
-        $scope.getAllLists = function(userId) {
-            var promiseObj = userListService.getUserLists(userId);
+            $scope.message = 'GetItemController';
+
+            var promiseObj = itemService.getTodoItems($routeParams.id);
             promiseObj.then(function(value) {
-                $scope.lists = value.data;
+                $scope.items = value.data;
             });
-        };
+
+        }
+    ])
+    .controller('AddListController', [
+        '$scope', 'userListService', function($scope, userListService) {
+
+            $scope.message = 'AddListController';
+
+            $scope.save = function(model, listForm) {
+                console.log($scope.message);
+                if (listForm.$valid) {
+                    var promiseObj = userListService.addList(model);
+                    promiseObj.then(function(value) {
+                        alert(model.Title + ", You add list");
+                        return value.data;
+                    });
+
+                }
+            };
 
 
-}])
-.controller('GetItemController', ['$scope', '$routeParams', 'itemService', function ($scope, $routeParams, itemService) {
+        }
+    ]);
 
-    $scope.message = 'GetItemController';
-
-        var promiseObj = itemService.getTodoItems($routeParams.id);
-        promiseObj.then(function (value) {
-            $scope.items = value.data;
-            console.log(value.data);
-        });
-    
-}]);

@@ -37,5 +37,11 @@ namespace Epam.BriefList.WebUI.Controllers.Api
             return Mapper.ToApiList((await _listService.GetUserLists(userId)).FirstOrDefault(t => t.Id == id));
         }
 
+        [HttpPost]
+        [Route("api/users/addlist")]
+        public async Task<ApiList> AddList(ApiList model)
+        {
+            return Mapper.ToApiList((await _listService.GetUserLists(1)).FirstOrDefault(t => t.Id == 1));
+        }
     }
 }
