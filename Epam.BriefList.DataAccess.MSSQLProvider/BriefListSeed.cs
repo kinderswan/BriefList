@@ -6,7 +6,7 @@ using Epam.BriefList.Orm.Models;
 
 namespace Epam.BriefList.DataAccess.MSSQLProvider
 {
-    internal class BriefListSeed : DropCreateDatabaseIfModelChanges<EntityModelContext>
+    internal class BriefListSeed :/* DropCreateDatabaseAlways*/ DropCreateDatabaseIfModelChanges<EntityModelContext>
     {
         protected override void Seed(EntityModelContext context)
         {
@@ -14,25 +14,56 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
             context.SaveChanges();
             GetLists().ToList().ForEach(e => context.OrmLists.Add(e));
             context.SaveChanges();
-          //  GetItems().ToList().ForEach(e => context.OrmItems.Add(e));
-         //   context.SaveChanges();
+            GetItems().ToList().ForEach(e => context.OrmItems.Add(e));
+            context.SaveChanges();
          //   GetSubItems().ToList().ForEach(e => context.OrmSubItems.Add(e));
         //    GetItemFiles().ToList().ForEach(e => context.OrmItemFiles.Add(e));
             GetComments().ToList().ForEach(e => context.OrmComments.Add(e));
             context.SaveChanges();
         }
 
-   /*     private static IEnumerable<OrmItem> GetItems()
+        private static IEnumerable<OrmItem> GetItems()
         {
             return new List<OrmItem>
             {
                 new OrmItem
                 {
+                    Title = "hey",
+                    Starred = true,
+                    OrmListId = 1,
+                    Completed = true
+
+                },
+
+                new OrmItem
+                {
+                    Title = "rrrt",
+                    Starred = true,
+                    OrmListId = 2,
+                    Completed = true
+
+                },
+
+                new OrmItem
+                {
+                    Title = "tytyty",
+                    Starred = false,
+                    OrmListId = 1,
+                    Completed = true
+
+                },
+
+                new OrmItem
+                {
+                    Title = "dynai",
+                    Starred = true,
+                    OrmListId = 2,
+                    Completed = false
 
                 }
             };
         }
-
+        /*
         private static IEnumerable<OrmItemFile> GetItemFiles()
         {
             return new List<OrmItemFile>

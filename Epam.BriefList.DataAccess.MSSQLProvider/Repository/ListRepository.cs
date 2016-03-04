@@ -21,7 +21,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Repository
         public async Task<DalList> Get(int id) => Mapper.ToDalList(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         public void Update(DalList entity) => DbSet.AddOrUpdate(Mapper.ToOrmList(entity));
         public IEnumerable<DalList> GetAllListsNames() => DbSet.Select(dblist => new { Id = dblist.Id, Title = dblist.Title }).AsEnumerable().Select(lt => new OrmList { Title = lt.Title, Id = lt.Id }).Select(Mapper.ToDalList);
-
+        public async Task<IEnumerable<DalList>> GetByOwnerId(int id) => await Task.Run(() => DbSet.Where(db=>db.OwnerId==id).AsEnumerable().Select(Mapper.ToDalList));
 
         public void Add(DalList entity) => DbSet.Add(Mapper.ToOrmList(entity));
 

@@ -49,4 +49,29 @@
             }
         };
     }
-]);
+])
+
+.controller('GetListController', ['$scope', 'userListService', function ($scope, userListService) {
+
+    $scope.message = 'GetListController';
+
+        $scope.getAllLists = function(userId) {
+            var promiseObj = userListService.getUserLists(userId);
+            promiseObj.then(function(value) {
+                $scope.lists = value.data;
+            });
+        };
+
+
+}])
+.controller('GetItemController', ['$scope', '$routeParams', 'itemService', function ($scope, $routeParams, itemService) {
+
+    $scope.message = 'GetItemController';
+
+        var promiseObj = itemService.getTodoItems($routeParams.id);
+        promiseObj.then(function (value) {
+            $scope.items = value.data;
+            console.log(value.data);
+        });
+    
+}]);

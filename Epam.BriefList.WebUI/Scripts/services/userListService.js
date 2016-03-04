@@ -1,4 +1,4 @@
-﻿briefApp.factory('userListService', function ($http, $q) {
+﻿myApp.factory('userListService', ['$http', '$q', function ($http, $q) {
     return {
         getUserLists: function (userId) {
             var deferred = $q.defer();
@@ -16,4 +16,4 @@
         }
 
     }
-});
+}]);
