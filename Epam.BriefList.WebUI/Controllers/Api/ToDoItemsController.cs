@@ -48,9 +48,9 @@ namespace Epam.BriefList.WebUI.Controllers.Api
 
         [HttpGet]
         [Route("api/lists/{listId}/todoitems")]
-        public async Task<IEnumerable<ApiItem>> GetListsTodoItems(int listId)
+        public async Task<IHttpActionResult> GetListsTodoItems(int listId)
         {
-            return (await _itemService.GetListToDoItems(listId)).Select(Mapper.ToApiItem);
+            return Json((await _itemService.GetListToDoItems(listId)).Select(Mapper.ToApiItem));
         }
     }
 }

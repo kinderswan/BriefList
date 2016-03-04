@@ -1,10 +1,10 @@
-﻿myApp.factory('listService', function ($http, $q) {
+﻿myApp.factory('itemService', function ($http, $q) {
     return {
-        getUserLists: function (userId) {
+        getTodoItems: function (id) {
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/users/' + userId + '/lists'
+                url: '/api/lists/' + id + '/todoitems'
             }).then(function (resp) {
                 deferred.resolve(resp);
             }),
