@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Epam.BriefList.DataAccess.API.Interfaces;
@@ -22,6 +23,12 @@ namespace Epam.BriefList.Services.Services
         public IEnumerable<BllList> GetAllListsNames() => _listRep.GetAllListsNames().Select(Mapper.ToBllList);
         public async Task<IEnumerable<BllList>> GetAllLists() => (await _listRep.GetAll()).Select(Mapper.ToBllList);
         public async Task<IEnumerable<BllList>> GetUserLists(int id) => (await _listRep.GetByOwnerId(id)).Select(Mapper.ToBllList);
-        
+
+        public void AddList(BllList list)
+        {
+            _listRep.Add(Mapper.ToDalList(list));
+            _uow.Commit();
+        }
+
     }
 }

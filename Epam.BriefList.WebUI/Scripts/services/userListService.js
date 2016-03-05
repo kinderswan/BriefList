@@ -18,7 +18,7 @@
 
     addList: function (model) {
         var deferred = $q.defer();
-        $http.post('api/users/addlist', model)
+        $http.post('/api/Lists', model)
                 .then(function (resp) {
                     deferred.resolve(resp);
                 }),

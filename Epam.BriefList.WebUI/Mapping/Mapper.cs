@@ -65,6 +65,8 @@ namespace Epam.BriefList.WebUI.Mapping
                 };
             return null;
         }
+
+
         internal static ApiList ToApiList(BllList list)
         {
             if (list != null)
@@ -77,6 +79,20 @@ namespace Epam.BriefList.WebUI.Mapping
                 };
             return null;
         }
+
+        internal static BllList ToBllList(ApiList list)
+        {
+            if (list != null)
+                return new BllList
+                {
+                    Id = list.Id,
+                    Description = list.Description,
+                    OwnerId = list.OwnerId,
+                    Title = list.Title
+                };
+            return null;
+        }
+
         internal static ApiItem ToApiItem(BllItem item)
         {
             if (item != null)

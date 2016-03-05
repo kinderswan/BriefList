@@ -9,5 +9,6 @@ namespace Epam.BriefList.Services.API.Interfaces
         IEnumerable<BllList> GetAllListsNames();
         Task<IEnumerable<BllList>> GetAllLists();
         Task<IEnumerable<BllList>> GetUserLists(int id);
+        void AddList(BllList list);
     }
 }

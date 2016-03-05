@@ -84,26 +84,5 @@
                 $scope.items = value.data;
             });
 
-        }
-    ])
-    .controller('AddListController', [
-        '$scope', 'userListService', function($scope, userListService) {
-
-            $scope.message = 'AddListController';
-
-            $scope.save = function(model, listForm) {
-                console.log($scope.message);
-                if (listForm.$valid) {
-                    var promiseObj = userListService.addList(model);
-                    promiseObj.then(function(value) {
-                        alert(model.Title + ", You add list");
-                        return value.data;
-                    });
-
-                }
-            };
-
-
-        }
-    ]);
+        }]);
 
