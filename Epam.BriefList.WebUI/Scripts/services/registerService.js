@@ -2,7 +2,7 @@
     return {
         postRegister: function (model) {
             var deferred = $q.defer();
-            $http.post('/Account/_Register', model)
+            $http.post('/Account/Register', model)
                     .then(function (resp) {
                         deferred.resolve(resp);
                     }),

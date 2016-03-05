@@ -20776,3 +20776,61 @@ html[dir=rtl] .sidebarFolder.expanded .folder-header .folder-arrow {
     .audio-recorder-container .play-recorded-audio {
         color: #008000;
     }
+
+
+.dialog .content-footer {
+    padding: 12px;
+    border-top: 1px solid #e0e0df;
+    flex-shrink: 0;
+}
+
+
+
+#wunderlist-base .cols {
+    font-size: 0;
+}
+.dialog .content-footer .cols {
+    margin-left: -6px !important;
+    margin-right: -6px !important;
+}
+
+#wunderlist-base .cols > div {
+    vertical-align: middle;
+    font-size: 13px;
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+#wunderlist-base .col-40 {
+    width: 40%;
+}
+
+.dialog .content-footer .cols > div {
+    padding: 0 6px !important;
+}
+
+#wunderlist-base .cols > div {
+    vertical-align: middle;
+    font-size: 13px;
+    display: inline-block;
+}
+#wunderlist-base .col-30 {
+    width: 30%;
+}
+
+.dialog .content-footer .cols > div {
+    padding: 0 6px !important;
+}
+
+#wunderlist-base .cols > div {
+    vertical-align: middle;
+    font-size: 13px;
+    display: inline-block;
+}
+
+#wunderlist-base .col-30 {
+    width: 30%;
+}
+.dialog .content-footer .cols > div {
+    padding: 0 6px !important;
+}

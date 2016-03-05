@@ -45,7 +45,7 @@ namespace Epam.BriefList.WebUI.Controllers
 
         [HttpPost]
         [AntiForgeryValidate]
-        public async Task<ActionResult> _Login(LoginModel model)
+        public async Task<ActionResult> Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -67,7 +67,7 @@ namespace Epam.BriefList.WebUI.Controllers
 
         [HttpPost]
         [AntiForgeryValidate]
-        public async Task<ActionResult> _Register(RegisterModel model)
+        public async Task<ActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {

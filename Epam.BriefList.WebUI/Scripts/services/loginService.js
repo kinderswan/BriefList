@@ -2,7 +2,7 @@
     return {
         postLogin: function (model) {
             var deferred = $q.defer();
-            $http.post('/Account/_Login', model)
+            $http.post('/Account/Login', model)
                     .then(function (resp) {
                         deferred.resolve(resp);
                     }),
