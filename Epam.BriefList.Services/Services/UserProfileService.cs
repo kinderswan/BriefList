@@ -47,7 +47,7 @@ namespace Epam.BriefList.Services.Services
         public async Task<ClaimsIdentity> Autorization(BllUserProfile blluserprofile)
         {
             ClaimsIdentity claim = null;
-                var user = await _userRep.Get(blluserprofile.Name);
+                var user = await _userRep.Get(blluserprofile.Email);
             if (user!=null && Crypto.VerifyHashedPassword(Crypto.HashPassword(user.Password), blluserprofile.Password))
             {
                 claim = new ClaimsIdentity("ApplicationCookie", ClaimsIdentity.DefaultNameClaimType,ClaimsIdentity.DefaultRoleClaimType);
