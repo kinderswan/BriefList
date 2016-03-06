@@ -45,9 +45,7 @@ namespace Epam.BriefList.Services.Services
             return new List<BllItem>();
         }
 
-        public async Task<IEnumerable<BllItem>> GetListToDoItems(int listId)
-        {
-            return (await _itemRep.GetByListId(listId)).Select(Mapper.ToBllItem);
-        }
+        public async Task<IEnumerable<BllItem>> GetListToDoItems(int listId,bool completed)=> (await _itemRep.GetByListId(listId,completed)).Select(Mapper.ToBllItem);
+        
     }
 }

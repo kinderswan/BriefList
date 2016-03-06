@@ -8,6 +8,6 @@ namespace Epam.BriefList.DataAccess.API.Interfaces
 {
     public interface IItemRepository : IRepository<DalItem>
     {
-        Task<IEnumerable<DalItem>> GetByListId(int id);
+        Task<IEnumerable<DalItem>> GetByListId(int id,bool completed);
     }
 }

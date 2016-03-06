@@ -49,7 +49,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
                     Title = "tytyty",
                     Starred = false,
                     OrmListId = 1,
-                    Completed = true
+                    Completed = false
 
                 },
 
