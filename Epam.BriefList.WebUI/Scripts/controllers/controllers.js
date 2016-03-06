@@ -77,7 +77,7 @@
         '$scope', '$routeParams', 'itemService', function($scope, $routeParams, itemService) {
 
             $scope.message = 'GetItemController';
-           
+
 
             var promiseObj = itemService.getTodoItems($routeParams.id);
             promiseObj.then(function(value) {
@@ -85,17 +85,18 @@
                 $scope.listId = $routeParams.id;
             });
 
-            $scope.completeTask = function (listId) {
-                if ($scope.completeitems !== 'undefined') {
+
+            $scope.completeTask = function(listId) {
+                if ($scope.completeitems === undefined) {
                     promiseObj = itemService.getCompleteItems(listId);
                     promiseObj.then(function(value) {
                         $scope.completeitems = value.data;
                     });
                 } else {
-                    $scope.completeitems = 'undefined';
+                    $scope.completeitems = undefined;
                 }
- 
-            }
 
-        }]);
+            };
 
+        }
+    ]);
