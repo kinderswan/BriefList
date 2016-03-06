@@ -34,10 +34,11 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Repository
             return Mapper.ToDalItem(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         }
 
-        public async Task<IEnumerable<DalItem>> GetByListId(int id)
+        public async Task<IEnumerable<DalItem>> GetByListId(int id,bool completed)
         {
-            return await Task.Run(() => DbSet.Where(db => db.OrmListId == id).AsEnumerable().Select(Mapper.ToDalItem));
+            return await Task.Run(() => DbSet.Where(db => db.OrmListId == id && db.Completed== completed).AsEnumerable().Select(Mapper.ToDalItem));
         }
+
 
         public IEnumerable<DalItem> GetMany(Expression<Func<DalItem, bool>> where)
         {

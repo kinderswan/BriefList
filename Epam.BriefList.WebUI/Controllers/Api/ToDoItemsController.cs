@@ -45,12 +45,13 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         {
             return Mapper.ToApiItem((await _itemService.GetUserListToDoItems(userId, listId)).FirstOrDefault(t => t.Id == id));
         }
-
+        
         [HttpGet]
-        [Route("api/lists/{listId}/todoitems")]
-        public async Task<IHttpActionResult> GetListsTodoItems(int listId)
+        [Route("api/lists/{listId}/todoitems/{completed}")]
+        public async Task<IHttpActionResult> GetListsTodoItems(int listId,bool completed)
         {
-            return Json((await _itemService.GetListToDoItems(listId)).Select(Mapper.ToApiItem));
+            return Json((await _itemService.GetListToDoItems(listId, completed)).Select(Mapper.ToApiItem));
         }
+
     }
 }
