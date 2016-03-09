@@ -4,7 +4,7 @@
             var deferred = $q.defer();
             $http({
                 method: 'GET',
-                url: '/api/lists/' + id + '/todoitems/'+false
+                url: '/api/lists/' + id + '/todoitems/' + false
             }).then(function (resp) {
                 deferred.resolve(resp);
             }),
@@ -23,6 +23,20 @@
             }).then(function (resp) {
                 deferred.resolve(resp);
             }),
+                function (error) {
+                    deferred.reject({ success: false, data: error });
+                };
+
+            return deferred.promise;
+        },
+        addItem: function (listId, inputItem) {
+            var deferred = $q.defer();
+            console.log('/api/lists/' + listId + '/todoitems');
+            console.log(inputItem);
+            $http.post('/api/lists/' + listId + 'todoitems', inputItem)
+                    .then(function (resp) {
+                        deferred.resolve(resp);
+                    }),
                 function (error) {
                     deferred.reject({ success: false, data: error });
                 };

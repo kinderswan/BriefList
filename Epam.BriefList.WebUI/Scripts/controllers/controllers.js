@@ -52,13 +52,8 @@
         '$scope', 'userListService', function($scope, userListService) {
 
             $scope.message = 'GetListController';
-
             $scope.$on('UpdateLists', function(event, userId) {
-
-                var promiseObj = userListService.getUserLists(userId);
-                promiseObj.then(function(value) {
-                    $scope.lists = value.data;
-                });
+                getAllLists(userId);
             });
 
             $scope.getAllLists = function(userId) {
@@ -79,7 +74,7 @@
                 var promiseObj = itemService.getTodoItems($routeParams.id);
                 promiseObj.then(function(value) {
                     $scope.items = value.data;
-                    $scope.listId = $routeParams.id;
+                    $scope.listTaskId = $routeParams.id;
                 });
             }
 
@@ -94,6 +89,18 @@
                 }
 
             };
+            $scope.addItem = function (listId) {
+                console.log(listId);
+                if (listId != undefined) {
+                    var promiseObj = itemService.addItem(listId, $scope.inputItem);
+                    promiseObj.then(function (value) {
+                        $scope.completeitems = value.data;
+                    });
+                } else {
+                    console.log("Some error in add item ctrl");
+                }
+                
+            }
 
         }
     ]);
