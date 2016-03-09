@@ -1,4 +1,4 @@
-﻿myApp.factory('userListService', ['$http', '$q', function ($http, $q) {
+﻿angular.module('myApp').factory('userListService', ['$http', '$q', function ($http, $q) {
     return {
         getUserLists: function(userId) {
             var deferred = $q.defer();

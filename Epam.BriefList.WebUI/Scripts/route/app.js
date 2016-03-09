@@ -1,6 +1,4 @@
-﻿var myApp = angular.module('myApp', ["ngRoute"])
-    .config(function($routeProvider, $locationProvider) {
-
+﻿angular.module('myApp').config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when("/user/:id/lists", {
             templateUrl: "/Template/List.html",

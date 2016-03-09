@@ -6,24 +6,39 @@
 <link href="~/Content/Wunderlist.css" rel="stylesheet" />
 <body id="wunderlist-base" role="application" class="wlapp-parent animate background-16 focus-settings" style="opacity: 1;" ng-body>
 
-    <div class="main-interface">
-    <div class="" id="lists" role="navigation" ng-controller="GetListController">
-        <div class="lists-inner" tabindex="0">
+<script> angular.module('myApp', ['ngAnimate', 'ui.bootstrap', 'ngRoute'])</script>
+    <script src="~/Scripts/angular-animate.min.js"></script>
+<script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+<script src="~/Scripts/route/app.js"></script>
 
-            <div id="search-toolbar">
-                <a title="Toggle Sidebar" class="toggle-icon" role="button" tabindex="0" data-key-title="toggle_sidebar">
-                    <svg class="list-toggle" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+<script src="~/Scripts/controllers/ModalCreateListCtrl.js"></script>
+    <script src="~/Scripts/controllers/controllers.js"></script>
+    <script src="~/Scripts/services/userListService.js"></script>
+    <script src="~/Scripts/services/itemService.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href='~/Content/ui-bootstrap-csp.css' rel='stylesheet' />
+
+
+<div class="main-interface">
+    <div class="" id="lists" role="navigation">
+        <div ng-controller ="GetListController"  class="lists-inner" tabindex="0">
+
+            
+                <div id="search-toolbar">
+                    <a title="Toggle Sidebar" class="toggle-icon" role="button" tabindex="0" data-key-title="toggle_sidebar">
+                        <svg class="list-toggle" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
                         <g>
-                            <path d="M0.5,3.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                            <path d="M0.5,9.53l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                            <path d="M0.5,15.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
+                        <path d="M0.5,3.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
+                        <path d="M0.5,9.53l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
+                        <path d="M0.5,15.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
                         </g>
                     </svg>
-                </a>
-                <div class="search-input-wrapper">
-                    <input aria-label="Поиск…" class="chromeless search-input" data-key-aria-label="placeholder_search" type="text">
-                </div>
-                <span class="search-icon-wrapper">
+                    </a>
+                    <div class="search-input-wrapper">
+                        <input aria-label="Поиск…" class="chromeless search-input" data-key-aria-label="placeholder_search" type="text">
+                    </div>
+                    <span class="search-icon-wrapper">
                         <a aria-label="Поиск" title="Поиск" class="search-icon" role="button" tabindex="0" data-key-aria-label="aria_search" data-key-title="aria_search">
                             <svg class="search rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -37,48 +52,47 @@
                         <a aria-label="Выйти из поиска" title="Выйти из поиска" class="search-stop-icon hidden" role="button" tabindex="0" data-key-aria-label="aria_exit_search" data-key-title="aria_exit_search">
                         </a>
                     </span>
-            </div>
-            <div id="user-toolbar">
-                <a class="user" data-path="me" role="button" tabindex="0" aria-label="Павел Гаманович Меню пользователя." aria-expanded="false" aria-haspopup="true">
-                    <span class="user-avatar">
+                </div>
+                <div id="user-toolbar">
+                    <a class="user" data-path="me" role="button" tabindex="0" aria-label="Павел Гаманович Меню пользователя." aria-expanded="false" aria-haspopup="true">
+                        <span class="user-avatar">
                             <div title="@User.Identity.Name" class="avatar medium">
                             </div>
                         </span>
-                    <span class="user-name">
-                           @User.Identity.Name
+                        <span class="user-name">
+                            @User.Identity.Name
                         </span>
-                    <span class="user-arrow">
+                        <span class="user-arrow">
                         </span>
-                </a>
-            </div>
+                    </a>
+                </div>
 
 
-            <div class="lists-scroll" ng-init="getAllLists(@User.Identity.GetUserId())">
-                <ul class="lists-collection">
-                    <li ng-repeat="list in lists" aria-label="" data-position="0" rel="237758426" draggable="true" class="sidebarItem list draggable shared member unreadComments overdue" tabindex="0" role="menuitem">
-                        <a ng-href="#!/list/{{list.Id}}/todoitems" aria-hidden="true">
-                            <span class="title">
+                <div class="lists-scroll" ng-init="getAllLists(@User.Identity.GetUserId())">
+                    <ul class="lists-collection">
+                        <li ng-repeat="list in lists" aria-label="" data-position="0" rel="237758426" draggable="true" class="sidebarItem list draggable shared member unreadComments overdue" tabindex="0" role="menuitem">
+                            <a ng-href="#!/list/{{list.Id}}/todoitems" aria-hidden="true">
+                                <span class="title">
                                     {{list.Title}}
                                 </span>
-                            <span class="overdue-count" aria-hidden="true">
+                                <span class="overdue-count" aria-hidden="true">
                                     not
                                 </span>
-                            <span class="count" aria-hidden="true">
+                                <span class="count" aria-hidden="true">
                                     not
                                 </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-
-
-            <div class="sidebarActions">
-                <a class="osx sidebarActions-addList">
-                    <span class="sidebarActions-icon">
-<svg class="plus-small" width="20px" height="20px" viewBox="0 0 20 20" version="1.1"
-      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-      xml:space="preserve"> <g> <path d="M10,10l0,6.5c-0.003,0.053 -0.008,0.103 -0.024,0.155c-0.038,0.116 
+           
+                <div ng-controller="ModalCreateListController" class="sidebarActions">
+                    <a ng-click="open('@User.Identity.GetUserId()')" class="sidebarActions-addList">
+                        <span class="sidebarActions-icon">
+                            <svg class="plus-small" width="20px" height="20px" viewBox="0 0 20 20" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 xml:space="preserve"> <g> <path d="M10,10l0,6.5c-0.003,0.053 -0.008,0.103 -0.024,0.155c-0.038,0.116
                                       -0.12,0.217 -0.226,0.278c-0.047,0.027 -0.094,0.042 -0.146,0.056c-0.052,0.008
                                        -0.051,0.008 -0.104,0.011c-0.053,-0.003 -0.103,-0.008 -0.155,-0.024c-0.15,
                                       -0.05 -0.271,-0.171 -0.321,-0.321c-0.016,-0.052 -0.021,-0.102 -0.024,
@@ -91,84 +105,25 @@
                                       0c0.046,0.002 0.058,0.001 0.104,0.011c0.103,0.022 0.197,0.076 0.268,
                                       0.154c0.169,0.188 0.169,0.482 0,0.67c-0.035,0.038 -0.077,0.072 -0.122,
                                       0.098c-0.078,0.045 -0.161,0.062 -0.25,0.067l-6.5,0Z">
-
 </path> </g> </svg>
 
-</span>
+                        </span>
 
-                    <span class="sidebarActions-label">
+                        <span class="sidebarActions-label">
 
-<text rel="placeholder_create_list">Create List</text>
-</span> 
-                </a>
-            </div>
+                            <text rel="placeholder_create_list">Create List</text>
+                        </span>
+                    </a>
+                </div>
 
+           
             <!-----------------------------------------add list begin modal window-------------------------->
             <!-----------------------------------------add list begin modal window-------------------------->
 
-            <div id="osx-modal-content">
-                            <div style="background-color:crimson" id="osx-modal-title">Create List</div>
-                            <div id="osx-modal-data">
-                                <!-- Модальное окно -->
-                                <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-                                    <div class="modal-dialog">
-                                     <!-- Форма для регистрации -->
-                                        <form name="listForm" role="form" class="form-horizontal">
-                                            <div class="modal-content">
-                                                <!-- Основная часть модального окна, содержащая форму для регистрации -->
-                                                <div class="modal-body">
-
-                                                    <!-- OwnerId -->
-                                                    <p style="display:none">{{model.OwnerId="@User.Identity.GetUserId()"}}</p>
-                                                    <!-- Блок для ввода логина -->
-                                                    <div class="form-group has-feedback">
-                                                        <label  class="control-label col-xs-3">Title:</label>
-                                                        <div class="col-xs-6">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                                                <input class="form-control" ng-model="model.Title" required="required"/>
-                                                            </div>
-                                                            <span class="glyphicon form-control-feedback"></span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Блок для ввода email -->
-                                                    <div class="form-group has-feedback">
-                                                        <label  class="control-label col-xs-3">Description:</label>
-                                                        <div class="col-xs-6">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                                                <input class="form-control" ng-model="model.Description" required="required"/>
-                                                            </div>
-                                                            <span class="glyphicon form-control-feedback"></span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Конец блока для ввода email-->
-
-                                                </div>
-                                                <!-- Нижняя часть модального окна -->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="simplemodal-close">Close</button>
-                                                    <button id="save" type="button" ng-click="save(model,listForm)" style="background-color: steelblue" class="btn btn-primary">Save</button>
-                                                           
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-
-
-                                        
-
-                                <!-----------------------------------------add list end modal window-------------------------->
-                                 <!-----------------------------------------add list end modal window-------------------------->
-        
-                            </div>
-                        </div>
+       
 
         </div>
     </div>
-
 
 
     <div id="tasks" role="main">
@@ -577,18 +532,5 @@
 
     </div>
 
-   
-    <script>var myApp = angular.module('myApp', [])</script>
-    <script src="~/Scripts/angular-route.min.js"></script>
-    <script src="~/Scripts/route/app.js"></script>
-    <script src="~/Scripts/controllers/controllers.js"></script>
-    <script src="~/Scripts/services/userListService.js"></script>
-    <script src="~/Scripts/services/itemService.js"></script>
-
-    <script src='~/Scripts/modal/jquery.mod.js'></script>
-    <script src='~/Scripts/modal/jquery.simplemodal.js'></script>
-    <script src='~/Scripts/modal/osx.js'></script>
-
-    <link type='text/css' href='~/Content/modalcss/osx.css' rel='stylesheet' media='screen'/>
 
 </body>

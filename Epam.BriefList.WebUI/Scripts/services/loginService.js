@@ -1,4 +1,4 @@
-﻿myApp.factory('loginService',['$http','$q', function ($http, $q) {
+﻿angular.module('myApp').factory('loginService', ['$http', '$q', function ($http, $q) {
     return {
         postLogin: function (model) {
             var deferred = $q.defer();

@@ -1,4 +1,4 @@
-﻿myApp.factory('itemService', function ($http, $q) {
+﻿angular.module('myApp').factory('itemService', function ($http, $q) {
     return {
         getTodoItems: function (id) {
             var deferred = $q.defer();

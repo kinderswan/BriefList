@@ -1,4 +1,4 @@
-﻿myApp.controller('RouteController', function($scope, $routeParams, listService) {
+﻿angular.module('myApp').controller('RouteController', function($scope, $routeParams, listService) {
 
         $scope.message = "routecontroller";
 
@@ -53,22 +53,19 @@
 
             $scope.message = 'GetListController';
 
+            $scope.$on('UpdateLists', function(event, userId) {
+
+                var promiseObj = userListService.getUserLists(userId);
+                promiseObj.then(function(value) {
+                    $scope.lists = value.data;
+                });
+            });
+
             $scope.getAllLists = function(userId) {
                 var promiseObj = userListService.getUserLists(userId);
                 promiseObj.then(function(value) {
                     $scope.lists = value.data;
                 });
-            };
-
-            $scope.save = function(model, listForm) {
-                if (listForm.$valid) {
-                    var promiseObj = userListService.addList(model);
-                    promiseObj.then(function(value) {
-                        alert(model.Title + ", You add list");
-                        return value.data;
-                    });
-
-                }
             };
 
         }
@@ -78,17 +75,17 @@
 
             $scope.message = 'GetItemController';
 
-
-            var promiseObj = itemService.getTodoItems($routeParams.id);
-            promiseObj.then(function(value) {
-                $scope.items = value.data;
-                $scope.listId = $routeParams.id;
-            });
-
+            if ($routeParams.id !== undefined) {
+                var promiseObj = itemService.getTodoItems($routeParams.id);
+                promiseObj.then(function(value) {
+                    $scope.items = value.data;
+                    $scope.listId = $routeParams.id;
+                });
+            }
 
             $scope.completeTask = function(listId) {
                 if ($scope.completeitems === undefined) {
-                    promiseObj = itemService.getCompleteItems(listId);
+                    var promiseObj = itemService.getCompleteItems(listId);
                     promiseObj.then(function(value) {
                         $scope.completeitems = value.data;
                     });
