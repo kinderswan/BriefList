@@ -29,11 +29,17 @@
 
             return deferred.promise;
         },
+
         addItem: function (listId, inputItem) {
+
+           var model = {
+               BllListId:listId,
+               Title:inputItem,
+               Completed:false,
+               Starred:false
+            }
             var deferred = $q.defer();
-            console.log('/api/lists/' + listId + '/todoitems');
-            console.log(inputItem);
-            $http.post('/api/lists/' + listId + 'todoitems', inputItem)
+            $http.post('/api/todoitems', model)
                     .then(function (resp) {
                         deferred.resolve(resp);
                     }),
@@ -43,8 +49,6 @@
 
             return deferred.promise;
         }
-
-
 
     }
 });

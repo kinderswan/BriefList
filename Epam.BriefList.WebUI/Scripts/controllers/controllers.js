@@ -74,7 +74,7 @@
                 var promiseObj = itemService.getTodoItems($routeParams.id);
                 promiseObj.then(function(value) {
                     $scope.items = value.data;
-                    $scope.listTaskId = $routeParams.id;
+                    $scope.listId = $routeParams.id;
                 });
             }
 
@@ -89,9 +89,9 @@
                 }
 
             };
-            $scope.addItem = function (listId) {
-                console.log(listId);
-                if (listId != undefined) {
+
+            $scope.addItem = function(listId) {
+                if (listId !== undefined) {
                     var promiseObj = itemService.addItem(listId, $scope.inputItem);
                     promiseObj.then(function (value) {
                         $scope.completeitems = value.data;

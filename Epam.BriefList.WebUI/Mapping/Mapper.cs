@@ -99,7 +99,7 @@ namespace Epam.BriefList.WebUI.Mapping
                 return new ApiItem
                 {
                     Id = item.Id,
-                    BllListId = item.BllListId,
+                    ListId = item.BllListId,
                     Title = item.Title,
                     Completed = item.Completed,
                     Starred = item.Starred,
@@ -107,6 +107,23 @@ namespace Epam.BriefList.WebUI.Mapping
                 };
             return null;
         }
+
+        internal static BllItem ToBllItem(ApiItem item)
+        {
+            if (item != null)
+                return new BllItem
+                {
+                    Id = item.Id,
+                    BllListId = item.ListId,
+                    Title = item.Title,
+                    Completed = item.Completed,
+                    Starred = item.Starred,
+                    TimeComplete = item.TimeComplete
+                };
+            return null;
+        }
+
+
         #endregion
     }
 }

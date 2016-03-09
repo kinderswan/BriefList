@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -52,6 +53,14 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         {
             return Json((await _itemService.GetListToDoItems(listId, completed)).Select(Mapper.ToApiItem));
         }
+
+        [HttpPost]
+        [Route("api/todoitems")]
+        public void AddItems([FromBody]ApiItem model)
+        {
+           _itemService.AddItem(Mapper.ToBllItem(model));
+        }
+
 
     }
 }

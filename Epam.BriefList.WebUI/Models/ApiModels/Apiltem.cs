@@ -9,6 +9,6 @@ namespace Epam.BriefList.WebUI.Models.ApiModels
         public bool Starred { get; set; }
         public string Title { get; set; }
         public DateTime? TimeComplete { get; set; }
-        public int BllListId { get; set; }      
+        public int ListId { get; set; }      
     }
 }

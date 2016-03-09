@@ -53,13 +53,10 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $rootS
 
         }
     };
-
+    
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 });
-
-
-
 
 
