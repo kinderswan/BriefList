@@ -53,5 +53,12 @@ namespace Epam.BriefList.Services.Services
             _itemRep.Add(Mapper.ToDalItem(bllItem));
             _uow.Commit();
         }
+
+        public async void Delete(int id)
+        {
+            if ( await _itemRep.Get(id) == null) return;
+            _itemRep.Delete(id);
+            _uow.Commit();
+        }
     }
 }

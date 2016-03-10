@@ -4,7 +4,7 @@ angular.module('myApp').controller('ModalCreateListController', function ($scope
     $scope.animationsEnabled = true;
 
     $scope.open = function (ownerId) {
-        var modalInstance = $uibModal.open({
+         $uibModal.open({
             animation: $scope.animationsEnabled,
             templateUrl: '/Template/ModalCreateList.html',
             controller: 'ModalInstanceCtrl',
@@ -16,9 +16,6 @@ angular.module('myApp').controller('ModalCreateListController', function ($scope
             }
         });
 
-        modalInstance.result.then(function(selectedItem) {
-            $scope.selected = selectedItem;
-        });
     };
 
     $scope.toggleAnimation = function () {
@@ -40,9 +37,9 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $rootS
 
             promiseObj.then(function (value) {
 
-                $rootScope.$broadcast('UpdateLists', ownerId);
+                $rootScope.$broadcast('UpdateLists', model);
 
-                alert(model.Title + ", You add list");
+              //  alert(model.Title + ", You add list");
                 $uibModalInstance.dismiss('cancel');
                 return value.data;
             });
