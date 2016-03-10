@@ -30,5 +30,11 @@ namespace Epam.BriefList.Services.Services
             _uow.Commit();
         }
 
+        public async void Delete(int id)
+        {
+            if (await _listRep.Get(id) == null) return;
+            _listRep.Delete(id);
+            _uow.Commit();
+        }
     }
 }

@@ -49,23 +49,40 @@
         }
     ])
     .controller('GetListController', [
-        '$scope', 'userListService', function ($scope, userListService) {
+        '$scope', '$location', 'userListService', function ($scope, $location, userListService) {
 
             $scope.message = 'GetListController';
 
-            $scope.$on('UpdateLists', function (event, list) {
-                $scope.lists.push(list);
+            $scope.$on('UpdateLists', function (event, userId) {
+                $scope.getAllLists(userId);
             });
 
             $scope.getAllLists = function (userId) {
                 var promiseObj = userListService.getUserLists(userId);
                 promiseObj.then(function (value) {
                     $scope.lists = value.data;
-
                 });
             };
 
-        }
+            $scope.deleteList = function (listId) {
+                if (listId !== undefined) {
+                   userListService.deleteList(listId);
+                   
+                   var arr = $scope.lists;
+                        for (var i = arr.length - 1; i >= 0; i--) {
+                            if (arr[i].Id === listId) {
+                                arr.splice(i, 1);
+                            }
+                        }
+                        $scope.lists = arr;
+                    $location.path('/list/' + arr.slice(-1)[0].Id + '/todoitems');
+                } else {
+                    console.log("error listId undefined getlistcontroller");
+                }
+            };
+
+
+        } 
     ])
     .controller('GetItemController', [
         '$scope', '$routeParams', 'itemService', function ($scope, $routeParams, itemService) {

@@ -71,18 +71,34 @@
                 <div class="lists-scroll" ng-init="getAllLists(@User.Identity.GetUserId())">
                     <ul class="lists-collection">
                         <li ng-repeat="list in lists" aria-label="" data-position="0" rel="237758426" draggable="true" class="sidebarItem list draggable shared member unreadComments overdue" tabindex="0" role="menuitem">
-                            <a ng-href="#!/list/{{list.Id}}/todoitems" aria-hidden="true">
-                                <span class="title">
+                            <span>
+                                <a ng-href="#!/list/{{list.Id}}/todoitems">
+                                    <span class="title">
+                                        {{list.Title}}
+                                    </span>
+                                    
+                                        <span ng-click="deleteList(list.Id)" class="glyphicon glyphicon-remove overdue-count" aria-hidden="true">
+
+                                        </span>
+                                    
+                                    <span class="glyphicon glyphicon-pencil count" aria-hidden="true">
+                                    </span>
+                                </a>
+                            </span>
+                        </li>
+                        @*<li ng-repeat="list in lists" aria-label="" data-position="0" rel="237758426" draggable="true" class="sidebarItem list draggable shared member unreadComments overdue" tabindex="0" role="menuitem">
+                            <a  aria-hidden="true">
+                                <span ng-href="#!/list/{{list.Id}}/todoitems" class="title">
                                     {{list.Title}}
                                 </span>
-                                <span class="overdue-count" aria-hidden="true">
-                                    not
+
+                                <span ng-click="deleteList(list.Id)" class="glyphicon glyphicon-remove overdue-count" aria-hidden="true">
                                 </span>
-                                <span class="count" aria-hidden="true">
-                                    not
+
+                                <span class="glyphicon glyphicon-pencil count" aria-hidden="true">
                                 </span>
                             </a>
-                        </li>
+                        </li>*@
                     </ul>
                 </div>
 

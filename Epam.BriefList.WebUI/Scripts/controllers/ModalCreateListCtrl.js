@@ -37,7 +37,7 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $rootS
 
             promiseObj.then(function (value) {
 
-                $rootScope.$broadcast('UpdateLists', model);
+                $rootScope.$broadcast('UpdateLists', $scope.ownerId);
 
               //  alert(model.Title + ", You add list");
                 $uibModalInstance.dismiss('cancel');

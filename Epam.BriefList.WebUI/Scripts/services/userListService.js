@@ -27,9 +27,20 @@
             };
 
         return deferred.promise;
+    },
+
+        deleteList: function (id) {
+        var deferred = $q.defer();
+        $http.delete('/api/deletelists/' + id)
+        .then(function (resp) {
+            deferred.resolve(resp);
+        }),
+        function (error) {
+            deferred.reject({ success: false, data: error });
+        };
+
+        return deferred.promise;
     }
-
-
 
     }
 }]);
