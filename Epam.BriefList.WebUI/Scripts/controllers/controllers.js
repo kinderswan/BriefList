@@ -52,8 +52,12 @@
         '$scope', 'userListService', function($scope, userListService) {
 
             $scope.message = 'GetListController';
+
             $scope.$on('UpdateLists', function(event, userId) {
-                getAllLists(userId);
+                var promiseObj = userListService.getUserLists(userId);
+                promiseObj.then(function(value) {
+                    $scope.lists = value.data;
+                });
             });
 
             $scope.getAllLists = function(userId) {

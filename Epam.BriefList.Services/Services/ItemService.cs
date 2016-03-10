@@ -48,7 +48,10 @@ namespace Epam.BriefList.Services.Services
 
         public async Task<IEnumerable<BllItem>> GetListToDoItems(int listId,bool completed) => (await _itemRep.GetByListId(listId,completed)).Select(Mapper.ToBllItem);
 
-        public void AddItem(BllItem bllItem) => _itemRep.Add(Mapper.ToDalItem(bllItem));
-        
+        public void AddItem(BllItem bllItem)
+        {
+            _itemRep.Add(Mapper.ToDalItem(bllItem));
+            _uow.Commit();
+        }
     }
 }

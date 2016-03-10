@@ -1,4 +1,4 @@
-﻿angular.module('myApp').factory('itemService', function ($http, $q) {
+﻿angular.module('myApp').factory('itemService', function ($http, $q/*, $filter*/) {
     return {
         getTodoItems: function (id) {
             var deferred = $q.defer();
@@ -8,9 +8,9 @@
             }).then(function (resp) {
                 deferred.resolve(resp);
             }),
-                function (error) {
-                    deferred.reject({ success: false, data: error });
-                };
+            function (error) {
+                deferred.reject({ success: false, data: error });
+            };
 
             return deferred.promise;
         },
@@ -23,33 +23,32 @@
             }).then(function (resp) {
                 deferred.resolve(resp);
             }),
-                function (error) {
-                    deferred.reject({ success: false, data: error });
-                };
+            function (error) {
+                deferred.reject({ success: false, data: error });
+            };
 
             return deferred.promise;
         },
 
         addItem: function (listId, inputItem) {
 
-           var model = {
-               BllListId:listId,
-               Title:inputItem,
-               Completed:false,
-               Starred:false
-            }
+            var model = {
+                ListId: listId,
+                Title: inputItem,
+                // TimeComplete: $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss'),
+                Completed: false,
+                Starred: false
+            };
             var deferred = $q.defer();
             $http.post('/api/todoitems', model)
-                    .then(function (resp) {
-                        deferred.resolve(resp);
-                    }),
-                function (error) {
-                    deferred.reject({ success: false, data: error });
-                };
+            .then(function (resp) {
+                deferred.resolve(resp);
+            }),
+            function (error) {
+                deferred.reject({ success: false, data: error });
+            };
 
             return deferred.promise;
         }
-
     }
 });
-

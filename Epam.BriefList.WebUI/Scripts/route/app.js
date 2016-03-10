@@ -1,8 +1,9 @@
-﻿angular.module('myApp').config(function ($routeProvider, $locationProvider) {
+﻿angular.module('myApp', ['ui.bootstrap', 'ngRoute', 'ngAnimate'])
+.config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when("/user/:id/lists", {
-            templateUrl: "/Template/List.html",
-            controller: 'GetListController'
+                templateUrl: "/Template/List.html",
+                controller: 'GetListController'
             })
             .when("/", {
                 controller: 'GetListController'
@@ -15,7 +16,7 @@
                 templateUrl: "/Template/TodoItem.html",
                 controller: 'GetItemController'
             })
-               .when("/home", {
+            .when("/home", {
                 templateUrl: "/Template/Home.html",
                 controller: 'HomeController'
             })
@@ -26,7 +27,7 @@
             .otherwise({
                 templateUrl: "/Template/Error.html",
                 controller: 'ErrorController'
-            })
+            });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
     })

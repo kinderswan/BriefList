@@ -1,7 +1,5 @@
 ﻿
-angular.module('myApp').controller('ModalCreateListController', function ($scope, $uibModal, $log) {
-
-
+angular.module('myApp').controller('ModalCreateListController', function ($scope, $uibModal) {
 
     $scope.animationsEnabled = true;
 
@@ -18,10 +16,8 @@ angular.module('myApp').controller('ModalCreateListController', function ($scope
             }
         });
 
-        modalInstance.result.then(function (selectedItem) {
+        modalInstance.result.then(function(selectedItem) {
             $scope.selected = selectedItem;
-        }, function () {
-            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
