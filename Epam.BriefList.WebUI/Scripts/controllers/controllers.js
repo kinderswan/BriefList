@@ -25,7 +25,6 @@
                 if (loginForm.$valid) {
                     var promiseObj = loginService.postLogin(model);
                     promiseObj.then(function (value) {
-                        alert(model.Name + ", You enter");
                         return value.data;
                     });
 
@@ -40,7 +39,6 @@
                 if (registerForm.$valid) {
                     var promiseObj = registerService.postRegister(model);
                     promiseObj.then(function (value) {
-                        alert(model.Name + ", You register");
                         return value.data;
                     });
 
@@ -48,8 +46,8 @@
             };
         }
     ])
-    .controller('GetListController', [
-        '$scope', '$location', 'userListService', function ($scope, $location, userListService) {
+    .controller('GetListController', [ '$timeout',
+        '$scope', '$location', 'userListService', function ($timeout, $scope, $location, userListService) {
 
             $scope.message = 'GetListController';
 
@@ -66,23 +64,26 @@
 
             $scope.deleteList = function (listId) {
                 if (listId !== undefined) {
-                   userListService.deleteList(listId);
-                   
-                   var arr = $scope.lists;
-                        for (var i = arr.length - 1; i >= 0; i--) {
-                            if (arr[i].Id === listId) {
-                                arr.splice(i, 1);
-                            }
+                    userListService.deleteList(listId);
+
+                    var arr = $scope.lists;
+                    for (var i = arr.length - 1; i >= 0; i--) {
+                        if (arr[i].Id === listId) {
+                            arr.splice(i, 1);
                         }
-                        $scope.lists = arr;
-                    $location.path('/list/' + arr.slice(-1)[0].Id + '/todoitems');
+                    }
+                    $scope.lists = arr;
+                    $timeout(function() {
+                        $location.path('/');
+                    });
+
                 } else {
                     console.log("error listId undefined getlistcontroller");
                 }
             };
 
 
-        } 
+        }
     ])
     .controller('GetItemController', [
         '$scope', '$routeParams', 'itemService', function ($scope, $routeParams, itemService) {
@@ -125,7 +126,7 @@
                 if (id === undefined) {
                     if ($routeParams.id !== undefined) {
                         var promise = itemService.getTodoItems($routeParams.id);
-                        promise.then(function(value) {
+                        promise.then(function (value) {
                             $scope.items = value.data;
                             $scope.listId = $routeParams.id;
                         });
@@ -144,7 +145,12 @@
                     }
                 }
                 $scope.items = arr;
-               
+
+            };
+
+            $scope.markAsCompleted = function (selectedItem) {
+                console.log(selectedItem);
+                alert(selectedItem.Title + 'need to be completed');
             };
 
         }
