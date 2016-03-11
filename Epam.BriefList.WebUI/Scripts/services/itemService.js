@@ -35,7 +35,6 @@
             var model = {
                 ListId: listId,
                 Title: inputItem,
-                // TimeComplete: $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss'),
                 Completed: false,
                 Starred: false
             };
@@ -64,16 +63,7 @@
             return deferred.promise;
         },
 
-        updateItem: function (item) {
-
-            var model = {
-                Id:item.Id,
-                ListId: item.ListId,
-                Title:  item.Title,
-                TimeComplete: $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss'),
-                Completed: item.Completed,
-                Starred: item.Starred
-            };
+        updateItem: function (model) {
 
             var deferred = $q.defer();
             $http.put('/api/updatetodoitems/',model)

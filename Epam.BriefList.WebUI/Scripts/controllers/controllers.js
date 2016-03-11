@@ -86,7 +86,7 @@
         }
     ])
     .controller('GetItemController', [
-        '$scope', '$routeParams', 'itemService', function ($scope, $routeParams, itemService) {
+        '$scope', '$routeParams', '$filter', 'itemService', function ($scope, $routeParams, $filter, itemService) {
 
             $scope.message = 'GetItemController';
 
@@ -114,7 +114,11 @@
                 if (listId !== undefined && $scope.inputItem !== undefined) {
                     var promiseObj = itemService.addItem(listId, $scope.inputItem);
                     promiseObj.then(function (value) {
-                        $scope.items.push(value.config.data);
+                        console.log(value.config.data);
+                        var promiseObj = itemService.getTodoItems($routeParams.id);
+                        promiseObj.then(function (value) {
+                            $scope.items = value.data;
+                        });
                     });
                 } else {
                     console.log(listId + "listId or inputItem error GetItemController");
@@ -122,53 +126,89 @@
 
             };
 
-            $scope.deleteItem = function (id) {
-                if (id === undefined) {
-                    if ($routeParams.id !== undefined) {
-                        var promise = itemService.getTodoItems($routeParams.id);
-                        promise.then(function (value) {
-                            $scope.items = value.data;
-                            $scope.listId = $routeParams.id;
-                        });
-                    } else {
-                        alert("error $routeParams.id undefined GetItemController");
-                    }
-                }
-                itemService.deleteItem(id);
+            $scope.deleteItem = function (id, isCompleted) {
 
+                itemService.deleteItem(id);
                 console.log($scope.items);
 
-                var arr = $scope.items;
-                for (var i = arr.length - 1; i >= 0; i--) {
-                    if (arr[i].Id === id) {
-                        arr.splice(i, 1);
+                if (isCompleted) {
+                    var arr = $scope.items;
+                    for (var i = arr.length - 1; i >= 0; i--) {
+                        if (arr[i].Id === id) {
+                            arr.splice(i, 1);
+                        }
                     }
+                    $scope.items = arr;
+                } else {
+                    var arr1 = $scope.completeitems;
+                    for (var j = arr1.length - 1; j >= 0; j--) {
+                        if (arr1[j].Id === id) {
+                            arr1.splice(j, 1);
+                        }
+                    }
+                    $scope.completeitems = arr1;
                 }
-                $scope.items = arr;
+
 
             };
+
 
 
             $scope.markAsCompleted = function (item) {
 
-                item.Completed = !item.Completed;
-                var promiseObj = itemService.updateItem(item);
+                var model = {
+                    Id: item.Id,
+                    ListId: item.ListId,
+                    Title: item.Title,
+                    TimeComplete: $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss'),
+                    Completed: item.Completed,
+                    Starred: item.Starred
+                };
+
+                var promiseObj = itemService.updateItem(model);
                 promiseObj.then(function (value) {
 
-                    var iarr = $scope.items;
-                    for (var i = iarr.length - 1; i >= 0; i--) {
-                        if (iarr[i].Id === item.Id) {
-                            iarr.splice(i, 1);
+                    var arr = $scope.items;
+                    for (var i = arr.length - 1; i >= 0; i--) {
+                        if (arr[i].Id === item.Id) {
+                            arr.splice(i, 1);
                         }
                     }
-                    $scope.items = iarr;
+                    $scope.items = arr;
 
                     $scope.completeitems.push(value.config.data);
                 });
 
-                console.log(item);
-                alert(item.Title + 'need to be completed');
             };
+
+
+            $scope.markAsUnCompleted = function (item) {
+                var model = {
+                    Id: item.Id,
+                    ListId: item.ListId,
+                    Title: item.Title,
+                    TimeComplete: null,
+                    Completed: item.Completed,
+                    Starred: item.Starred
+                };
+
+                var promiseObj = itemService.updateItem(model);
+                promiseObj.then(function (value) {
+
+                    var arr = $scope.completeitems;
+                    for (var i = arr.length - 1; i >= 0; i--) {
+                        if (arr[i].Id === item.Id) {
+                            arr.splice(i, 1);
+                        }
+                    }
+                    $scope.completeitems = arr;
+
+                    $scope.items.push(value.config.data);
+                });
+
+
+            }
+
 
         }
     ]);
