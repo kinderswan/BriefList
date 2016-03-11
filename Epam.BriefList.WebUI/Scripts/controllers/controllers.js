@@ -46,7 +46,7 @@
             };
         }
     ])
-    .controller('GetListController', [ '$timeout',
+    .controller('GetListController', ['$timeout',
         '$scope', '$location', 'userListService', function ($timeout, $scope, $location, userListService) {
 
             $scope.message = 'GetListController';
@@ -73,7 +73,7 @@
                         }
                     }
                     $scope.lists = arr;
-                    $timeout(function() {
+                    $timeout(function () {
                         $location.path('/');
                     });
 
@@ -148,9 +148,26 @@
 
             };
 
-            $scope.markAsCompleted = function (selectedItem) {
-                console.log(selectedItem);
-                alert(selectedItem.Title + 'need to be completed');
+
+            $scope.markAsCompleted = function (item) {
+
+                item.Completed = !item.Completed;
+                var promiseObj = itemService.updateItem(item);
+                promiseObj.then(function (value) {
+
+                    var iarr = $scope.items;
+                    for (var i = iarr.length - 1; i >= 0; i--) {
+                        if (iarr[i].Id === item.Id) {
+                            iarr.splice(i, 1);
+                        }
+                    }
+                    $scope.items = iarr;
+
+                    $scope.completeitems.push(value.config.data);
+                });
+
+                console.log(item);
+                alert(item.Title + 'need to be completed');
             };
 
         }

@@ -1,4 +1,4 @@
-﻿angular.module('myApp').factory('itemService', function ($http, $q/*, $filter*/) {
+﻿angular.module('myApp').factory('itemService', function ($http, $q, $filter) {
     return {
         getTodoItems: function (id) {
             var deferred = $q.defer();
@@ -62,6 +62,31 @@
             };
 
             return deferred.promise;
+        },
+
+        updateItem: function (item) {
+
+            var model = {
+                Id:item.Id,
+                ListId: item.ListId,
+                Title:  item.Title,
+                TimeComplete: $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss'),
+                Completed: item.Completed,
+                Starred: item.Starred
+            };
+
+            var deferred = $q.defer();
+            $http.put('/api/updatetodoitems/',model)
+            .then(function (resp) {
+                deferred.resolve(resp);
+            }),
+            function (error) {
+                deferred.reject({ success: false, data: error });
+            };
+
+            return deferred.promise;
         }
+
+
     }
 });
