@@ -6769,11 +6769,11 @@ body.animate.nodewebkit.platform-windows .dialog-wrapper, body.animate.nodewebki
 }
 
     #wunderlist-base .main-interface #detail.animated {
-        -webkit-transition: 100ms width ease;
-        -moz-transition: 100ms width ease;
-        -o-transition: 100ms width ease;
-        -ms-transition: 100ms width ease;
-        transition: 100ms width ease;
+        -webkit-transition: 500ms width ease-in-out;
+        -moz-transition: 500ms width ease-in-out;
+        -o-transition: 500ms width ease-in-out;
+        -ms-transition: 500ms width ease-in-out;
+        transition: 500ms width ease-in-out;
     }
 
 @media all and (max-width:550px) {

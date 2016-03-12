@@ -36,5 +36,10 @@ namespace Epam.BriefList.Services.Services
             _listRep.Delete(id);
             _uow.Commit();
         }
+        public void UpdateList(BllList bllList)
+        {
+            _listRep.Update(Mapper.ToDalList(bllList));
+            _uow.Commit();
+        }
     }
 }

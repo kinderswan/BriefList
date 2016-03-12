@@ -11,5 +11,6 @@ namespace Epam.BriefList.Services.API.Interfaces
         Task<IEnumerable<BllList>> GetUserLists(int id);
         void AddList(BllList list);
         void Delete(int id);
+        void UpdateList(BllList bllList);
     }
 }

@@ -1,13 +1,14 @@
-﻿angular.module('myApp').controller('RouteController', function ($scope, $routeParams, listService) {
+﻿angular.module('myApp')
+    .controller('RouteController', function ($scope, $routeParams, listService) {
 
-    $scope.message = "routecontroller";
+        $scope.message = "routecontroller";
 
-    var promiseObj = listService.getUserById($routeParams.id);
-    promiseObj.then(function (value) {
-        $scope.user = value.data;
-    });
+        var promiseObj = listService.getUserById($routeParams.id);
+        promiseObj.then(function (value) {
+            $scope.user = value.data;
+        });
 
-})
+    })
     .controller('HomeController', function ($scope, $routeParams, listService) {
 
         $scope.message = "homecontroller";
@@ -46,13 +47,23 @@
             };
         }
     ])
-    .controller('GetListController', ['$timeout',
+    .controller('GetListController', [
+        '$timeout',
         '$scope', '$location', 'userListService', function ($timeout, $scope, $location, userListService) {
 
             $scope.message = 'GetListController';
 
             $scope.$on('UpdateLists', function (event, userId) {
                 $scope.getAllLists(userId);
+            });
+            $scope.$on('RenameList', function (event, oldmodel) {
+                var arr = $scope.lists;
+                for (var i = arr.length - 1; i >= 0; i--) {
+                    if (arr[i].Id === oldmodel.Id) {
+                        arr[i] = oldmodel;
+                    }
+                }
+                $scope.lists = arr;
             });
 
             $scope.getAllLists = function (userId) {
@@ -89,6 +100,9 @@
         '$scope', '$routeParams', '$filter', 'itemService', function ($scope, $routeParams, $filter, itemService) {
 
             $scope.message = 'GetItemController';
+
+            var parentScope = $scope.$parent;
+            parentScope.child = $scope;
 
             if ($routeParams.id !== undefined) {
                 var promiseObj = itemService.getTodoItems($routeParams.id);
@@ -129,8 +143,8 @@
             $scope.deleteItem = function (id, isCompleted) {
 
                 itemService.deleteItem(id);
-                console.log($scope.items);
-
+                $scope.$parent.detoggle();
+                alert($scope.items);
                 if (isCompleted) {
                     var arr = $scope.items;
                     for (var i = arr.length - 1; i >= 0; i--) {
@@ -151,8 +165,6 @@
 
 
             };
-
-
 
             $scope.markAsCompleted = function (item) {
 
@@ -181,7 +193,6 @@
 
             };
 
-
             $scope.markAsUnCompleted = function (item) {
                 var model = {
                     Id: item.Id,
@@ -209,6 +220,34 @@
 
             }
 
+            $scope.showDetails = function (itemId) {
+                parentScope.toggle(itemId);
+                alert(parentScope.items);
+            }
+
 
         }
+    ])
+
+    .controller('IndexCtrl', ['$scope', '$routeParams', 'itemService', function ($scope, $routeParams, itemService) {
+        $scope.child = {
+        };
+
+        $scope.toggle = function (itemId) {
+            var toggleEl = angular.element(document.querySelector('#detail'));
+
+            var promiseObj = itemService.getTodoItemById(itemId);
+            promiseObj.then(function (value) {
+                $scope.detailItem = value.data;
+            });
+            toggleEl.css('width', '30%');
+        }
+
+        $scope.detoggle = function () {
+            var toggleEl = angular.element(document.querySelector('#detail'));
+            toggleEl.css('width', '0px');
+        }
+
+
+    }
     ]);

@@ -19,6 +19,13 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         {
             _itemService = itemService;
         }
+
+        [HttpGet]
+        [Route("api/todoitems/{id}")]
+        public async Task<ApiItem> GetToDoItems(int id)
+        {
+            return Mapper.ToApiItem(await _itemService.GetToDoItem(id));
+        }
         [HttpGet]
         [Route("api/users/{userId}/todoitems")]
         public async Task<IEnumerable<ApiItem>> GetUserToDoItems(int userId)

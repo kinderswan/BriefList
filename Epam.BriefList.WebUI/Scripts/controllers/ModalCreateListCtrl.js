@@ -4,9 +4,9 @@ angular.module('myApp').controller('ModalCreateListController', function ($scope
     $scope.animationsEnabled = true;
 
     $scope.open = function (ownerId) {
-         $uibModal.open({
+        $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: '/Template/ModalCreateList.html',
+            templateUrl: '/Template/ModalCreateRenameList.html',
             controller: 'ModalInstanceCtrl',
             size: 'lg',
             resolve: {
@@ -39,14 +39,14 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $rootS
 
                 $rootScope.$broadcast('UpdateLists', $scope.ownerId);
 
-              //  alert(model.Title + ", You add list");
+                //  alert(model.Title + ", You add list");
                 $uibModalInstance.dismiss('cancel');
                 return value.data;
             });
 
         }
     };
-    
+
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };

@@ -24,6 +24,8 @@ namespace Epam.BriefList.Services.Services
 
         public async Task<IEnumerable<BllItem>> GetToDoItems() => (await _itemRep.GetAll()).Select(Mapper.ToBllItem);
 
+        public async Task<BllItem> GetToDoItem(int id) => Mapper.ToBllItem(await _itemRep.Get(id));
+
         public async Task<IEnumerable<BllItem>> GetUserToDoItems(int id)
         {
             var listIds = (await _listRep.GetAll()).Where(t => t.OwnerId == id).Select(t => t.Id);

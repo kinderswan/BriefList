@@ -16,31 +16,43 @@
         },
 
 
-    addList: function (model) {
-        var deferred = $q.defer();
-        $http.post('/api/Lists', model)
-                .then(function (resp) {
-                    deferred.resolve(resp);
-                }),
-            function (error) {
-                deferred.reject({ success: false, data: error });
-            };
+        addList: function(model) {
+            var deferred = $q.defer();
+            $http.post('/api/Lists', model)
+                    .then(function(resp) {
+                        deferred.resolve(resp);
+                    }),
+                function(error) {
+                    deferred.reject({ success: false, data: error });
+                };
 
-        return deferred.promise;
-    },
+            return deferred.promise;
+        },
 
-        deleteList: function (id) {
-        var deferred = $q.defer();
-        $http.delete('/api/deletelists/' + id)
-        .then(function (resp) {
-            deferred.resolve(resp);
-        }),
-        function (error) {
-            deferred.reject({ success: false, data: error });
-        };
+        deleteList: function(id) {
+            var deferred = $q.defer();
+            $http.delete('/api/deletelists/' + id)
+                    .then(function(resp) {
+                        deferred.resolve(resp);
+                    }),
+                function(error) {
+                    deferred.reject({ success: false, data: error });
+                };
 
-        return deferred.promise;
-    }
+            return deferred.promise;
+        },
+        updateList: function(model) {
+            var deferred = $q.defer();
+            $http.post('/api/updatelists', model)
+                    .then(function(resp) {
+                        deferred.resolve(resp);
+                    }),
+                function(error) {
+                    deferred.reject({ success: false, data: error });
+                };
 
-    }
+            return deferred.promise;
+        }
+
+    };
 }]);

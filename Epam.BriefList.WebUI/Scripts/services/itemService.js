@@ -14,6 +14,20 @@
 
             return deferred.promise;
         },
+        getTodoItemById: function (itemId) {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: '/api/todoitems/' + itemId
+            }).then(function (resp) {
+                deferred.resolve(resp);
+            }),
+            function (error) {
+                deferred.reject({ success: false, data: error });
+            };
+
+            return deferred.promise;
+        },
 
         getCompleteItems: function (id) {
             var deferred = $q.defer();

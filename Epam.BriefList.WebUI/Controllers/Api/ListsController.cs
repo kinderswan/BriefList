@@ -50,5 +50,11 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         {
             _listService.Delete(id);
         }
+        [HttpPost]
+        [Route("api/updatelists")]
+        public void UpdateList([FromBody]ApiList model)
+        {
+            _listService.UpdateList(Mapper.ToBllList(model));
+        }
     }
 }

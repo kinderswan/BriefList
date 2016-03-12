@@ -16,6 +16,9 @@
                 templateUrl: "/Template/TodoItem.html",
                 controller: 'GetItemController'
             })
+            .when("/list/:id/todoitems/:itemId", {
+                controller: 'GetItemController'
+            })
             .when("/home", {
                 templateUrl: "/Template/Home.html",
                 controller: 'HomeController'

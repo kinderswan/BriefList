@@ -13,18 +13,20 @@
     <script src="~/Scripts/route/app.js"></script>
 
     <script src="~/Scripts/controllers/ModalCreateListCtrl.js"></script>
+    <script src="~/Scripts/controllers/ModalRenameListCtrl.js"></script>
+    <script src="~/Scripts/controllers/ModalUserProfileCtrl.js"></script>
     <script src="~/Scripts/controllers/controllers.js"></script>
     <script src="~/Scripts/services/userListService.js"></script>
     <script src="~/Scripts/services/itemService.js"></script>
+    <script src="~/Scripts/services/userProfileService.js"></script>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet">
     <link href='~/Content/ui-bootstrap-csp.css' rel='stylesheet' />
 
 
-    <div class="main-interface">
+
+    <div class="main-interface" ng-controller="IndexCtrl">
         <div class="" id="lists" role="navigation">
             <div ng-controller="GetListController" class="lists-inner" tabindex="0">
-
-
                 <div id="search-toolbar">
                     <a title="Toggle Sidebar" class="toggle-icon" role="button" tabindex="0" data-key-title="toggle_sidebar">
                         <svg class="list-toggle" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
@@ -32,8 +34,8 @@
                         <path d="M0.5,3.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
                         <path d="M0.5,9.53l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
                         <path d="M0.5,15.5l19,0" style="fill: none; stroke-width: 1px; stroke: white;"></path>
-                        </g>
-                    </svg>
+                    </g>
+                </svg>
                     </a>
                     <div class="search-input-wrapper">
                         <input aria-label="Поиск…" class="chromeless search-input" data-key-aria-label="placeholder_search" type="text">
@@ -53,8 +55,8 @@
                         </a>
                     </span>
                 </div>
-                <div id="user-toolbar">
-                    <a class="user" data-path="me" role="button" tabindex="0" aria-label="Павел Гаманович Меню пользователя." aria-expanded="false" aria-haspopup="true">
+                <div ng-controller="ModalUserProfileController" id="user-toolbar">
+                    <a ng-click="open(@User.Identity.GetUserId())" class="user" data-path="me" role="button" tabindex="0" aria-label=" Меню пользователя." aria-expanded="false" aria-haspopup="true">
                         <span class="user-avatar">
                             <div title="@User.Identity.Name" class="avatar medium">
                             </div>
@@ -76,29 +78,29 @@
                                     <span class="title">
                                         {{list.Title}}
                                     </span>
-                                    
-                                        <span ng-click="deleteList(list.Id)" class="glyphicon glyphicon-remove overdue-count" aria-hidden="true">
 
-                                        </span>
-                                    
-                                    <span class="glyphicon glyphicon-pencil count" aria-hidden="true">
+                                    <span ng-click="deleteList(list.Id)" class="glyphicon glyphicon-remove overdue-count" aria-hidden="true">
+
+                                    </span>
+
+                                    <span ng-controller="ModalRenameListController" ng-click="open(list,@User.Identity.GetUserId())" class="glyphicon glyphicon-pencil count" aria-hidden="true">
                                     </span>
                                 </a>
                             </span>
                         </li>
                         @*<li ng-repeat="list in lists" aria-label="" data-position="0" rel="237758426" draggable="true" class="sidebarItem list draggable shared member unreadComments overdue" tabindex="0" role="menuitem">
-                            <a  aria-hidden="true">
-                                <span ng-href="#!/list/{{list.Id}}/todoitems" class="title">
-                                    {{list.Title}}
-                                </span>
+                                <a  aria-hidden="true">
+                                    <span ng-href="#!/list/{{list.Id}}/todoitems" class="title">
+                                        {{list.Title}}
+                                    </span>
 
-                                <span ng-click="deleteList(list.Id)" class="glyphicon glyphicon-remove overdue-count" aria-hidden="true">
-                                </span>
+                                    <span ng-click="deleteList(list.Id)" class="glyphicon glyphicon-remove overdue-count" aria-hidden="true">
+                                    </span>
 
-                                <span class="glyphicon glyphicon-pencil count" aria-hidden="true">
-                                </span>
-                            </a>
-                        </li>*@
+                                    <span class="glyphicon glyphicon-pencil count" aria-hidden="true">
+                                    </span>
+                                </a>
+                            </li>*@
                     </ul>
                 </div>
 
@@ -150,7 +152,7 @@
                 <div class="actionBar">
                     <div style="height: 0px;" class="actionBar-top">
                         <!-- Sorting -->
-                        <ul class="actionBar-top-sort">
+                        <!-- <ul class="actionBar-top-sort">
                             <li aria-label="По алфавиту" tabindex="0" class="first-menu-item" data-key-aria-label="actionbar_sort_alphabetically">
                                 <a class="actionBar-top-sort-az">
                                     <svg aria-disabled="true" class="sort-az" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -234,10 +236,9 @@
                                     </text>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                         <!-- More -->
-                        <ul class="actionBar-top-more">
-                            <!-- duplication -->
+                        <!-- <ul class="actionBar-top-more">
                             <li aria-label="Дублировать список" tabindex="0" class="first-menu-item" data-key-aria-label="actionbar_duplicate_list">
                                 <a aria-disabled="false" class="actionBar-top-duplicate-list">
                                     <svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -264,10 +265,10 @@
                                         </g>
                                     </svg>
                                     <span class="label">
-                                        <text rel="contextual_copy_selected_task">
-                                            Копировать выбранные задачи
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="contextual_copy_selected_task">
+                                                                                                                Копировать выбранные задачи
+                                                                                                            </text>
+                                                                                                        </span>
                                 </a>
                             </li>
                             <li aria-label="Вставить задачу" tabindex="0" data-key-aria-label="contextual_paste_task">
@@ -281,13 +282,13 @@
                                         </g>
                                     </svg>
                                     <span class="label">
-                                        <text rel="contextual_paste_task_plural_$" data="0">
-                                            Вставить задачи (<token class="token_0" title="0">
-                                                0
-                                            </token>
-                                            )
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="contextual_paste_task_plural_$" data="0">
+                                                                                                                Вставить задачи (<token class="token_0" title="0">
+                                                                                                                    0
+                                                                                                                </token>
+                                                                                                                )
+                                                                                                            </text>
+                                                                                                        </span>
                                 </a>
                             </li>
                             <li aria-label="Отправить список" tabindex="0" data-key-aria-label="button_email_list">
@@ -316,13 +317,12 @@
                                         </g>
                                     </svg>
                                     <span class="email-items-label">
-                                        <text rel="actionbar_email_selected_item">
-                                            Отправить по эл. почте
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="actionbar_email_selected_item">
+                                                                                                                Отправить по эл. почте
+                                                                                                            </text>
+                                                                                                        </span>
                                 </a>
                             </li>
-                            <!-- print -->
                             <li aria-label="Печать списка" tabindex="0" class="" data-key-aria-label="button_print_list">
                                 <a class="actionBar-top-print-all">
                                     <svg class="print" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -353,13 +353,12 @@
                                         </g>
                                     </svg>
                                     <span class="print-items-label">
-                                        <text rel="actionbar_print_selected_item">
-                                            Печать выбранной задачи
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="actionbar_print_selected_item">
+                                                                                                                Печать выбранной задачи
+                                                                                                            </text>
+                                                                                                        </span>
                                 </a>
                             </li>
-                            <!-- do not disturb -->
                             <li aria-label="Не беспокоить" tabindex="0" class="" data-key-aria-label="options_do_not_disturb">
                                 <a class="actionBar-top-do-not-disturb">
                                     <svg class="do-no-disturb" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -371,23 +370,22 @@
                                         </g>
                                     </svg>
                                     <span class="un-mute">
-                                        <text rel="options_do_not_disturb">
-                                            Не беспокоить
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="options_do_not_disturb">
+                                                                                                                Не беспокоить
+                                                                                                            </text>
+                                                                                                        </span>
                                     <span class="status-label right on ">
-                                        <text rel="label_on">
-                                            Включено
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="label_on">
+                                                                                                                Включено
+                                                                                                            </text>
+                                                                                                        </span>
                                     <span class="status-label right off active">
-                                        <text rel="label_off">
-                                            Выключено
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="label_off">
+                                                                                                                Выключено
+                                                                                                            </text>
+                                                                                                        </span>
                                 </a>
                             </li>
-                            <!-- delete selected item -->
                             <li aria-disabled="true" aria-label="Удалить" tabindex="0" class="last-menu-item disabled" data-key-aria-label="button_delete">
                                 <a aria-disabled="true" class="actionBar-top-trash disabled">
                                     <svg class="trash" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -399,15 +397,15 @@
                                         </g>
                                     </svg>
                                     <span class="delete-items-label">
-                                        <text rel="menubar_delete_task">
-                                            Удалить выбранную задачу
-                                        </text>
-                                    </span>
+                                                                                                            <text rel="menubar_delete_task">
+                                                                                                                Удалить выбранную задачу
+                                                                                                            </text>
+                                                                                                        </span>
                                 </a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
-                    <div class="actionBar-bottom">
+                    <!-- <div class="actionBar-bottom">
                         <a aria-disabled="false" aria-label="Поделиться" class="tab share first-tab" data-menu="share" role="button" tabindex="0" data-key-aria-label="button_label_publiclist_share">
                             <svg aria-disabled="false" class="share rtl-flip" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <g stroke="none" stroke-width="1" fill-rule="evenodd">
@@ -418,10 +416,10 @@
                                 </g>
                             </svg>
                             <span class="tab-text">
-                                <text rel="button_label_publiclist_share">
-                                    Поделиться
-                                </text>
-                            </span>
+                                                                                        <text rel="button_label_publiclist_share">
+                                                                                            Поделиться
+                                                                                        </text>
+                                                                                    </span>
                         </a>
                         <a aria-disabled="true" aria-label="Сортировать список" class="tab sort-az disabled" data-menu="sort" role="button" tabindex="0" data-key-aria-label="aria_sort_list">
                             <svg aria-disabled="true" class="sort-az" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -433,49 +431,246 @@
                                 </g>
                             </svg>
                             <span class="tab-text">
-                                <text rel="button_sort">
-                                    Сортировка
-                                </text>
-                            </span>
+                                                                                        <text rel="button_sort">
+                                                                                            Сортировка
+                                                                                        </text>
+                                                                                    </span>
                         </a>
                         <a aria-label="Еще" class="tab last-tab" data-menu="more" role="button" tabindex="0" data-key-aria-label="button_more">
                             <svg class="folder-option" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xml:space="preserve" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
-                            <g id="Layer 1">
-                            <path d="M3.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z">
-                    </path>
-                            <path d="M9.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z">
-                    </path>
-                            <path d="M15.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z">
-                    </path>
-                </g>
-            </svg>
+                                <g id="Layer 1">
+                                    <path d="M3.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z">
+                                    </path>
+                                    <path d="M9.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z">
+                                    </path>
+                                    <path d="M15.5,11c0.828,0 1.5,-0.672 1.5,-1.5c0,-0.828 -0.672,-1.5 -1.5,-1.5c-0.828,0 -1.5,0.672 -1.5,1.5c0,0.828 0.672,1.5 1.5,1.5Z">
+                                    </path>
+                                </g>
+                            </svg>
                             <span class="tab-text">
-                                <text rel="button_more">
-                                    Еще
-                                </text>
-                            </span>
+                                                                                        <text rel="button_more">
+                                                                                            Еще
+                                                                                        </text>
+                                                                                    </span>
                         </a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
-
-
-
-
-
             <div class="tasks-scroll" ng-controller="GetItemController">
-
                 <!--here!!!!!!!!!!!!!!!!!!!!!!!!!!ToDoItem!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
                 <div ng-view></div>
 
-                <div class="tasks-404 hidden">
-                </div>
             </div>
         </div>
 
 
 
+
+
+        <div class="animated" id="detail" role="contentinfo">
+            <div class="inner">
+                <div class="top">
+                    <a aria-label="Выполненные" class="detail-checkbox checkBox" role="checkbox" aria-checked="false" data-key-aria-label="smart_list_completed" tabindex="0">
+                        <span title="Пометить как завершенную" data-key-title="contextual_mark_as_completed">
+                            <svg class="detail-check" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linecap: round; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
+                            <g>
+                            <path d="M17.5,4.5c0,-0.53 -0.211,-1.039 -0.586,-1.414c-0.375,-0.375 -0.884,-0.586 -1.414,-0.586c-3.271,0 -9.729,0 -13,0c-0.53,0 -1.039,0.211 -1.414,0.586c-0.375,0.375 -0.586,0.884 -0.586,1.414c0,3.271 0,9.729 0,13c0,0.53 0.211,1.039 0.586,1.414c0.375,0.375 0.884,0.586 1.414,0.586c3.271,0 9.729,0 13,0c0.53,0 1.039,-0.211 1.414,-0.586c0.375,-0.375 0.586,-0.884 0.586,-1.414c0,-3.271 0,-9.729 0,-13Z" style="fill: none; stroke-width: 1px"></path>
+ </g>
+ </svg>
+                        </span>
+                        <span title="Пометить как незавершенную" data-key-title="contextual_mark_as_notcompleted">
+                            <svg class="detail-checked" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
+                            <g>
+                            <path d="M8.489,15c-0.132,0 -0.259,-0.052 -0.354,-0.146c-1.485,-1.486 -3.134,-2.808 -4.904,-3.932c-0.232,-0.148 -0.302,-0.457 -0.153,-0.691c0.147,-0.232 0.456,-0.299 0.69,-0.153c1.652,1.049 3.202,2.266 4.618,3.621c3.242,-5.361 6.486,-9.443 10.767,-13.559c0.198,-0.192 0.517,-0.185 0.707,0.013c0.192,0.2 0.186,0.516 -0.014,0.707c-4.356,4.189 -7.625,8.344 -10.927,13.896c-0.079,0.133 -0.215,0.221 -0.368,0.24c-0.021,0.003 -0.041,0.004 -0.062,0.004" style="fill-rule: nonzero;">
+</path>
+                            <path d="M15.5,20l-13,0c-1.379,0 -2.5,-1.121 -2.5,-2.5l0,-13c0,-1.379 1.121,-2.5 2.5,-2.5l11,0c0.276,0 0.5,0.224 0.5,0.5c0,0.276 -0.224,0.5 -0.5,0.5l-11,0c-0.827,0 -1.5,0.673 -1.5,1.5l0,13c0,0.827 0.673,1.5 1.5,1.5l13,0c0.827,0 1.5,-0.673 1.5,-1.5l0,-11c0,-0.276 0.224,-0.5 0.5,-0.5c0.276,0 0.5,0.224 0.5,0.5l0,11c0,1.379 -1.121,2.5 -2.5,2.5" style="fill-rule: nonzero;">
+</path>
+ </g>
+ </svg>
+                        </span>
+                    </a>
+                    <a aria-label="Отмеченные" class="detail-star" role="checkbox" aria-checked="false" data-key-aria-label="smart_list_starred" tabindex="0">
+                        <span title="Пометить звездочкой" class="star-wrapper" data-key-title="contextual_mark_as_starred">
+                            <svg width="100%" height="100%" viewBox="0 0 22 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
+                            <g>
+                            <path d="M11,20.48c-0.18,0 -0.36,0.08 -0.44,0.26l-1.68,5.26l-5.54,0c-0.18,0 -0.36,0.12 -0.42,0.3c-0.06,0.2 0.02,0.4 0.16,0.5l4.46,3.24l-1.68,5.26c-0.08,0.18 0,0.38 0.16,0.5c0.06,0.06 0.16,0.1 0.24,0.1c0.1,0 0.2,-0.04 0.28,-0.1l4.46,-3.24l4.46,3.24c0.08,0.06 0.18,0.08 0.28,0.08c0.08,0 0.18,-0.02 0.24,-0.08c0.16,-0.12 0.24,-0.32 0.16,-0.5l-1.68,-5.26l4.46,-3.24c0.14,-0.1 0.22,-0.3 0.16,-0.5c-0.08,-0.18 -0.24,-0.3 -0.42,-0.3l-5.52,0l-1.7,-5.26c-0.08,-0.18 -0.26,-0.26 -0.44,-0.26ZM11,22.66l1.2,3.64l0.22,0.7l4.54,0l-3.68,2.66l0.22,0.7l1.18,3.64l-3.68,-2.66l-3.68,2.66l1.18,-3.64l0.22,-0.7l-3.68,-2.66l4.56,0l0.22,-0.7l1.18,-3.64Z">
+ </path>
+</g>
+ </svg>
+                        </span>
+                        <span title="Убрать пометку звездочкой" class="starred-wrapper  hidden" data-key-title="contextual_mark_as_unstarred">
+                            <svg width="100%" height="100%" viewBox="0 0 22 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule: evenodd; clip-rule: evenodd; stroke-linejoin: round; stroke-miterlimit: 1.41421;">
+                            <g>
+                            <path d="M0,0l0,48.48c0,0.28 0.22,0.42 0.48,0.34l10.04,-3.66c0.28,-0.1 0.7,-0.1 0.96,0l10.04,3.66c0.28,0.08 0.48,-0.06 0.48,-0.34l0,-48.48l-22,0ZM14.56,30.06l1.68,5.26c0.08,0.18 0,0.38 -0.16,0.5c-0.14,0.1 -0.36,0.1 -0.52,0l-4.46,-3.24l-4.46,3.24c-0.08,0.06 -0.18,0.08 -0.28,0.08c-0.08,0 -0.18,-0.02 -0.24,-0.08c-0.16,-0.12 -0.24,-0.32 -0.16,-0.5l1.68,-5.26l-4.46,-3.24c-0.14,-0.1 -0.22,-0.32 -0.16,-0.52c0.06,-0.16 0.24,-0.3 0.42,-0.3l5.54,0l1.68,-5.26c0.14,-0.36 0.74,-0.36 0.88,0l1.7,5.26l5.5,0c0.2,0 0.36,0.14 0.44,0.3c0.06,0.2 -0.02,0.42 -0.16,0.52l-4.46,3.24Z">
+ </path>
+</g>
+ </svg>
+                        </span>
+                    </a>
+                    <div class="title-container">
+                        <div aria-label="Title: лтлдтржл" class="title" tabindex="0">
+                            <span class="title-text">
+                                <div class="content-fakable">
+                                    <div class="display-view">
+                                        <span>
+                                            {{detailItem.Title}}
+                                        </span>
+                                    </div>
+                                    <div class="edit-view hidden">
+                                        <div class="expandingArea active">
+<pre style="line-height: 24px; font-size: 16px;">
+лтлдтржл
+</pre>
+                                            <textarea style="line-height: 24px; font-size: 16px;" tabindex="0" class="">
+                                                {{detailItem.Title}}
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div style="" class="body">
+                    <div class="section section-item detail-assign" tabindex="0">
+                        <div class="section-icon">
+                            <svg class="assigned" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                    <g>
+                                        <g id="Rectangle-3-+-A" transform="translate(1.000000, 2.000000)">
+                                            <path d="M10,10 C12.28,10 14,6.84 14,4 C14,1.8 12.2,0 10,0 C7.8,0 6,1.8 6,4 C6,6.5 7.52,10 10,10 L10,10 Z M4.94,7.74 C4.98,7.66 5,7.58 5,7.5 C5,7.42 4.98,7.34 4.94,7.26 C4.92,7.22 4.9,7.18 4.86,7.14 L2.86,5.14 C2.66,4.96 2.34,4.96 2.14,5.14 C1.96,5.34 1.96,5.66 2.14,5.86 L3.3,7 L0.5,7 C0.22,7 0,7.22 0,7.5 C0,7.78 0.22,8 0.5,8 L3.3,8 L2.14,9.14 C1.96,9.34 1.96,9.66 2.14,9.86 C2.24,9.96 2.38,10 2.5,10 C2.62,10 2.76,9.96 2.86,9.86 L4.86,7.86 C4.9,7.82 4.92,7.78 4.94,7.74 L4.94,7.74 Z M16.76,12.88 C16.56,12 15.9,11.28 15.02,11.04 L12.72,10.36 C12.58,10.32 12.46,10.26 12.36,10.14 C12.16,9.96 11.84,9.96 11.66,10.16 C11.46,10.34 8.54,10.34 8.36,10.14 C8.16,9.96 7.84,9.96 7.64,10.14 C7.54,10.24 7.42,10.32 7.28,10.36 L5.04,10.96 C4.14,11.2 3.46,11.92 3.24,12.82 L3.02,13.9 C2.98,14.06 3.02,14.24 3.14,14.36 C3.22,14.42 4.86,16 10,16 C15.14,16 16.78,14.42 16.86,14.36 C16.98,14.24 17.02,14.06 16.98,13.9 L16.76,12.88 Z" fill-opacity="0.06">
+                                            </path>
+                                            <path d="M10,10 C12.28,10 14,6.84 14,4 C14,1.8 12.2,0 10,0 C7.8,0 6,1.8 6,4 C6,6.5 7.52,10 10,10 L10,10 Z M10,1 C11.66,1 13,2.34 13,4 C13,6.26 11.62,9 10,9 C8.34,9 7,6.26 7,4 C7,2.34 8.34,1 10,1 L10,1 Z M4.94,7.74 C4.98,7.66 5,7.58 5,7.5 C5,7.42 4.98,7.34 4.94,7.26 C4.92,7.22 4.9,7.18 4.86,7.14 L2.86,5.14 C2.66,4.96 2.34,4.96 2.14,5.14 C1.96,5.34 1.96,5.66 2.14,5.86 L3.3,7 L0.5,7 C0.22,7 0,7.22 0,7.5 C0,7.78 0.22,8 0.5,8 L3.3,8 L2.14,9.14 C1.96,9.34 1.96,9.66 2.14,9.86 C2.24,9.96 2.38,10 2.5,10 C2.62,10 2.76,9.96 2.86,9.86 L4.86,7.86 C4.9,7.82 4.92,7.78 4.94,7.74 L4.94,7.74 Z M16.76,12.88 C16.56,12 15.9,11.28 15.02,11.04 L12.72,10.36 C12.58,10.32 12.46,10.26 12.36,10.14 C12.16,9.96 11.84,9.96 11.66,10.16 C11.46,10.34 11.46,10.66 11.66,10.86 C11.88,11.08 12.14,11.24 12.44,11.32 L14.74,12 C15.26,12.14 15.66,12.58 15.78,13.1 L15.94,13.8 C15.4,14.16 13.7,15 10,15 C6.3,15 4.6,14.14 4.06,13.8 L4.22,13.04 C4.34,12.5 4.76,12.06 5.3,11.92 L7.54,11.32 C7.84,11.24 8.12,11.08 8.36,10.86 C8.54,10.66 8.54,10.34 8.36,10.14 C8.16,9.96 7.84,9.96 7.64,10.14 C7.54,10.24 7.42,10.32 7.28,10.36 L5.04,10.96 C4.14,11.2 3.46,11.92 3.24,12.82 L3.02,13.9 C2.98,14.06 3.02,14.24 3.14,14.36 C3.22,14.42 4.86,16 10,16 C15.14,16 16.78,14.42 16.86,14.36 C16.98,14.24 17.02,14.06 16.98,13.9 L16.76,12.88 Z">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                            <span class="detail-assigned hidden">
+                            </span>
+                        </div>
+                        <div class="section-content">
+                            <div class="section-title">
+                                Кому назначено
+                            </div>
+                            <div class="section-edit hidden">
+                                <input placeholder="Кому назначено" class="assign chromeless" data-key-placeholder="label_assign_to" type="text">
+                            </div>
+                        </div>
+                        <a aria-label="Удалить" title="Удалить" class="section-delete" data-key-aria-label="button_delete" data-key-title="button_delete" tabindex="0">
+                            <svg class="delete" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                    <g id="delete">
+                                        <path d="M10.72,9.9975 L13.86,6.8575 C14.04,6.6575 14.04,6.3375 13.86,6.1375 C13.66,5.9575 13.34,5.9575 13.14,6.1375 L10,9.2775 L6.86,6.1375 C6.66,5.9575 6.34,5.9575 6.14,6.1375 C5.96,6.3375 5.96,6.6575 6.14,6.8575 L9.28,9.9975 L6.14,13.1375 C5.96,13.3375 5.96,13.6575 6.14,13.8575 C6.24,13.9575 6.38,13.9975 6.5,13.9975 C6.62,13.9975 6.76,13.9575 6.86,13.8575 L10,10.7175 L13.14,13.8575 C13.24,13.9575 13.38,13.9975 13.5,13.9975 C13.62,13.9975 13.76,13.9575 13.86,13.8575 C14.04,13.6575 14.04,13.3375 13.86,13.1375 L10.72,9.9975 Z" id="4">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                    <div aria-label="Срок: Сегодняundefined" class="section section-item detail-date editing date" aria-haspopup="true" role="button" tabindex="0">
+                        <div class="section-icon">
+                            <svg class="date" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                    <g id="date">
+                                        <path d="M2.5,7 C2.22,7 2,6.78 2,6.5 L2,3.5 C2,2.68 2.68,2 3.5,2 L16.5,2 C17.32,2 18,2.68 18,3.5 L18,6.5 C18,6.78 17.78,7 17.5,7 L2.5,7 Z M3,6 L17,6 L17,3.5 C17,3.22 16.78,3 16.5,3 L3.5,3 C3.22,3 3,3.22 3,3.5 L3,6 Z M3.5,18 C2.68,18 2,17.32 2,16.5 L2,8.5 C2,8.22 2.22,8 2.5,8 C2.78,8 3,8.22 3,8.5 L3,16.5 C3,16.78 3.22,17 3.5,17 L16.5,17 C16.78,17 17,16.78 17,16.5 L17,8.5 C17,8.22 17.22,8 17.5,8 C17.78,8 18,8.22 18,8.5 L18,16.5 C18,17.32 17.32,18 16.5,18 L3.5,18 Z M8.5,12 C7.68,12 7,11.32 7,10.5 L7,9.5 C7,8.68 7.68,8 8.5,8 C9.32,8 10,8.68 10,9.5 L10,10.5 C10,11.32 9.32,12 8.5,12 L8.5,12 Z M5.5,11 C5.22,11 5,10.78 5,10.5 L5,9.5 C5,9.22 5.22,9 5.5,9 C5.78,9 6,9.22 6,9.5 L6,10.5 C6,10.78 5.78,11 5.5,11 L5.5,11 Z M8.5,9 C8.22,9 8,9.22 8,9.5 L8,10.5 C8,10.78 8.22,11 8.5,11 C8.78,11 9,10.78 9,10.5 L9,9.5 C9,9.22 8.78,9 8.5,9 L8.5,9 Z M11.5,11 C11.22,11 11,10.78 11,10.5 L11,9.5 C11,9.22 11.22,9 11.5,9 C11.78,9 12,9.22 12,9.5 L12,10.5 C12,10.78 11.78,11 11.5,11 L11.5,11 Z M14.5,11 C14.22,11 14,10.78 14,10.5 L14,9.5 C14,9.22 14.22,9 14.5,9 C14.78,9 15,9.22 15,9.5 L15,10.5 C15,10.78 14.78,11 14.5,11 L14.5,11 Z M5.5,15 C5.22,15 5,14.78 5,14.5 L5,13.5 C5,13.22 5.22,13 5.5,13 C5.78,13 6,13.22 6,13.5 L6,14.5 C6,14.78 5.78,15 5.5,15 L5.5,15 Z M8.5,15 C8.22,15 8,14.78 8,14.5 L8,13.5 C8,13.22 8.22,13 8.5,13 C8.78,13 9,13.22 9,13.5 L9,14.5 C9,14.78 8.78,15 8.5,15 L8.5,15 Z M11.5,15 C11.22,15 11,14.78 11,14.5 L11,13.5 C11,13.22 11.22,13 11.5,13 C11.78,13 12,13.22 12,13.5 L12,14.5 C12,14.78 11.78,15 11.5,15 L11.5,15 Z M14.5,15 C14.22,15 14,14.78 14,14.5 L14,13.5 C14,13.22 14.22,13 14.5,13 C14.78,13 15,13.22 15,13.5 L15,14.5 C15,14.78 14.78,15 14.5,15 L14.5,15 Z">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="section-content">
+                            <div class="section-title">
+                                <text rel="label_due_$" data="$label_relative_date_today">
+                                    Срок: <token class="token_0" title="Сегодня">
+                                        Сегодня
+                                    </token>
+                                </text>
+                            </div>
+                            <div class="section-description">
+                            </div>
+                        </div>
+                        <a aria-label="Удалить" title="Удалить" class="section-delete" data-key-aria-label="button_delete" data-key-title="button_delete" tabindex="0">
+                            <svg class="delete" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                    <g id="delete">
+                                        <path d="M10.72,9.9975 L13.86,6.8575 C14.04,6.6575 14.04,6.3375 13.86,6.1375 C13.66,5.9575 13.34,5.9575 13.14,6.1375 L10,9.2775 L6.86,6.1375 C6.66,5.9575 6.34,5.9575 6.14,6.1375 C5.96,6.3375 5.96,6.6575 6.14,6.8575 L9.28,9.9975 L6.14,13.1375 C5.96,13.3375 5.96,13.6575 6.14,13.8575 C6.24,13.9575 6.38,13.9975 6.5,13.9975 C6.62,13.9975 6.76,13.9575 6.86,13.8575 L10,10.7175 L13.14,13.8575 C13.24,13.9575 13.38,13.9975 13.5,13.9975 C13.62,13.9975 13.76,13.9575 13.86,13.8575 C14.04,13.6575 14.04,13.3375 13.86,13.1375 L10.72,9.9975 Z" id="4">
+                                        </path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </a>
+                    </div>
+                    <div class="comments-main">
+                        <div class="state loading spinner">
+                            <span class="dark">
+                            </span>
+                            <div class="error hidden">
+                                <text rel="comment_request_failed">
+                                    К сожалению, не удалось загрузить комментарии. Попробуйте еще раз.
+                                </text>
+                            </div>
+                        </div>
+                        <ul class="comments-list"></ul>
+                    </div>
+                </div>
+                <div class="dropTarget">
+                </div>
+                <div class="bottom">
+                    <a ng-click="detoggle()" aria-label="Скрыть подробное представление" title="Скрыть подробное представление" class="detail-close" tabindex="0" data-key-aria-label="button_hide_detail_view" data-key-title="button_hide_detail_view">
+                        <svg class="close-right" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                <g id="close-right">
+                                    <path d="M4.5,18 C3.12,18 2,16.88 2,15.5 L2,4.5 C2,3.12 3.12,2 4.5,2 L15.5,2 C16.88,2 18,3.12 18,4.5 L18,15.5 C18,16.88 16.88,18 15.5,18 L4.5,18 Z M4.5,3 C3.68,3 3,3.68 3,4.5 L3,15.5 C3,16.32 3.68,17 4.5,17 L15.5,17 C16.32,17 17,16.32 17,15.5 L17,4.5 C17,3.68 16.32,3 15.5,3 L4.5,3 Z M7.5,15 C7.38,15 7.24,14.96 7.14,14.86 C6.96,14.66 6.96,14.34 7.14,14.14 L11.3,10 L7.14,5.86 C6.96,5.66 6.96,5.34 7.14,5.14 C7.34,4.96 7.66,4.96 7.86,5.14 L12.36,9.64 C12.54,9.84 12.54,10.16 12.36,10.36 L7.86,14.86 C7.76,14.96 7.62,15 7.5,15 L7.5,15 Z" id="i">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                    <a ng-click="child.deleteItem(detailItem.Id, true)" aria-label="Удалить задачу" title="Удалить задачу" class="detail-trash" role="button" data-key-aria-label="label_delete_task" tabindex="0" data-key-title="label_delete_task">
+                        <svg class="trash" width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                                <g id="trash">
+                                    <path d="M12,3.5 C12,2.4 11.1,1.5 10,1.5 C8.9,1.5 8,2.4 8,3.5 L5.5,3.5 C4.68,3.5 4,4.18 4,5 L4,7 C4,7.28 4.22,7.5 4.5,7.5 L15.5,7.5 C15.78,7.5 16,7.28 16,7 L16,5 C16,4.18 15.32,3.5 14.5,3.5 L12,3.5 Z M10,2.5 C10.56,2.5 11,2.94 11,3.5 L9,3.5 C9,2.94 9.44,2.5 10,2.5 L10,2.5 Z M15,6.5 L5,6.5 L5,5 C5,4.72 5.22,4.5 5.5,4.5 L14.5,4.5 C14.78,4.5 15,4.72 15,5 L15,6.5 Z M14.5,8.5 C14.22,8.5 14,8.72 14,9 L14,16 C14,16.28 13.78,16.5 13.5,16.5 L6.5,16.5 C6.22,16.5 6,16.28 6,16 L6,9 C6,8.72 5.78,8.5 5.5,8.5 C5.22,8.5 5,8.72 5,9 L5,16 C5,16.82 5.68,17.5 6.5,17.5 L13.5,17.5 C14.32,17.5 15,16.82 15,16 L15,9 C15,8.72 14.78,8.5 14.5,8.5 L14.5,8.5 Z M9,9 C9,8.72 8.78,8.5 8.5,8.5 C8.22,8.5 8,8.72 8,9 L8,15 C8,15.28 8.22,15.5 8.5,15.5 C8.78,15.5 9,15.28 9,15 L9,9 Z M12,9 C12,8.72 11.78,8.5 11.5,8.5 C11.22,8.5 11,8.72 11,9 L11,15 C11,15.28 11.22,15.5 11.5,15.5 C11.78,15.5 12,15.28 12,15 L12,9 Z" id="j">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                    <div class="comments">
+                        <div class="comments-bottom ">
+                            <div class="last-comment hidden">
+                                <span class="unread-count hidden">
+                                </span>
+                            </div>
+                            <div class="comments-add">
+                                <div class="input-fake">
+                                    <div class="expandingArea active">
+                                        <pre style="line-height: 20px; font-size: 15px;">
+<span>
+</span>
+<br>
+</pre>
+                                        <textarea aria-label="Добавить комментарий…" placeholder="Добавить комментарий…" data-key-aria-label="placeholder_add_comments" data-key-placeholder="placeholder_add_comments" style="line-height: 20px; font-size: 15px;" tabindex="0" class=""></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-info">
+                        <text rel="label_created_by_$_on_$" data="Даниил Косинов☃вс, мар 06">
+                            Создано пользователем <token class="token_0 flex" title="Даниил Косинов">
+                                Даниил Косинов
+                            </token>
+                            <token class="token_1" title="вс, мар 06">
+                                вс, мар 06
+                            </token>
+                        </text>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 

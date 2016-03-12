@@ -82,7 +82,7 @@
     <ol class="tasks">
 
         <li draggable="true" class="taskItem" tabindex="0" ng-repeat="item in items">
-            <div class="taskItem-body">
+            <div class="taskItem-body" id="{{item.Id}}" ng-dblclick="$parent.showDetails(item.Id)">
 
                 <div class="taskItem-checkboxWrapper checkBox" tabindex="-1" aria-hidden="true">
                     <input type="checkbox" ng-model="item.Completed" ng-change="markAsCompleted(item)"/>
