@@ -6,7 +6,7 @@ angular.module('myApp').controller('ModalCreateListController', function ($scope
     $scope.open = function (ownerId) {
         $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: '/Template/ModalCreateList.html',
+            templateUrl: '/Template/ModalCreateRenameList.html',
             controller: 'ModalInstanceCtrl',
             size: 'lg',
             resolve: {
