@@ -15,5 +15,8 @@ namespace Epam.BriefList.Services.API.Interfaces
         Task<ClaimsIdentity> Autorization(BllUserProfile blluserprofile);
         Task<bool> UserNameExist(string name);
         Task<bool> UserEmailExist(string email);
+        Task<bool> UpdatePassword(BllPassword model);
+        void UpdatePersonalData(BllUserProfile blluserprofile);
+        void UpdatePhoto(byte[] photo);
     }
 }

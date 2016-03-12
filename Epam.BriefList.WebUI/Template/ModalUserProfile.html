@@ -86,7 +86,7 @@
                                 </button>
                             </div>
                             <div class="col-50">
-                                <button aria-label="Сохранить" ng-click="save(model,personalForm)" class="full blue disabled" data-key-aria-label="button_save" tabindex="0">
+                                <button aria-label="Сохранить" ng-click="savePersonal(model,personalForm)" class="full blue"  tabindex="0">
                                     <text rel="button_save">
                                         Save
                                     </text>
@@ -117,7 +117,7 @@
                             <div class="col-xs-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input class="form-control" ng-model="passmodel.Name" placeholder="Password" required="required" />
+                                    <input class="form-control" ng-model="passmodel.OldPassword" placeholder="Password" required="required" />
                                 </div>
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
@@ -128,7 +128,7 @@
                             <div class="col-xs-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input class="form-control" ng-model="passmodel.Email" placeholder="New Password" required="required" />
+                                    <input class="form-control" ng-model="passmodel.NewPassword" placeholder="New Password" required="required" />
                                 </div>
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
@@ -139,7 +139,7 @@
                             <div class="col-xs-6">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input class="form-control" ng-model="passmodel.Email" placeholder="Confirm Password" required="required" />
+                                    <input class="form-control" ng-model="passmodel.ConfirmPassword" placeholder="Confirm Password" required="required" />
                                 </div>
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
@@ -147,7 +147,7 @@
 
                         <div class="cols">
                             <div class="col-100">
-                                <button aria-label="Сохранить" ng-click="change(passmodel,passwordForm)" class="full blue disabled" data-key-aria-label="button_save" tabindex="0">
+                                <button aria-label="Сохранить" ng-click="changePassword(passmodel,passwordForm)" class="full blue"  tabindex="0">
                                     <text rel="button_save">
                                         Change
                                     </text>

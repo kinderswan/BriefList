@@ -43,6 +43,7 @@
     <Compile Include="Models\BllComments.cs" />
     <Compile Include="Models\BllItemFile.cs" />
     <Compile Include="Models\BllList.cs" />
+    <Compile Include="Models\BllPassword.cs" />
     <Compile Include="Models\BllSubItem.cs" />
     <Compile Include="Models\Blltem.cs" />
     <Compile Include="Models\BllUserProfile.cs" />

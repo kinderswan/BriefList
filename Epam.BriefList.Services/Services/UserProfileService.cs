@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Helpers;
 using Epam.BriefList.DataAccess.API.Interfaces;
@@ -21,8 +23,11 @@ namespace Epam.BriefList.Services.Services
             _uow = uow;
         }
 
+        private ClaimsPrincipal Identity => (ClaimsPrincipal)Thread.CurrentPrincipal;
+
         public void CreateUserProfile(BllUserProfile userProfile)
         {
+            userProfile.Password = Crypto.HashPassword(userProfile.Password);
            _userRep.Add(Mapper.ToDalUserProfile(userProfile));
             _uow.Commit();
         }
@@ -63,7 +68,38 @@ namespace Epam.BriefList.Services.Services
 
         public async Task<bool> UserEmailExist(string email)=>await _userRep.UserEmailExist(email);
 
-        
+        public async void UpdatePersonalData(BllUserProfile model)
+        {
+            var user = await _userRep.Get(model.Id);
+            user.Name = model.Name;
+            user.Email = model.Email;
+            _userRep.Update(user);
+            _uow.Commit();
+            ((ClaimsIdentity)Identity.Identity).RemoveClaim(((ClaimsIdentity)Identity.Identity).FindFirst(ClaimTypes.Name));
+            ((ClaimsIdentity)Identity.Identity).RemoveClaim(((ClaimsIdentity)Identity.Identity).FindFirst(ClaimTypes.Email));
+            ((ClaimsIdentity)Identity.Identity).AddClaim(new Claim(ClaimTypes.Name, user.Name));
+            ((ClaimsIdentity)Identity.Identity).AddClaim(new Claim(ClaimTypes.Name, user.Email));
+        }
+
+        public async Task<bool> UpdatePassword(BllPassword model)
+        {
+            var user = await _userRep.Get(model.Id);
+            if (Crypto.VerifyHashedPassword(Crypto.HashPassword(user.Password), model.OldPassword))
+            {
+                user.Password = Crypto.HashPassword(model.NewPassword);
+             _userRep.Update(user);
+            _uow.Commit();
+                return true;
+            }
+            return false;
+
+        }
+
+        public void UpdatePhoto(byte[] photo)
+        {
+            throw new NotImplementedException();
+        }
+
 
     }
 }

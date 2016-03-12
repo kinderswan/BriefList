@@ -66,7 +66,6 @@ namespace Epam.BriefList.WebUI.Mapping
             return null;
         }
 
-
         internal static ApiList ToApiList(BllList list)
         {
             if (list != null)
@@ -125,5 +124,32 @@ namespace Epam.BriefList.WebUI.Mapping
 
 
         #endregion
+
+        internal static BllUserProfile ToBllUserProfile(ApiUserProfile model)
+        {
+            if (model != null)
+                return new BllUserProfile
+                {
+                    TimeRegister = model.TimeRegister,
+                    Photo = model.Photo,
+                    Id = model.Id,
+                    Password = model.Password,
+                    Email = model.Email,
+                    Name = model.Name
+                };
+            return null;
+        }
+        
+        internal static BllPassword ToBllPassword(PasswordModel model)
+        {
+            if (model != null)
+                return new BllPassword
+                {
+                    Id = model.Id,
+                    NewPassword = model.NewPassword,
+                    OldPassword = model.OldPassword,
+                };
+            return null;
+        }
     }
 }
