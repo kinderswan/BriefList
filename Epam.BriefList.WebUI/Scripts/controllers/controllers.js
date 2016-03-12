@@ -96,13 +96,10 @@
 
         }
     ])
-    .controller('GetItemController', [
-        '$scope', '$routeParams', '$filter', 'itemService', function ($scope, $routeParams, $filter, itemService) {
+    .controller('GetItemController', ['$scope', '$routeParams', '$filter', 'itemService',
+        function ($scope, $routeParams, $filter, itemService) {
 
             $scope.message = 'GetItemController';
-
-            var parentScope = $scope.$parent;
-            parentScope.child = $scope;
 
             if ($routeParams.id !== undefined) {
                 var promiseObj = itemService.getTodoItems($routeParams.id);
@@ -111,6 +108,26 @@
                     $scope.listId = $routeParams.id;
                 });
             }
+
+            $scope.$on('RenameItem', function (event, item) {
+                console.log($scope.$id + ' ' + $scope.message);
+                var model = {
+                    Id: item.Id,
+                    ListId: item.ListId,
+                    Title: item.Title,
+                    TimeComplete: item.TimeComplete,
+                    Completed: item.Completed,
+                    Starred: item.Starred
+                };
+                var promiseObj = itemService.updateItem(model);
+                promiseObj.then(function (value) {
+                    var promise = itemService.getTodoItems($routeParams.id);
+                    promise.then(function (value) {
+                        $scope.items = value.data;
+                        $scope.listId = $routeParams.id;
+                    });
+                });
+            });
 
             $scope.completeTask = function (listId) {
                 if ($scope.completeitems === undefined) {
@@ -220,34 +237,30 @@
 
             }
 
-            $scope.showDetails = function (itemId) {
-                parentScope.toggle(itemId);
-                alert(parentScope.items);
+            $scope.showDetails = function (item) {
+                $scope.$parent.toggle(item);
             }
-
-
         }
     ])
+    .controller('IndexCtrl', [
+        '$scope', '$routeParams', 'itemService',
+        function ($scope, $routeParams, itemService) {
 
-    .controller('IndexCtrl', ['$scope', '$routeParams', 'itemService', function ($scope, $routeParams, itemService) {
-        $scope.child = {
-        };
+            $scope.message = 'IndexCtrl';
+            $scope.toggle = function (item) {
+                var toggleEl = angular.element(document.querySelector('#detail'));
+                var promiseObj = itemService.getTodoItemById(item.Id);
+                promiseObj.then(function (value) {
+                    $scope.detailItem = value.data;
+                });
+                toggleEl.css('width', '30%');
+            }
 
-        $scope.toggle = function (itemId) {
-            var toggleEl = angular.element(document.querySelector('#detail'));
+            $scope.detoggle = function () {
+                var toggleEl = angular.element(document.querySelector('#detail'));
+                toggleEl.css('width', '0px');
+                $scope.$broadcast("RenameItem", $scope.detailItem);
 
-            var promiseObj = itemService.getTodoItemById(itemId);
-            promiseObj.then(function (value) {
-                $scope.detailItem = value.data;
-            });
-            toggleEl.css('width', '30%');
+            }
         }
-
-        $scope.detoggle = function () {
-            var toggleEl = angular.element(document.querySelector('#detail'));
-            toggleEl.css('width', '0px');
-        }
-
-
-    }
     ]);

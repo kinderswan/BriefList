@@ -6,8 +6,8 @@
                 <div class="separator">
                     <div class="cols">
                         <div class="col-100">
-                            <div style="width:100%" class="avatar-frame">
-                                <div style="width:100%" class="avatar large hover choose">
+                            <div style="width: 100%" class="avatar-frame">
+                                <div style="width: 100%" class="avatar large hover choose">
                                     <span style="display: block;" class="icon options">
                                     </span>
                                     <img class="opaque" src="blob:https://www.wunderlist.com/5d01cb3c-61e6-42ab-bc78-616ba980a2e6">
@@ -38,433 +38,129 @@
                         </div>
                     </div>
                 </div>
-                <div class="separator basic-account-settings">
-                    <!-- Full Name -->
-                    <div class="cols">
-                        <div class="col-32 text-right">
-                            <text rel="label_name">
-                                Имя
-                            </text>
-                        </div>
-                        <div class="col-68">
-                            <input disabled="" class="disabled" aria-label="Имя" placeholder="Имя" id="edit-full-name" data-key-aria-label="label_name" data-key-placeholder="label_name" value="Павел Гаманович" initial-value="" tabindex="0" type="text">
-                        </div>
-                    </div>
-                    <!-- Email -->
-                    <div class="cols">
-                        <div class="col-32 text-right">
-                            <text rel="label_email">
-                                Электронная почта
-                            </text>
-                        </div>
-                        <div class="col-40">
-                            <input aria-label="Электронная почта" placeholder="Электронная почта" id="edit-email" data-key-aria-label="label_email" data-key-placeholder="label_email" value="gamanovichpavel@gmail.com" initial-value="" disabled="" tabindex="0" type="text">
-                        </div>
-                        <div class="col-28">
-                            <button disabled="" aria-label="Изменить адрес электронной почты" id="change-email" class="full disabled" data-key-aria-label="settings_account_change_email" tabindex="0">
-                                <text rel="settings_account_change_email">
-                                    Изменить адрес электронной почты
-                                </text>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- Password for email confirm -->
-                    <div class="cols password-confirm">
-                        <div class="col-32 text-right">
-                            <text rel="label_password">
-                                Пароль
-                            </text>
-                        </div>
-                        <div class="col-40">
-                            <input aria-label="Пароль" id="edit-email-pw-confirm" data-key-aria-label="label_password" disabled="" tabindex="0" type="password">
-                        </div>
-                        <div class="col-28">
-                        </div>
-                    </div>
-                    <!-- Change Email -->
-                    <div class="cols change-email-buttons">
-                        <div class="col-32 text-right">
-                        </div>
-                        <div class="col-40">
-                            <div style="display: none;" class="cols email-error error-message">
-                                <div class="col-100">
-                                    <text rel="api_error_incorrect_password">
-                                        Неверный пароль.
-                                    </text>
+
+
+
+
+
+                <!-----------------------------------------------PERSONAL------------------------------------------------------>
+                <!-----------------------------------------------PERSONAL------------------------------------------------------>
+
+                <div class="modal-body">
+
+
+                    <!-- Форма -->
+                    <form name="personalForm" role="form" class="form-horizontal">
+
+
+                        <p style="display:none">{{model.Id=userProfile.Id}}</p>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Name:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input class="form-control" ng-model="model.Name" placeholder={{userProfile.Name}} required="required" />
                                 </div>
-                            </div>
-                            <div class="cols">
-                                <div class="col-50">
-                                    <button aria-label="Отмена" class="full" id="cancel-email" data-key-aria-label="button_cancel" tabindex="0">
-                                        <text rel="button_cancel">
-                                            Отмена
-                                        </text>
-                                    </button>
-                                </div>
-                                <div class="col-50">
-                                    <button aria-label="Сохранить" class="full blue" id="save-email" data-key-aria-label="button_save" tabindex="0">
-                                        <text rel="button_save">
-                                            Сохранить
-                                        </text>
-                                    </button>
-                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
                             </div>
                         </div>
-                        <div class="col-28">
-                        </div>
-                    </div>
-                    <!-- Additional Emails -->
-                    <div class="cols">
-                        <div class="col-32 text-right">
-                        </div>
-                        <div class="col-68">
-                            <p class="settings-account-manage-emails">
-                                <a href="/account/emails" target="_blank">
-                                    <text rel="settings_account_manage_emails">
-                                        Добавление и изменение адресов электронной почты
-                                    </text>
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Change Password -->
-                    <div class="cols show-password-buttons">
-                        <div class="col-32 text-right">
-                            <text rel="label_password">
-                                Пароль
-                            </text>
-                        </div>
-                        <div class="col-40">
-                            <input style="display: inline;" aria-label="Текущий пароль" placeholder="Текущий пароль" class="old-password" data-key-placeholder="settings_account_current_password" data-key-aria-label="settings_account_current_password" tabindex="0" type="password">
-                            <button style="display: none;" aria-label="Изменить пароль…" id="change-password" class="full" data-key-aria-label="settings_account_change_password" tabindex="0">
-                                <text rel="settings_account_change_password">
-                                    Изменить пароль…
-                                </text>
-                            </button>
-                        </div>
-                        <div class="col-28">
-                        </div>
-                    </div>
-                    <div style="display: block;" class="cols change-password-buttons">
-                        <div class="col-32">
-                        </div>
-                        <div class="col-40">
-                            <div class="cols">
-                                <div class="col-100">
-                                    <input aria-label="Новый пароль" placeholder="Новый пароль" class="new-password" data-key-placeholder="settings_account_new_password" data-key-aria-label="settings_account_new_password" tabindex="0" type="password">
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Email:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input class="form-control" ng-model="model.Email" placeholder={{userProfile.Email}} required="required" />
                                 </div>
-                            </div>
-                            <div class="cols">
-                                <div class="col-100">
-                                    <input aria-label="Повторите новый пароль" placeholder="Повторите новый пароль" id="confirm-password" class="confirm-password" data-key-placeholder="settings_account_repeat_new_password" data-key-aria-label="settings_account_repeat_new_password" tabindex="0" type="password">
-                                </div>
-                            </div>
-                            <div style="display: none;" class="cols change-password-error error-message">
-                                <div class="col-100">
-                                    <text rel="settings_account_change_password_error">
-                                        При попытке изменить пароль произошла ошибка. Попробуйте еще раз.
-                                    </text>
-                                </div>
-                            </div>
-                            <div class="cols">
-                                <div class="col-50">
-                                    <button aria-label="Отмена" class="full" id="cancel-password" data-key-aria-label="button_cancel" tabindex="0">
-                                        <text rel="button_cancel">
-                                            Отмена
-                                        </text>
-                                    </button>
-                                </div>
-                                <div class="col-50">
-                                    <button disabled="" aria-label="Сохранить" class="full blue disabled" id="save-password" data-key-aria-label="button_save" tabindex="0">
-                                        <text rel="button_save">
-                                            Сохранить
-                                        </text>
-                                    </button>
-                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
                             </div>
                         </div>
-                        <div class="col-28">
-                        </div>
-                    </div>
-                </div>
-                <!-- Delete Account -->
-                <div class="separator noline delete-form" tabindex="0">
-                    <div class="cols delete-account-heading">
-                        <div class="col-32">
-                        </div>
-                        <div class="col-68">
-                            <h3>
-                                <text rel="settings_account_delete_account_confirm">
-                                    Вы действительно хотите удалить учетную запись?
-                                </text>
-                            </h3>
-                            <p>
-                                <text rel="settings_account_delete_account_confirm_text">
-                                    При удалении вы потеряете все свои списки и задачи и не сможете их восстановить.
-                                </text>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="cols delete-account-password">
-                        <div class="col-32 text-right">
-                            <text rel="settings_account_current_password">
-                                Текущий пароль
-                            </text>
-                        </div>
-                        <div class="col-68">
-                            <input aria-label="Текущий пароль" class="delete-password" data-key-aria-label="settings_account_current_password" tabindex="0" type="password">
-                        </div>
-                    </div>
-                    <div class="cols delete-account-confirm">
-                        <div class="col-32 text-right">
-                            <text rel="settings_account_delete_confirmation">
-                                Введите «Подтверждаю»
-                            </text>
-                        </div>
-                        <div class="col-68">
-                            <input aria-label="Введите «Подтверждаю»" class="delete-confirm" data-key-aria-label="settings_account_delete_confirmation" tabindex="0" type="text">
-                        </div>
-                    </div>
-                    <div style="display: none;" class="cols delete-password-error error-message">
-                        <div class="col-100 text-right">
-                            <text rel="api_error_incorrect_password">
-                                Неверный пароль.
-                            </text>
-                        </div>
-                    </div>
-                    <div class="cols text-right">
-                        <div class="col-32">
-                        </div>
-                        <div class="col-34">
-                            <button aria-label="Отмена" class="full" id="cancel-delete-account" data-key-aria-label="button_cancel" tabindex="0">
-                                <text rel="button_cancel">
-                                    Отмена
-                                </text>
-                            </button>
-                        </div>
-                        <div class="col-34">
-                            <button aria-label="Удалить" class="full red" id="delete-account" data-key-aria-label="button_delete" tabindex="0">
-                                <span>
-                                </span>
-                                <text rel="button_delete">
-                                    Удалить
-                                </text>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="separator show-delete-wrapper">
-                    <div class="cols">
-                        <div class="col-32">
-                        </div>
-                        <div class="col-40">
-                            <button aria-label="Удалить учетную запись" class="red show-delete tabEnd" data-key-aria-label="settings_account_delete_account" tabindex="0">
-                                <text rel="settings_account_delete_account">
-                                    Удалить учетную запись
-                                </text>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pro-subscription hidden">
-                <div class="page-buy">
-                    <!-- Go premium -->
-                    <div class="separator">
-                        <div class="cols top">
-                            <div class="col-32">
-                                <div class="avatar-frame">
-                                    <div class="avatar large">
-                                        <span class="icon pro">
-                                        </span>
-                                        <img src="blob:https://www.wunderlist.com/5d01cb3c-61e6-42ab-bc78-616ba980a2e6">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-68 pro-section-style">
-                                <!-- Products -->
-                                <div class="buy-options tabStart" tabindex="0">
-                                    <h3 class="upgrade-header">
-                                        <text rel="benefit_header_$" data="$benefit_name">
-                                            Перейти на <token class="token_0" title="Wunderlist Pro">
-                                                Wunderlist Pro
-                                            </token>
-                                        </text>
-                                    </h3>
-                                    <p>
-                                        <text rel="benefit_header_description">
-                                            Успевайте больше дома и на работе с неограниченным доступом ко всем функциям Wunderlist Pro.
-                                        </text>
-                                    </p>
-                                    <div class="cols">
-                                        <div class="col-50">
-                                            <button rel="subscription_1_web_production_20130320" class="big green buy" tabindex="0">
-                                                <strong>
-                                                    $4.99
-                                                </strong>
-                                                per month
-                                            </button>
-                                        </div>
-                                        <div class="col-50">
-                                            <button rel="subscription_12_web_production_20130320" class="big green buy" tabindex="0">
-                                                <strong>
-                                                    $49.99
-                                                </strong>
-                                                per year
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <a aria-label="Планы для любых организаций " data-path="preferences/teams" class="button big green buy" role="button" data-key-aria-label="group_billing_packages_title" tabindex="0">
-                                        <text rel="group_billing_packages_title">
-                                            Планы для любых организаций
-                                        </text>
-                                    </a>
-                                </div>
-                                <!-- TOU -->
-                                <div class="pro-section-terms-of-use hidden">
-                                    <h3>
-                                        <text rel="settings_terms_of_use">
-                                            Условия использования
-                                        </text>
-                                    </h3>
-                                    <p class="accept-terms">
-                                        <text rel="benefit_label_accept_terms" data="$settings_terms_of_use☃$settings_privacy_policy">
-                                            Приобретая подписку на Wunderlist Pro, вы принимаете условия следующих документов: <a href="http://www.6wunderkinder.com/terms-of-use" target="_blank">
-                                                <token class="token_0" title="Условия использования">
-                                                    Условия использования
-                                                </token>
-                                            </a>
-                                            и <a href="http://www.6wunderkinder.com/privacy-policy" target="_blank">
-                                                <token class="token_1" title="Политика конфиденциальности">
-                                                    Политика конфиденциальности
-                                                </token>
-                                            </a>
-                                            .
-                                        </text>
-                                    </p>
-                                    <div class="cols">
-                                        <div class="col-50">
-                                            <a class="button big cancel-terms-of-use">
-                                                <text rel="button_cancel">
-                                                    Отмена
-                                                </text>
-                                            </a>
-                                        </div>
-                                        <div class="col-50">
-                                            <a class="button big green accept-terms-of-use">
-                                                <b>
-                                                    <text rel="notifications_event_accept">
-                                                        Принять
-                                                    </text>
-                                                </b>
-                                                <span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Premium benefits -->
-                    <div class="separator pro-benefits">
+
                         <div class="cols">
-                            <div class="col-32">
-                                <div class="benefit attachments">
-                                </div>
+                            <div class="col-50">
+                                <button aria-label="Отмена" ng-click="cancel()" class="full" data-key-aria-label="button_cancel" tabindex="0">
+                                    <text rel="button_cancel">
+                                        Cancel
+                                    </text>
+                                </button>
                             </div>
-                            <div class="col-68" tabindex="0">
-                                <h4>
-                                    <text rel="benefit_files_title">
-                                        Добавление файлов без ограничений
+                            <div class="col-50">
+                                <button aria-label="Сохранить" ng-click="save(model,personalForm)" class="full blue disabled" data-key-aria-label="button_save" tabindex="0">
+                                    <text rel="button_save">
+                                        Save
                                     </text>
-                                </h4>
-                                <p>
-                                    <text rel="benefit_files_description">
-                                        Прикрепляйте к задачам файлы любых размеров и делитесь ими с коллегами.
-                                    </text>
-                                </p>
+                                </button>
                             </div>
                         </div>
-                        <div class="cols">
-                            <div class="col-32">
-                                <div class="benefit assigning">
-                                </div>
-                            </div>
-                            <div class="col-68" tabindex="0">
-                                <h4>
-                                    <text rel="benefit_assign_tasks_title">
-                                        Безграничные возможности совместной работы
-                                    </text>
-                                </h4>
-                                <p>
-                                    <text rel="benefit_assign_tasks_description">
-                                        Делитесь своими списками и нагрузкой. Поручайте любое количество задач и вместе достигайте большего.
-                                    </text>
-                                </p>
-                            </div>
+                        <br />
+
+                        <div class="modal-footer">
                         </div>
-                        <div class="cols">
-                            <div class="col-32">
-                                <div class="benefit backgrounds">
-                                </div>
-                            </div>
-                            <div class="col-68" tabindex="0">
-                                <h4>
-                                    <text rel="benefit_additional_backgrounds_title">
-                                        Фоны рабочего стола Pro
-                                    </text>
-                                </h4>
-                                <p>
-                                    <text rel="benefit_additional_backgrounds_description">
-                                        Откройте для себя 10&nbsp;красивых фонов для подписки Pro и персонализируйте Wunderlist.
-                                    </text>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="cols">
-                            <div class="col-32">
-                                <div class="benefit subtasks">
-                                </div>
-                            </div>
-                            <div class="col-68" tabindex="0">
-                                <h4>
-                                    <text rel="benefit_unlimited_subtasks_title">
-                                        Неограниченное количество подзадач
-                                    </text>
-                                </h4>
-                                <p>
-                                    <text rel="benefit_unlimited_subtasks_decription">
-                                        Разбивайте крупные задачи на множество более мелких и простых без каких-либо ограничений для повышения продуктивности.
-                                    </text>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="separator center">
-                        <a aria-label="Позже" class="button nofloat cancel-benefits tabEnd" data-path="preferences/account" role="button" data-key-aria-label="social_sharing_button_later" tabindex="0">
-                            <text rel="social_sharing_button_later">
-                                Позже
-                            </text>
-                        </a>
-                    </div>
+
+                    </form>
+
                 </div>
+
+                <!-----------------------------------------------PASSWORD------------------------------------------------------>
+                <!-----------------------------------------------PASSWORD------------------------------------------------------>
+                <div class="modal-body">
+
+
+                    <!-- Форма-->
+                    <form name="passwordForm" role="form" class="form-horizontal">
+
+                        <p style="display:none">{{passmodel.Id=userProfile.Id}}</p>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Password:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input class="form-control" ng-model="passmodel.Name" placeholder="Password" required="required" />
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">New Password:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input class="form-control" ng-model="passmodel.Email" placeholder="New Password" required="required" />
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Confirm Password:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input class="form-control" ng-model="passmodel.Email" placeholder="Confirm Password" required="required" />
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="cols">
+                            <div class="col-100">
+                                <button aria-label="Сохранить" ng-click="change(passmodel,passwordForm)" class="full blue disabled" data-key-aria-label="button_save" tabindex="0">
+                                    <text rel="button_save">
+                                        Change
+                                    </text>
+                                </button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
             </div>
         </div>
-    </div>
-</div>
-<div class="content-footer">
-    <div class="cols">
-        <div class="col-40">
-        </div>
-        <div class="col-40">
-        </div>
-        <div class="col-20">
-            <button class="full blue close">
-                <text rel="button_done">
-                    Готово
-                </text>
-            </button>
-        </div>
+
     </div>
 </div>

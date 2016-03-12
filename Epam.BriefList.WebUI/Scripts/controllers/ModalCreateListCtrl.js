@@ -6,7 +6,7 @@ angular.module('myApp').controller('ModalCreateListController', function ($scope
     $scope.open = function (ownerId) {
         $uibModal.open({
             animation: $scope.animationsEnabled,
-            templateUrl: '/Template/ModalCreateRenameList.html',
+            templateUrl: '/Template/ModalCreateList.html',
             controller: 'ModalInstanceCtrl',
             size: 'lg',
             resolve: {
@@ -38,8 +38,6 @@ angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $rootS
             promiseObj.then(function (value) {
 
                 $rootScope.$broadcast('UpdateLists', $scope.ownerId);
-
-                //  alert(model.Title + ", You add list");
                 $uibModalInstance.dismiss('cancel');
                 return value.data;
             });

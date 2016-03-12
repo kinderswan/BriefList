@@ -21,7 +21,7 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
     var promiseObj = userProfileService.getUserProfile(userId);
     promiseObj.then(function (value) {
         //$uibModalInstance.dismiss('cancel');
-        $scope.getUserProfile = value.data;
+        $scope.userProfile = value.data;
     });
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');

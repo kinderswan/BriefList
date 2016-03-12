@@ -82,14 +82,11 @@
     <ol class="tasks">
 
         <li draggable="true" class="taskItem" tabindex="0" ng-repeat="item in items">
-            <div class="taskItem-body" id="{{item.Id}}" ng-dblclick="$parent.showDetails(item.Id)">
-
+            <div class="taskItem-body" ng-dblclick="showDetails(item)">
                 <div class="taskItem-checkboxWrapper checkBox" tabindex="-1" aria-hidden="true">
                     <input type="checkbox" ng-model="item.Completed" ng-change="markAsCompleted(item)"/>
 
                 </div>
-
-
 
                 <div class="taskItem-titleWrapper" tabindex="-1" aria-hidden="true">
                     <span class="taskItem-titleWrapper-title">
@@ -156,18 +153,11 @@
 
     <ol class="tasks">
 
-
-        <li ng-repeat="completeitem in completeitems" draggable="true" aria-label="jjhgyuftfgf undefinedНажмите клавишу TAB, чтобы отобразить дополнительные параметры." rel="1689311837" class="taskItem done" tabindex="0">
-
-            
-            <div class="taskItem-body">
+        <li ng-repeat="completeitem in completeitems" draggable="true" class="taskItem done" tabindex="0">
+            <div class="taskItem-body" ng-dblclick="$parent.showDetails(completeitem)">
                 <div class="taskItem-checkboxWrapper checkBox" tabindex="-1" aria-hidden="true">
-                    <input type="checkbox" ng-model="completeitem.Completed" ng-change="markAsUnCompleted(completeitem)" />
-
+                    <input type="checkbox" ng-model="completeitem.Completed" ng-change="markAsUnCompleted(completeitem)"/>
                 </div>
-
-
-
                 <div class="taskItem-titleWrapper" tabindex="-1" aria-hidden="true">
                     <span class="taskItem-titleWrapper-title">
                         {{completeitem.Title}}
