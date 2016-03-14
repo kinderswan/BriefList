@@ -5,52 +5,33 @@
                 <!-- Picture -->
                 <div class="separator">
                     <div class="cols">
-                        <div class="col-100">
-                            <div style="width: 100%" class="avatar-frame">
-                                <div style="width: 100%" class="avatar large hover choose">
-                                    <span style="display: block;" class="icon options">
-                                    </span>
-                                    <img class="opaque" src="blob:https://www.wunderlist.com/5d01cb3c-61e6-42ab-bc78-616ba980a2e6">
-                                    <div class="drop-message">
-                                        <span>
-                                            <text rel="settings_account_drop_image">
-                                                Перетащите фото сюда
-                                            </text>
-                                        </span>
-                                    </div>
-                                    <div class="message error hidden">
-                                        <span>
-                                            <text rel="file_uploaded_failed">
-                                                Не удалось добавить файл. Попробуйте еще раз.
-                                            </text>
-                                        </span>
-                                    </div>
-                                    <div class="state loading spinner">
-                                        <span class="dark">
-                                        </span>
-                                    </div>
+                        <div class="col-32">
+                            <ul class="thumbnails">
+                                <li class="span4">
+                                    <a href="#" class="avatar large">
+                                        <img data-ng-src="data:image/jpeg;base64,{{image}}" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-68">
+                            <form ng-submit="SaveFile()">
+                                <p style="display:none">{{userId=userProfile.Id}}</p>
+                                <div class="input-group">
+                                    <input class="btn pull-left" type="file" name="file" accept="image/*" onchange="angular.element(this).scope().selectFileforUpload(this.files)" />
+                                    <input class="btn btn-success pull-right" type="submit" value="Upload File" />
                                 </div>
-                                <div class="avatar-upload">
-                                    <div class="drop-zone">
-                                    </div>
-                                </div>
-                            </div>
+                               </form>
+
                         </div>
                     </div>
                 </div>
-                <ul class="thumbnails">
-                    <li class="span4">
-                        <a href="#" class="thumbnail">
-                            <img src="data:image/JPEG;base64,{{image}}" />
-                        </a>
-                    </li>
-                </ul>
-                <form ng-submit="SaveFile()">
+
+                <!--<form ng-submit="SaveFile()">
                     <p style="display:none">{{userId=userProfile.Id}}</p>
                     <input type="file" name="file" accept="image/*" onchange="angular.element(this).scope().selectFileforUpload(this.files)" />
                     <input type="submit" value="Upload File" />
-                </form>
-
+                </form>-->
                 <!-----------------------------------------------PERSONAL------------------------------------------------------>
                 <!-----------------------------------------------PERSONAL------------------------------------------------------>
 

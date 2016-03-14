@@ -87,6 +87,18 @@ namespace Epam.BriefList.WebUI.Controllers.Api
                 return BadRequest("Load File is null");
             }
         }
+        [HttpGet]
+        [Route("api/users/getImage/{id}")]
+        public async Task<IHttpActionResult> GetImage(int id)
+        {
+            var image = await _userService.GetImageByUserId(id);
+            if (image == null)
+            {
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            return Ok(image);
+
+        }
         #endregion
     }
 }

@@ -7,7 +7,7 @@ using Epam.BriefList.Orm.Models;
 
 namespace Epam.BriefList.DataAccess.MSSQLProvider
 {
-    internal class BriefListSeed : /* DropCreateDatabaseAlways*/ DropCreateDatabaseIfModelChanges<EntityModelContext>
+    internal class BriefListSeed : DropCreateDatabaseIfModelChanges<EntityModelContext>
     {
         protected override void Seed(EntityModelContext context)
         {
@@ -101,8 +101,6 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
         private static IEnumerable<OrmUserProfile> GetUserProfiles()
         {
             string path = AppDomain.CurrentDomain.BaseDirectory + "\\fonts\\index.jpg";
-
-
             OrmUserProfile userProfile;
             using (FileStream fStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {

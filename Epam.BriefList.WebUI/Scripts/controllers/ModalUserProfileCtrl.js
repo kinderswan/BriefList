@@ -21,8 +21,9 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
     var promiseObj = userProfileService.getUserProfile(userId);
     promiseObj.then(function (value) {
         $scope.userProfile = value.data;
-        $scope.image = btoa(value.data.Photo);
-        console.log(value);
+        $scope.image = value.data.Photo;
+        console.log(value.data.Photo);
+        console.log($scope.image);
     });
 
     $scope.savePersonal = function (model, personalForm) {

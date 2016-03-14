@@ -98,8 +98,8 @@
 
         }
     ])
-    .controller('GetItemController', ['$scope', '$routeParams', '$filter', 'itemService',
-        function ($scope, $routeParams, $filter, itemService) {
+    .controller('GetItemController', ['$scope', '$routeParams', 'itemService',
+        function ($scope, $routeParams, itemService) {
 
             $scope.message = 'GetItemController';
 
@@ -188,12 +188,12 @@
             };
 
             $scope.markAsCompleted = function (item) {
-
+                var date = new Date();
                 var model = {
                     Id: item.Id,
                     ListId: item.ListId,
                     Title: item.Title,
-                    TimeComplete: $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss'),
+                    TimeComplete: date.toISOString(),
                     Completed: item.Completed,
                     Starred: item.Starred,
                     Comment: item.Comment
@@ -259,16 +259,12 @@
                     $scope.currentList = value.data;
                     console.log($scope.currentList);
                 });
-                
+
             }
 
             $scope.toggle = function (item) {
                 var toggleEl = angular.element(document.querySelector('#detail'));
-                var promiseObj = itemService.getTodoItemById(item.Id);
-                promiseObj.then(function (value) {
-                    $scope.detailItem = value.data;
-                    console.log($scope.detailItem);
-                });
+                $scope.detailItem = item;
                 toggleEl.css('width', '30%');
             }
 
