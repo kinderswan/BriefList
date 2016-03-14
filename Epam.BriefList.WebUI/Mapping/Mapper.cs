@@ -102,7 +102,8 @@ namespace Epam.BriefList.WebUI.Mapping
                     Title = item.Title,
                     Completed = item.Completed,
                     Starred = item.Starred,
-                    TimeComplete = item.TimeComplete
+                    TimeComplete = item.TimeComplete,
+                    Comment = item.Comment
                 };
             return null;
         }
@@ -117,7 +118,8 @@ namespace Epam.BriefList.WebUI.Mapping
                     Title = item.Title,
                     Completed = item.Completed,
                     Starred = item.Starred,
-                    TimeComplete = item.TimeComplete
+                    TimeComplete = item.TimeComplete,
+                    Comment = item.Comment
                 };
             return null;
         }

@@ -20,42 +20,69 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
 
     var promiseObj = userProfileService.getUserProfile(userId);
     promiseObj.then(function (value) {
-        //$uibModalInstance.dismiss('cancel');
         $scope.userProfile = value.data;
+        $scope.image = btoa(value.data.Photo);
+        console.log(value);
     });
 
     $scope.savePersonal = function (model, personalForm) {
         if (personalForm.$valid) {
-            var promiseObj = userProfileService.update('/api/updatePersonalUsers/',model);
+            var promiseObj = userProfileService.update('/api/users/updatePersonalUsers/', model);
 
             promiseObj.then(function (value) {
                 //не работает возврат сюда!!!!!!
-          //      $rootScope.$broadcast('UpdateLists', $scope.ownerId);
-                $uibModalInstance.dismiss('cancel');
+                //      $rootScope.$broadcast('UpdateLists', $scope.ownerId);
+                //      $uibModalInstance.dismiss('cancel');
+                console.log(value);
                 return value.data;
-            });
+            },
+            function (error) {
+                console.log(error);
+            },
+            function () {
+                $uibModalInstance.dismiss('cancel');
+            }
+            );
 
         }
     };
 
     $scope.changePassword = function (passmodel, passwordForm) {
         if (passwordForm.$valid) {
-            var promiseObj = userProfileService.update('/api/updatePassword/', passmodel);
+            var promiseObj = userProfileService.update('/api/users/updatePassword/', passmodel);
 
             promiseObj.then(function (value) {
-            //работает но посылает успех даже если и не успех!!
-           //     $rootScope.$broadcast('UpdateLists', $scope.ownerId);
+                //работает но посылает успех даже если и не успех!!
+                //     $rootScope.$broadcast('UpdateLists', $scope.ownerId);
                 $uibModalInstance.dismiss('change');
                 return value.data;
+            },
+            function (error) {
+                console.log(error);
+            },
+            function () {
+                $uibModalInstance.dismiss('cancel');
             });
 
         }
     };
 
+    $scope.selectFileforUpload = function (file) {
+        $scope.SelectedFileForUpload = file[0];
+    }
 
+    $scope.SaveFile = function () {
+        userProfileService.uploadFile($scope.SelectedFileForUpload, $scope.userId).then(function (value) {
 
-
-
+            alert(value + "Ok");
+        },
+            function (error) {
+                console.log(error);
+            },
+            function () {
+                $uibModalInstance.dismiss('cancel');
+            });
+    }
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');

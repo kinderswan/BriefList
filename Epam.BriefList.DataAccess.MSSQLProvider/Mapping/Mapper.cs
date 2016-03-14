@@ -44,6 +44,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Mapping
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
                     Title = item.Title,
+                    Comment = item.Comment
                 };
             return null;
         }
@@ -112,7 +113,8 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Mapping
                     Id = item.Id,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
-                    Title = item.Title
+                    Title = item.Title,
+                    Comment = item.Comment
                 };
             return null;
         }

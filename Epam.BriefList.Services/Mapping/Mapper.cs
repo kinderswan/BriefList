@@ -43,7 +43,8 @@ namespace Epam.BriefList.Services.Mapping
                     BllListId = item.DalListId,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
-                    Title = item.Title
+                    Title = item.Title,
+                    Comment = item.Comment
                 };
             return null;
         }
@@ -111,7 +112,8 @@ namespace Epam.BriefList.Services.Mapping
                     Id = item.Id,
                     Starred = item.Starred,
                     TimeComplete = item.TimeComplete,
-                    Title = item.Title
+                    Title = item.Title,
+                    Comment = item.Comment
                 };
             return null;
         }

@@ -9,6 +9,7 @@ namespace Epam.BriefList.Services.API.Models
         public bool Starred { get; set; }
         public string Title { get; set; }
         public DateTime? TimeComplete { get; set; }
+        public string Comment { get; set; }
         public int BllListId { get; set; }      
     }
 }

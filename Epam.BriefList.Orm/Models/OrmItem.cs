@@ -18,6 +18,7 @@ namespace Epam.BriefList.Orm.Models
         public bool Starred { get; set; }
         public string Title { get; set; }
         public DateTime? TimeComplete { get; set; }
+        public string Comment { get; set; }
         public int OrmListId { get; set; }
 
 

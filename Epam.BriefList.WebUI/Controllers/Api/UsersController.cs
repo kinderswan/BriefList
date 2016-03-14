@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Http;
 using Epam.BriefList.Services.API.Interfaces;
+using Epam.BriefList.WebUI.Classes;
 using Epam.BriefList.WebUI.HelperExtension;
 using Epam.BriefList.WebUI.Mapping;
 using Epam.BriefList.WebUI.Models;
@@ -46,44 +49,44 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         }
 
         [HttpPut]
-        [Route("api/updatePersonalUsers")]
-        public void UpdatePersonalData([FromBody]ApiUserProfile model)
+        [Route("api/users/updatePersonalUsers")]
+        public IHttpActionResult UpdatePersonalData([FromBody]ApiUserProfile model)
         {
-            if (ModelState.IsValid)
-            {
-                 _userService.UpdatePersonalData(Mapper.ToBllUserProfile(model));
-            }
-            else ModelState.AddModelError("", "Неправильный ввод данных");
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            _userService.UpdatePersonalData(Mapper.ToBllUserProfile(model));
+            return StatusCode(HttpStatusCode.NoContent);
         }
 
         [HttpPut]
-        [Route("api/updatePassword")]
-        public async void UpdatePassword([FromBody]PasswordModel model)
+        [Route("api/users/updatePassword")]
+        public async Task<IHttpActionResult> UpdatePassword([FromBody]PasswordModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            if (await _userService.UpdatePassword(Mapper.ToBllPassword(model)))
             {
-                //ПРИМЕНИТЬ!!
-              var key = await _userService.UpdatePassword(Mapper.ToBllPassword(model));
+                return StatusCode(HttpStatusCode.NoContent);
             }
-            else ModelState.AddModelError("","Неправильный ввод пароля");
+            return StatusCode(HttpStatusCode.Forbidden);
         }
 
-        [HttpPut]
-        [Route("api/updatePhoto")]
-        public void UpdatePhoto(byte[]/*??????????*/ photo)
+        [HttpPost]
+        [Route("api/users/updatePhoto/{id}")]
+        public IHttpActionResult UpdatePhoto(int id)
         {
-            _userService.UpdatePhoto(photo);
+            var image = HttpContext.Current.Request.Files[0];
+
+            if (image != null)
+            {
+                _userService.UpdatePhoto(id, Image.CreateBllImage(image));
+                return StatusCode(HttpStatusCode.NoContent);
+            }
+            else
+            {
+                return BadRequest("Load File is null");
+            }
         }
-
-        //todo: add /id to get controllers
-        #endregion
-
-        #region delete
-
-        #endregion
-
-        #region post
-
         #endregion
     }
 }

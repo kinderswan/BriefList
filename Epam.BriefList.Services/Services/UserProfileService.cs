@@ -81,6 +81,8 @@ namespace Epam.BriefList.Services.Services
             ((ClaimsIdentity)Identity.Identity).AddClaim(new Claim(ClaimTypes.Name, user.Email));
         }
 
+        
+
         public async Task<bool> UpdatePassword(BllPassword model)
         {
             var user = await _userRep.Get(model.Id);
@@ -95,9 +97,17 @@ namespace Epam.BriefList.Services.Services
 
         }
 
-        public void UpdatePhoto(byte[] photo)
+        public async void UpdatePhoto(int id, byte[] photo)
         {
-            throw new NotImplementedException();
+            var user = await _userRep.Get(id);
+            user.Photo = photo;
+            _userRep.Update(user);
+            _uow.Commit();
+        }
+
+        public async Task<byte[]> GetImageByUserId(int id)
+        {
+            return await _userRep.GetImage(id);
         }
 
 

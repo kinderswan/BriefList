@@ -70,6 +70,7 @@
                 var promiseObj = userListService.getUserLists(userId);
                 promiseObj.then(function (value) {
                     $scope.lists = value.data;
+                    $scope.$parent.userId = userId;
                 });
             };
 
@@ -84,6 +85,7 @@
                         }
                     }
                     $scope.lists = arr;
+                    $scope.$parent.currentList = null;
                     $timeout(function () {
                         $location.path('/');
                     });
@@ -106,20 +108,22 @@
                 promiseObj.then(function (value) {
                     $scope.items = value.data;
                     $scope.listId = $routeParams.id;
+                    $scope.$parent.currList();
                 });
             }
 
             $scope.$on('RenameItem', function (event, item) {
-                console.log($scope.$id + ' ' + $scope.message);
                 var model = {
                     Id: item.Id,
                     ListId: item.ListId,
                     Title: item.Title,
                     TimeComplete: item.TimeComplete,
                     Completed: item.Completed,
-                    Starred: item.Starred
+                    Starred: item.Starred,
+                    Comment: item.Comment
                 };
                 var promiseObj = itemService.updateItem(model);
+
                 promiseObj.then(function (value) {
                     var promise = itemService.getTodoItems($routeParams.id);
                     promise.then(function (value) {
@@ -191,7 +195,8 @@
                     Title: item.Title,
                     TimeComplete: $filter('date')(new Date(), 'dd/MM/yyyy HH:mm:ss'),
                     Completed: item.Completed,
-                    Starred: item.Starred
+                    Starred: item.Starred,
+                    Comment: item.Comment
                 };
 
                 var promiseObj = itemService.updateItem(model);
@@ -243,15 +248,26 @@
         }
     ])
     .controller('IndexCtrl', [
-        '$scope', '$routeParams', 'itemService',
-        function ($scope, $routeParams, itemService) {
+        '$scope', '$routeParams', 'itemService', 'userListService',
+        function ($scope, $routeParams, itemService, userListService) {
 
             $scope.message = 'IndexCtrl';
+
+            $scope.currList = function () {
+                var promiseObj = userListService.getUserListsById($scope.userId, $routeParams.id);
+                promiseObj.then(function (value) {
+                    $scope.currentList = value.data;
+                    console.log($scope.currentList);
+                });
+                
+            }
+
             $scope.toggle = function (item) {
                 var toggleEl = angular.element(document.querySelector('#detail'));
                 var promiseObj = itemService.getTodoItemById(item.Id);
                 promiseObj.then(function (value) {
                     $scope.detailItem = value.data;
+                    console.log($scope.detailItem);
                 });
                 toggleEl.css('width', '30%');
             }
