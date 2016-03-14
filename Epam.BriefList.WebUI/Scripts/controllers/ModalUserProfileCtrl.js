@@ -18,14 +18,15 @@
 
 angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope, $uibModalInstance, userId, userProfileService) {
 
-    var promiseObj = userProfileService.getUserProfile(userId);
-    promiseObj.then(function (value) {
-        $scope.userProfile = value.data;
-        $scope.image = value.data.Photo;
-        console.log(value.data.Photo);
-        console.log($scope.image);
-    });
-
+    var getImage = function() {
+        var promiseObj = userProfileService.getUserProfile(userId);
+        promiseObj.then(function(value) {
+            $scope.userProfile = value.data;
+            $scope.image = value.data.Photo;
+            console.log(value.data.Photo);
+            console.log($scope.image);
+        });
+    };
     $scope.savePersonal = function (model, personalForm) {
         if (personalForm.$valid) {
             var promiseObj = userProfileService.update('/api/users/updatePersonalUsers/', model);
@@ -72,20 +73,24 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
         $scope.SelectedFileForUpload = file[0];
     }
 
-    $scope.SaveFile = function () {
-        userProfileService.uploadFile($scope.SelectedFileForUpload, $scope.userId).then(function (value) {
-
-            alert(value + "Ok");
-        },
-            function (error) {
-                console.log(error);
+    $scope.SaveFile = function() {
+        userProfileService.uploadFile($scope.SelectedFileForUpload, $scope.userId).then(
+        function (value) {
+            getImage();
+                console.log(value);
             },
-            function () {
-                $uibModalInstance.dismiss('cancel');
+            function (error) {
+                //так не должно быть!!!!ошибка 500 приходит при успешной загрузке!!
+               if(error===500) getImage();
+                console.log(error);
             });
-    }
+
+    };
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    getImage();
+
 });
