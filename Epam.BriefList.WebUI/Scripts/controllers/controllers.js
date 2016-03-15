@@ -251,6 +251,30 @@
             $scope.showDetails = function (item) {
                 $scope.$parent.toggle(item);
             }
+            $scope.dragstartitem = function() {
+                var toggleEl = angular.element(document.querySelector('#detail'));
+                toggleEl.css('width', '0px');
+            };
+            $scope.dragenditem = function (model) {
+                var promiseObj = itemService.getTodoItems($routeParams.id);
+                promiseObj.then(function (value) {
+                    var olditems = value.data;
+                    for (var i = 0; i <= model.length; i++) {
+                        if (model[i].Id !== olditems[i].Id) {
+                            var uploadModel = {
+                                Id: olditems[i].Id,
+                                ListId: model[i].ListId,
+                                Title: model[i].Title,
+                                TimeComplete: model[i].TimeComplete,
+                                Completed: model[i].Completed,
+                                Starred: model[i].Starred,
+                                Comment: model[i].Comment
+                            };
+                            itemService.updateItem(uploadModel);
+                        }
+                    }
+                });
+            }
         }
     ])
     .controller('IndexCtrl', [

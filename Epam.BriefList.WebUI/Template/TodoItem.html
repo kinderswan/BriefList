@@ -73,21 +73,20 @@
     </div>
 </div>
 
-
-
-
-<div class="task-list simpleDemo" >
+<div class="task-list simpleDemo">
     <ul class="tasks" dnd-list="items">
         <!-- class="taskItem" tabindex="0"  -->
         <li class="taskItem" ng-repeat="item in items" dnd-draggable="item"
             dnd-moved="items.splice($index, 1)"
+            dnd-dragstart="dragstartitem()"
+            dnd-dragend="dragenditem(items)"
             dnd-effect-allowed="move"
             dnd-selected="items.selected = item"
             ng-class="{'selected': items.selected === item}">
-            
+
             <div class="taskItem-body" ng-dblclick="showDetails(item)">
                 <div class="taskItem-checkboxWrapper checkBox" tabindex="-1" aria-hidden="true">
-                    <input type="checkbox" ng-model="item.Completed" ng-change="markAsCompleted(item)"/>
+                    <input type="checkbox" ng-model="item.Completed" ng-change="markAsCompleted(item)" />
 
                 </div>
 
@@ -127,15 +126,9 @@
     </h2>
 
 
-    <div class="task-list simpleDemo">
-        <ul class="tasks" dnd-list="completeitems">
-            <li class="taskItem done"
-                ng-repeat="completeitem in completeitems" 
-                dnd-draggable="completeitem"
-                dnd-moved="completeitems.splice($index, 1)"
-                dnd-effect-allowed="move"
-                dnd-selected="completeitems.selected = completeitem"
-                ng-class="{'selected': completeitems.selected === completeitem}">
+    <div class="task-list">
+        <ul class="tasks">
+            <li class="taskItem done" ng-repeat="completeitem in completeitems">
 
                 <div class="taskItem-body" ng-dblclick="$parent.showDetails(completeitem)">
                     <div class="taskItem-checkboxWrapper checkBox" tabindex="-1" aria-hidden="true">
