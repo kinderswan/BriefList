@@ -16,11 +16,11 @@
     };
 });
 
-angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope, $uibModalInstance, userId, userProfileService) {
+angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope, $uibModalInstance, userId, userProfileService, loginService) {
 
-    var getImage = function() {
+    var getImage = function () {
         var promiseObj = userProfileService.getUserProfile(userId);
-        promiseObj.then(function(value) {
+        promiseObj.then(function (value) {
             $scope.userProfile = value.data;
             $scope.image = value.data.Photo;
             console.log(value.data.Photo);
@@ -73,15 +73,15 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
         $scope.SelectedFileForUpload = file[0];
     }
 
-    $scope.SaveFile = function() {
+    $scope.SaveFile = function () {
         userProfileService.uploadFile($scope.SelectedFileForUpload, $scope.userId).then(
         function (value) {
             getImage();
-                console.log(value);
-            },
+            console.log(value);
+        },
             function (error) {
                 //так не должно быть!!!!ошибка 500 приходит при успешной загрузке!!
-               if(error===500) getImage();
+                if (error === 500) getImage();
                 console.log(error);
             });
 
@@ -90,6 +90,16 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
+
+    $scope.signOut = function () {
+
+        $uibModalInstance.dismiss('cancel');
+        loginService.signOut();
+    };
+
+
+
+
 
     getImage();
 

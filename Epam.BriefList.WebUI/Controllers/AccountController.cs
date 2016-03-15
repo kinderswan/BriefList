@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 using Epam.BriefList.Services.API.Interfaces;
 using Epam.BriefList.WebUI.Filters;
@@ -33,13 +34,13 @@ namespace Epam.BriefList.WebUI.Controllers
             return Content("Anonymous");
         }
 
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public ActionResult Login() => View();
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public ActionResult Register() => View();
 
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         [AntiForgeryValidate]
         public async Task<ActionResult> Login(LoginModel model)
         {
@@ -61,7 +62,7 @@ namespace Epam.BriefList.WebUI.Controllers
             return View(model);
         }
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         [AntiForgeryValidate]
         public async Task<ActionResult> Register(RegisterModel model)
         {
@@ -77,6 +78,7 @@ namespace Epam.BriefList.WebUI.Controllers
             return View(model);
         }
 
+        [System.Web.Mvc.HttpPost]
         public ActionResult Logoff()
         {
             if (User.Identity.IsAuthenticated)

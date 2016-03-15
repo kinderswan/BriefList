@@ -11,6 +11,19 @@
                 };
 
             return deferred.promise;
+        },
+        signOut: function() {
+            var deferred = $q.defer();
+            $http.post('/Account/Logoff')
+                    .then(function (resp) {
+                        deferred.resolve(resp);
+                    }),
+                function (error) {
+                    deferred.reject({ success: false, data: error });
+                };
+
+            return deferred.promise;
+            
         }
 
     }

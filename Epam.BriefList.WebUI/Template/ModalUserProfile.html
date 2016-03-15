@@ -99,14 +99,14 @@
                     <!-- Форма-->
                     <form name="passwordForm" role="form" class="form-horizontal">
 
-                        <p style="display:none">{{passmodel.Id=userProfile.Id}}</p>
+                        <p style="display: none">{{passmodel.Id=userProfile.Id}}</p>
 
                         <div class="form-group has-feedback">
                             <label class="control-label col-xs-3">Password:</label>
                             <div class="col-xs-6">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <input class="form-control" ng-model="passmodel.OldPassword" placeholder="Password" required="required" />
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                                    <input class="form-control" ng-model="passmodel.OldPassword" placeholder="Password" required="required"/>
                                 </div>
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
@@ -116,8 +116,8 @@
                             <label class="control-label col-xs-3">New Password:</label>
                             <div class="col-xs-6">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input class="form-control" ng-model="passmodel.NewPassword" placeholder="New Password" required="required" />
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                                    <input class="form-control" ng-model="passmodel.NewPassword" placeholder="New Password" required="required"/>
                                 </div>
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
@@ -127,8 +127,8 @@
                             <label class="control-label col-xs-3">Confirm Password:</label>
                             <div class="col-xs-6">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input class="form-control" ng-model="passmodel.ConfirmPassword" placeholder="Confirm Password" required="required" />
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                                    <input class="form-control" ng-model="passmodel.ConfirmPassword" placeholder="Confirm Password" required="required"/>
                                 </div>
                                 <span class="glyphicon form-control-feedback"></span>
                             </div>
@@ -143,8 +143,17 @@
                                 </button>
                             </div>
                         </div>
-
                     </form>
+                    <hr />
+                    <div class="cols">
+                        <div class="col-100">
+                            <button aria-label="Sign out" ng-click="signOut()" class="full" style="background-color: #A94234" tabindex="0">
+                                <text>
+                                    Sign out from {{userProfile.Name}}
+                                </text>
+                            </button>
+                        </div>
+                    </div>
 
                 </div>
 
