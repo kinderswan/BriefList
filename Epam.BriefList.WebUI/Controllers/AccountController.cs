@@ -1,8 +1,11 @@
-﻿using System.Security.Claims;
+﻿using System.Net;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Results;
 using System.Web.Mvc;
 using Epam.BriefList.Services.API.Interfaces;
 using Epam.BriefList.WebUI.Filters;
@@ -42,7 +45,7 @@ namespace Epam.BriefList.WebUI.Controllers
 
         [System.Web.Mvc.HttpPost]
         [AntiForgeryValidate]
-        public async Task<ActionResult> Login(LoginModel model)
+        public async Task<JsonResult> Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -55,27 +58,27 @@ namespace Epam.BriefList.WebUI.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("StartPage", "Home");
+                    return Json(new HttpResponseMessage(HttpStatusCode.OK));
                 }
                 ModelState.AddModelError("", "Incorrect login or password");
             }
-            return View(model);
+            return Json(new HttpResponseMessage(HttpStatusCode.Unauthorized));
         }
 
         [System.Web.Mvc.HttpPost]
         [AntiForgeryValidate]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public async Task<JsonResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
                 if (!(await _userProfileService.UserNameExist(model.Name) && await _userProfileService.UserEmailExist(model.Email)))
                 {
                     _userProfileService.CreateUserProfile(Mapper.ToBllUserProfileRegisterModel(model));
-                    return RedirectToAction("StartPage", "Home");
+                    return Json(new HttpResponseMessage(HttpStatusCode.OK));
                 }
                 ModelState.AddModelError("", "User with this login or email already exist");
             }
-            return View(model);
+            return Json(new HttpResponseMessage(HttpStatusCode.Ambiguous));
         }
 
         [System.Web.Mvc.HttpPost]

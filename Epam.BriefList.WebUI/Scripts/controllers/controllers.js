@@ -20,12 +20,15 @@
 
     })
     .controller('LoginController', [
-        '$scope', 'loginService', function ($scope, loginService) {
+        '$scope', '$window', 'loginService', function ($scope, $window, loginService) {
 
             $scope.save = function (model, loginForm) {
                 if (loginForm.$valid) {
                     var promiseObj = loginService.postLogin(model);
                     promiseObj.then(function (value) {
+                        if (value.data.StatusCode == 200) {
+                            $window.location.href = '../Home/Index';
+                        }
                         return value.data;
                     });
 
@@ -34,12 +37,15 @@
         }
     ])
     .controller('RegisterController', [
-        '$scope', 'registerService', function ($scope, registerService) {
+        '$scope', '$window', 'registerService', function ($scope, $window, registerService) {
 
             $scope.save = function (model, registerForm) {
                 if (registerForm.$valid) {
                     var promiseObj = registerService.postRegister(model);
                     promiseObj.then(function (value) {
+                        if (value.data.StatusCode == 200) {
+                            $window.location.href = '../Account/Login';
+                        }
                         return value.data;
                     });
 
