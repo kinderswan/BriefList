@@ -48,19 +48,12 @@
         return deferred.promise;
     },
 
-        getImage: function (userId) {
+        getImage: function(userId) {
 
-            var deferred = $q.defer();
             $http.get('/api/users/getImage/' + userId)
-             .success(function(data, status) {
-                 deferred.resolve(status);
-             }).
-            error(function(data, status) {
-                deferred.reject(status);
-            });
-
-            return deferred.promise;
+                .success(function(data) {
+                    return data.data;
+                });
         }
-
-}
+    }
 });
