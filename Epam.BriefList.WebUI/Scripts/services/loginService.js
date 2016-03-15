@@ -15,8 +15,8 @@
         signOut: function() {
             var deferred = $q.defer();
             $http.post('/Account/Logoff')
-                    .then(function (resp) {
-                        deferred.resolve(resp);
+                    .then(function () {
+                        window.location.href = '../Home/Start';
                     }),
                 function (error) {
                     deferred.reject({ success: false, data: error });

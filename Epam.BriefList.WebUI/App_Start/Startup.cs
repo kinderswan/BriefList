@@ -14,7 +14,7 @@ namespace Epam.BriefList.WebUI
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = "ApplicationCookie",
-                LoginPath = new PathString("/Home/StartPage"),
+                LoginPath = new PathString("/Home/Start"),
             });
         }
     }

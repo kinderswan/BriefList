@@ -49,10 +49,10 @@
                     </div>
                 </a>
                 <div class="wunderlist-actions">
-                    <a class="wunderlist-button wunderlist-login-button blank" href="//www.wunderlist.com/login?redirect_url=/webapp">
+                    <a class="wunderlist-button wunderlist-login-button blank" href="@Url.Action("Login","Account")">
                         Вход
                     </a>
-                    <a class="wunderlist-button wunderlist-signup-button" href="//www.wunderlist.com/signup?redirect_url=/webapp">
+                    <a class="wunderlist-button wunderlist-signup-button" href="@Url.Action("Register","Account")">
                         Создать бесплатную учетную запись
                     </a>
                 </div>
@@ -71,10 +71,10 @@
                     <p class="subline">
                         С Wunderlist выполнять повседневные задачи стало проще, чем когда-либо. Планируете ли вы отпуск, хотите ли поделиться списком покупок с партнером или управляете одновременно несколькими проектами, — вам поможет Wunderlist, в котором вы можете планировать выполнение, как личных, так и профессиональных задач.
                     </p>
-                    <a class="button white button-webapp hidden" data-track="Wunderlist:OpenWebapp:Header" href="/webapp" title="Начать использовать Wunderlist">
+                    <a class="button white button-webapp hidden" data-track="Wunderlist:OpenWebapp:Header" href="@Url.Action("Login","Account")" title="Начать использовать Wunderlist">
                         Начать использовать Wunderlist
                     </a>
-                    <a class="button white button-signup" data-track="Wunderlist:Sign Up:Header" href="/signup" title="Создать бесплатную учетную запись">
+                    <a class="button white button-signup" data-track="Wunderlist:Sign Up:Header" href="@Url.Action("Register","Account")" title="Создать бесплатную учетную запись">
                         Создать бесплатную учетную запись
                     </a>
                 </div>
