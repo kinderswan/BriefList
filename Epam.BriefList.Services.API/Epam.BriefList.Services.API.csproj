@@ -40,18 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\BllComments.cs" />
-    <Compile Include="Models\BllItemFile.cs" />
     <Compile Include="Models\BllList.cs" />
     <Compile Include="Models\BllPassword.cs" />
-    <Compile Include="Models\BllSubItem.cs" />
     <Compile Include="Models\Blltem.cs" />
     <Compile Include="Models\BllUserProfile.cs" />
-    <Compile Include="Interfaces\ICommentsService.cs" />
-    <Compile Include="Interfaces\IItemFileService.cs" />
     <Compile Include="Interfaces\IItemService.cs" />
     <Compile Include="Interfaces\IListService.cs" />
-    <Compile Include="Interfaces\ISubItemService.cs" />
     <Compile Include="Interfaces\IUserProfileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -21,18 +21,7 @@ namespace Epam.BriefList.Services.Mapping
             return null;
         }
 
-        internal static BllSubItem ToBllSubItem(DalSubItem sub)
-        {
-            if (sub != null)
-                return new BllSubItem
-                {
-                    Id = sub.Id,
-                    Title = sub.Title,
-                    Completed = sub.Completed,
-                    BllItemId = sub.DalItemId
-                };
-            return null;
-        }
+        
         internal static BllItem ToBllItem(DalItem item)
         {
             if (item != null)
@@ -60,48 +49,13 @@ namespace Epam.BriefList.Services.Mapping
                 };
             return null;
         }
-        internal static BllComments ToBllComments(DalComments coms)
-        {
-            if (coms != null)
-                return new BllComments
-                {
-                    Comment = coms.Comment,
-                    Id = coms.Id,
-                    BllItemId = coms.DalItemId,
-                    OwnerId = coms.OwnerId
-                };
-            return null;
-        }
-
-        internal static BllItemFile ToBllItemFile(DalItemFile file)
-        {
-            if (file != null)
-                return new BllItemFile
-                {
-                    File = file.File,
-                    Filename = file.Filename,
-                    Id = file.Id,
-                    BllItemId = file.DalItemId
-                };
-            return null;
-        }
+     
         #endregion
 
         #region 
 
 
-        internal static DalComments ToDalComments(BllComments coms)
-        {
-            if (coms != null)
-                return new DalComments
-                {
-                    Comment = coms.Comment,
-                    DalItemId = coms.BllItemId,
-                    Id = coms.Id,
-                    OwnerId = coms.OwnerId
-                };
-            return null;
-        }
+       
         internal static DalItem ToDalItem(BllItem item)
         {
             if (item != null)
@@ -117,18 +71,7 @@ namespace Epam.BriefList.Services.Mapping
                 };
             return null;
         }
-        internal static DalItemFile ToDalItemFile(BllItemFile file)
-        {
-            if (file != null)
-                return new DalItemFile
-                {
-                    DalItemId = file.BllItemId,
-                    File = file.File,
-                    Filename = file.Filename,
-                    Id = file.Id
-                };
-            return null;
-        }
+     
 
         internal static DalList ToDalList(BllList list)
         {
@@ -142,20 +85,7 @@ namespace Epam.BriefList.Services.Mapping
                 };
             return null;
         }
-
-        internal static DalSubItem ToDalSubItem(BllSubItem item)
-        {
-            if (item != null)
-                return new DalSubItem
-                {
-                    Completed = item.Completed,
-                    DalItemId = item.BllItemId,
-                    Id = item.Id,
-                    Title = item.Title
-                };
-            return null;
-        }
-
+     
         internal static DalUserProfile ToDalUserProfile(BllUserProfile user)
         {
             if (user != null)

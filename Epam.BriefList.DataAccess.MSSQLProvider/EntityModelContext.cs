@@ -21,9 +21,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
         public virtual DbSet<OrmUserProfile> OrmUserProfiles { get; set; }
         public virtual DbSet<OrmList> OrmLists { get; set; }
         public virtual DbSet<OrmItem> OrmItems { get; set; }
-        public virtual DbSet<OrmComments> OrmComments { get; set; }
-        public virtual DbSet<OrmItemFile> OrmItemFiles { get; set; }
-        public virtual DbSet<OrmSubItem> OrmSubItems { get; set; }
+       
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,9 +29,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
             modelBuilder.Configurations.Add(new UserProfileConfiguration());
             modelBuilder.Configurations.Add(new ListConfiguration());
             modelBuilder.Configurations.Add(new ItemConfiguration());
-            modelBuilder.Configurations.Add(new ItemFileConfiguration());
-            modelBuilder.Configurations.Add(new CommentsConfiguration());
-            modelBuilder.Configurations.Add(new SubItemConfiguration());
+          
         }
 
     }

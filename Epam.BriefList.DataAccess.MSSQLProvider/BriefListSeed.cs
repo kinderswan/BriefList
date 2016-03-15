@@ -17,8 +17,6 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
             context.SaveChanges();
             GetItems().ToList().ForEach(e => context.OrmItems.Add(e));
             context.SaveChanges();
-            GetComments().ToList().ForEach(e => context.OrmComments.Add(e));
-            context.SaveChanges();
         }
 
         private static IEnumerable<OrmItem> GetItems()
@@ -63,19 +61,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
             };
         }
 
-       private static IEnumerable<OrmComments> GetComments()
-        {
-            return new List<OrmComments>
-            {
-                new OrmComments
-                {
-                    OrmItemId = 1,
-                    Comment = "xexexex",
-                }
-            };
-        }
-
-
+      
         private static IEnumerable<OrmList> GetLists()
         {
             return new List<OrmList>

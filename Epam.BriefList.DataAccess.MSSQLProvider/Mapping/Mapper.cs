@@ -21,18 +21,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Mapping
             return null;
         }
 
-        internal static OrmSubItem ToOrmSubItem(DalSubItem sub)
-        {
-            if (sub != null)
-                return new OrmSubItem()
-                { 
-                    Id = sub.Id,
-                    Title = sub.Title,
-                    Completed = sub.Completed,
-                    OrmItemId = sub.DalItemId
-                };
-            return null;
-        }
+      
         internal static OrmItem ToOrmItem(DalItem item)
         {
             if (item != null)
@@ -61,48 +50,15 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Mapping
                 };
             return null;
         }
-        internal static OrmComments ToOrmComments(DalComments coms)
-        {
-            if (coms != null)
-                return new OrmComments
-                {
-                    Comment = coms.Comment,
-                    Id = coms.Id,
-                    OrmItemId = coms.DalItemId,
-                    OwnerId = coms.OwnerId
-                };
-            return null;
-        }
+        
 
-        internal static OrmItemFile ToOrmItemFile(DalItemFile file)
-        {
-            if (file != null)
-                return new OrmItemFile
-                {
-                    File = file.File,
-                    Filename = file.Filename,
-                    Id = file.Id,
-                    OrmItemId = file.DalItemId
-                };
-            return null;
-        }
+       
         #endregion
 
         #region Orm to Dal
 
 
-        internal static DalComments ToDalComments(OrmComments coms)
-        {
-            if (coms != null)
-                return new DalComments
-                {
-                    Comment = coms.Comment,
-                    DalItemId = coms.OrmItemId,
-                    Id = coms.Id,
-                    OwnerId = coms.OwnerId
-                };
-            return null;
-        }
+       
         internal static DalItem ToDalItem(OrmItem item)
         {
             if (item != null)
@@ -118,18 +74,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Mapping
                 };
             return null;
         }
-        internal static DalItemFile ToDalItemFile(OrmItemFile file)
-        {
-            if (file != null)
-                return new DalItemFile
-                {
-                    DalItemId = file.OrmItemId,
-                    File = file.File,
-                    Filename = file.Filename,
-                    Id = file.Id
-                };
-            return null;
-        }
+       
         internal static DalList ToDalList(OrmList list)
         {
             if (list != null)
@@ -143,19 +88,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Mapping
             return null;
         }
 
-        internal static DalSubItem ToDalSubItem(OrmSubItem item)
-        {
-            if (item != null)
-                return new DalSubItem
-                {
-                    Completed = item.Completed,
-                    DalItemId = item.OrmItemId,
-                    Id = item.Id,
-                    Title = item.Title
-                };
-            return null;
-        }
-
+       
         internal static DalUserProfile ToDalUserProfile(OrmUserProfile user)
         {
             if (user != null)

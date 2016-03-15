@@ -40,18 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\DalComments.cs" />
     <Compile Include="Models\DalItem.cs" />
-    <Compile Include="Models\DalItemFile.cs" />
     <Compile Include="Models\DalList.cs" />
-    <Compile Include="Models\DalSubItem.cs" />
     <Compile Include="Models\DalUserProfile.cs" />
-    <Compile Include="Interfaces\ICommentsRepository.cs" />
-    <Compile Include="Interfaces\IItemFileRepository.cs" />
     <Compile Include="Interfaces\IItemRepository.cs" />
     <Compile Include="Interfaces\IListRepository.cs" />
     <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Interfaces\ISubItemRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IUserProfileRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

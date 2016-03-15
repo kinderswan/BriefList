@@ -8,9 +8,6 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Configuration
         public ItemConfiguration()
         {
             ToTable("Item");
-            HasMany(e => e.ItemFiles).WithRequired(e => e.OrmItem).HasForeignKey(e => e.OrmItemId);
-            HasMany(e => e.Comments).WithRequired(e => e.OrmItem).HasForeignKey(e => e.OrmItemId);
-            HasMany(e => e.SubItems).WithRequired(e => e.OrmItem).HasForeignKey(e => e.OrmItemId);
         }
     }
 }
