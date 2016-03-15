@@ -1,4 +1,4 @@
-﻿angular.module('myApp', ['ui.bootstrap', 'ngRoute', 'ngAnimate'])
+﻿angular.module('myApp', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'dndLists'])
 .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when("/user/:id/lists", {

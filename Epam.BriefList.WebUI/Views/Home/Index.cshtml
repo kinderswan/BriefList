@@ -4,10 +4,12 @@
     ViewBag.Title = "Main";
 }
 <link href="~/Content/Wunderlist.css" rel="stylesheet" />
+<link href="~/Content/Site.css" rel="stylesheet" />
 <body id="wunderlist-base" role="application" class="wlapp-parent animate background-16 focus-settings" style="opacity: 1;">
 
     <script src="~/Scripts/angular-route.js"></script>
     <script src="~/Scripts/angular-animate.js"></script>
+    <script src="~/Scripts/angular-drag-and-drop-lists.min.js"></script>
     <script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
 
     <script src="~/Scripts/route/app.js"></script>
@@ -511,7 +513,7 @@
                 <div class="comments-main has-comments">
                     <ul class="comments-list">
                         <li class="section-item section-item-comment active-user" tabindex="0">
-                           <div class="section-content">
+                            <div class="section-content">
                                 <span class="comment-author">
                                     @User.Identity.GetUserName()
                                 </span>
