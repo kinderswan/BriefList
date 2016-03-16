@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -6,17 +6,19 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Results;
-using System.Web.Mvc;
 using Epam.BriefList.Services.API.Interfaces;
 using Epam.BriefList.WebUI.Classes;
+using Epam.BriefList.WebUI.Filters;
 using Epam.BriefList.WebUI.HelperExtension;
 using Epam.BriefList.WebUI.Mapping;
 using Epam.BriefList.WebUI.Models;
 using Epam.BriefList.WebUI.Models.ApiModels;
+using Newtonsoft.Json;
 
 namespace Epam.BriefList.WebUI.Controllers.Api
 {
-    [System.Web.Http.Authorize]
+    [Authorize]
+    [RoutePrefix("api/users")]
     public class UsersController : ApiController
     {
         private readonly IUserProfileService _userService;
@@ -30,38 +32,32 @@ namespace Epam.BriefList.WebUI.Controllers.Api
 
 
         #region get
-        [System.Web.Http.HttpGet]
-        public async Task<HttpResponseMessage> GetUsers()
+
+        [HttpGet]
+        [CustomException(ExceptionType = typeof(InvalidOperationException), StatusCode = HttpStatusCode.BadRequest, Message = "Id incorrect")]
+        public async Task<IHttpActionResult> GetUser(int? id)
         {
-            var helper = new HttpResponseGetHelper<IEnumerable<ApiUserProfile>>(User.Identity.IsAuthenticated, Request);
-            helper.Method( async ()=> (await _userService.GetUserProfiles()).Select(Mapper.ToApiUserProfile));
-            return await helper.Result();
+            return Json(Mapper.ToApiUserProfile(await _userService.GetUserProfile(id.Value)));
         }
 
-        [System.Web.Http.HttpGet]
-        public  async Task<IHttpActionResult> GetUser(int id)
-        {
-            return Json(Mapper.ToApiUserProfile(await _userService.GetUserProfile(id)));
-        }
-
-        [System.Web.Http.HttpGet]
+        /*[System.Web.Http.HttpGet]
         public async Task<IHttpActionResult> GetUser(string name)
         {
-            return /*Json(Request.CreateResponse(HttpStatusCode.OK, Mapper.ToApiUserProfile(await _userService.GetUserProfile(name))));*/ Json(Mapper.ToApiUserProfile(await _userService.GetUserProfile(name)));
-        }
+            return  Json(Mapper.ToApiUserProfile(await _userService.GetUserProfile(name)));
+        }*/
 
-        [System.Web.Http.HttpPut]
-        [System.Web.Http.Route("api/users/updatePersonalUsers")]
+        [HttpPut]
+        [Route("updatePersonalData")]
         public IHttpActionResult UpdatePersonalData([FromBody]ApiUserProfile model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             _userService.UpdatePersonalData(Mapper.ToBllUserProfile(model));
-            return StatusCode(HttpStatusCode.NoContent);
+            return Json(new HttpResponseMessage(HttpStatusCode.NoContent));
         }
 
-        [System.Web.Http.HttpPut]
-        [System.Web.Http.Route("api/users/updatePassword")]
+        [HttpPut]
+        [Route("updatePassword")]
         public async Task<IHttpActionResult> UpdatePassword([FromBody]PasswordModel model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -73,22 +69,15 @@ namespace Epam.BriefList.WebUI.Controllers.Api
             return StatusCode(HttpStatusCode.Forbidden);
         }
 
-        [System.Web.Http.HttpPost]
-        [System.Web.Http.Route("api/users/updatePhoto/{id}")]
-        public JsonResult<HttpResponseMessage> UpdatePhoto(int id)
+        [HttpPost]
+        [Route("updatePhoto/{id}")]
+        [CustomException(ExceptionType = typeof(InvalidOperationException), StatusCode = HttpStatusCode.BadRequest, Message = "Id incorrect")]
+        [CustomException(ExceptionType = typeof(ArgumentOutOfRangeException), StatusCode = HttpStatusCode.BadRequest, Message = "ArgumentOutOfRangeException")]
+        public IHttpActionResult UpdatePhoto(int? id)
         {
-            try
-            {
                 var image = HttpContext.Current.Request.Files[0];
-                _userService.UpdatePhoto(id, Image.CreateBllImage(image));
-                return Json(new HttpResponseMessage(HttpStatusCode.NoContent)); // Json(StatusCode(HttpStatusCode.NoContent));
-            }
-            catch (System.ArgumentOutOfRangeException ex)
-            {
-                return Json(Request.CreateErrorResponse(HttpStatusCode.BadRequest,ex));
-                    // Json(new HttpResponseMessage(HttpStatusCode.BadRequest)); //BadRequest("System.ArgumentOutOfRangeException");
-            }
-
+                _userService.UpdatePhoto(id.Value, Image.CreateBllImage(image));
+                return  Json(StatusCode(HttpStatusCode.NoContent));
         }
 
         #endregion

@@ -9,7 +9,6 @@ namespace Epam.BriefList.Services.API.Interfaces
     {
         void CreateUserProfile(BllUserProfile userProfile);
         void DeleteUserProfile(int id);
-        Task<IEnumerable<BllUserProfile>> GetUserProfiles();
         Task<BllUserProfile> GetUserProfile(int id);
         Task<BllUserProfile> GetUserProfile(string name);
         Task<ClaimsIdentity> Autorization(BllUserProfile blluserprofile);

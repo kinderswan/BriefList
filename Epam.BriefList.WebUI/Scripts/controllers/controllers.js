@@ -156,7 +156,6 @@
 
                 itemService.deleteItem(id);
                 $scope.$parent.detoggle();
-                alert($scope.items);
                 if (isCompleted) {
                     var arr = $scope.items;
                     for (var i = arr.length - 1; i >= 0; i--) {

@@ -25,7 +25,7 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
             $scope.image = value.data.Photo;
         },
         function (error) {
-            console.log(error);
+            console.log(error.data.Message+" StatusCode:"+error.status);
         });
     };
 
@@ -33,22 +33,15 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
 
     $scope.savePersonal = function (model, personalForm) {
         if (personalForm.$valid) {
-            var promiseObj = userProfileService.update('/api/users/updatePersonalUsers/', model);
+            var promiseObj = userProfileService.update('/api/users/updatePersonalData/', model);
 
-            promiseObj.then(function (value) {
-                //не работает возврат сюда!!!!!!
-                //      $rootScope.$broadcast('UpdateLists', $scope.ownerId);
-                //      $uibModalInstance.dismiss('cancel');
-                console.log(value);
-                return value.data;
+
+            promiseObj.then(function (resp) {
+                console.log(resp.data.StatusCode);
             },
             function (error) {
-                console.log(error);
-            },
-            function () {
-                $uibModalInstance.dismiss('cancel');
-            }
-            );
+                $scope.Errors = error.data;
+            });
 
         }
     };
@@ -57,17 +50,12 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
         if (passwordForm.$valid) {
             var promiseObj = userProfileService.update('/api/users/updatePassword/', passmodel);
 
-            promiseObj.then(function (value) {
-                //работает но посылает успех даже если и не успех!!
-                //     $rootScope.$broadcast('UpdateLists', $scope.ownerId);
+            promiseObj.then(function (resp) {
+                console.log(resp.status);
                 $uibModalInstance.dismiss('change');
-                return value.data;
-            },
+                },
             function (error) {
-                console.log(error);
-            },
-            function () {
-                $uibModalInstance.dismiss('cancel');
+                console.log(error.data);
             });
 
         }

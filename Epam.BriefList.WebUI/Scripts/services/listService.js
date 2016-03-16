@@ -7,10 +7,10 @@
                     url: '/api/users/' + userId + '/lists'
                 }).then(function(resp) {
                     deferred.resolve(resp);
-                }),
+                },
                 function(error) {
-                    deferred.reject({ success: false, data: error });
-                };
+                    deferred.reject(error);
+                });
 
             return deferred.promise;
         },
@@ -30,7 +30,7 @@
         },
         addList: function(model) {
             var deferred = $q.defer();
-            $http.post('/api/Lists', model)
+            $http.post('/api/lists/add', model)
                     .then(function(resp) {
                         deferred.resolve(resp);
                     }),
@@ -43,7 +43,7 @@
 
         deleteList: function(id) {
             var deferred = $q.defer();
-            $http.delete('/api/deletelists/' + id)
+            $http.delete('/api/lists/delete/' + id)
                     .then(function(resp) {
                         deferred.resolve(resp);
                     }),
@@ -55,7 +55,7 @@
         },
         updateList: function(model) {
             var deferred = $q.defer();
-            $http.post('/api/updatelists', model)
+            $http.put('/api/lists/update', model)
                     .then(function(resp) {
                         deferred.resolve(resp);
                     }),

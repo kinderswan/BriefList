@@ -66,7 +66,7 @@
 
         deleteItem: function (id) {
             var deferred = $q.defer();
-            $http.delete('/api/deletetodoitems/' + id)
+            $http.delete('/api/todoitems/delete/' + id)
             .then(function (resp) {
                 deferred.resolve(resp);
             }),
@@ -80,7 +80,7 @@
         updateItem: function (model) {
 
             var deferred = $q.defer();
-            $http.put('/api/updatetodoitems/',model)
+            $http.put('/api/todoitems/update/', model)
             .then(function (resp) {
                 deferred.resolve(resp);
             }),

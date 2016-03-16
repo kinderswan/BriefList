@@ -37,7 +37,6 @@ namespace Epam.BriefList.Services.Services
             _userRep.Delete(id);
             _uow.Commit();
         }
-        public async Task<IEnumerable<BllUserProfile>> GetUserProfiles() => (await _userRep.GetAll()).Select(Mapper.ToBllUserProfile);
 
         public async Task<BllUserProfile> GetUserProfile(int id)
         {
