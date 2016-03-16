@@ -20,7 +20,7 @@ angular.module('myApp').controller('ModalRenameListController', function ($scope
 });
 
 
-angular.module('myApp').controller('ModalRenameInstanceCtrl', function ($scope, $rootScope, $uibModalInstance, list, userListService) {
+angular.module('myApp').controller('ModalRenameInstanceCtrl', function ($scope, $rootScope, $uibModalInstance, list, listService) {
 
     $scope.model = list;
     $scope.oldmodel = angular.copy(list);
@@ -28,7 +28,7 @@ angular.module('myApp').controller('ModalRenameInstanceCtrl', function ($scope, 
 
     $scope.save = function (model, listForm) {
         if (listForm.$valid) {
-            var promiseObj = userListService.updateList(model);
+            var promiseObj = listService.updateList(model);
             promiseObj.then(function(value) {
 
                 $uibModalInstance.dismiss('cancel');

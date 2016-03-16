@@ -16,7 +16,7 @@
     };
 });
 
-angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope, $uibModalInstance, userId, userProfileService, loginService, $http) {
+angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope, $uibModalInstance, userId, userProfileService, loginService) {
 
     var getUserProfile = function() {
         var promiseObj = userProfileService.getUserProfile(userId);

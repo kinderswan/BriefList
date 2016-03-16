@@ -8,6 +8,5 @@ namespace Epam.BriefList.DataAccess.API.Interfaces
         Task<DalUserProfile> Get(string name);
         Task<bool> UserNameExist(string name);
         Task<bool> UserEmailExist(string email);
-        Task<byte[]> GetImage(int id);
     }
 }

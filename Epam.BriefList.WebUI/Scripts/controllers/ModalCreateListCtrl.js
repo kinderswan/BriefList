@@ -1,5 +1,4 @@
-﻿
-angular.module('myApp').controller('ModalCreateListController', function ($scope, $uibModal) {
+﻿angular.module('myApp').controller('ModalCreateListController', function ($scope, $uibModal) {
 
     $scope.animationsEnabled = true;
 
@@ -27,13 +26,13 @@ angular.module('myApp').controller('ModalCreateListController', function ($scope
 // Please note that $uibModalInstance represents a modal window (instance) dependency.
 // It is not the same as the $uibModal service used above.
 
-angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $rootScope, $uibModalInstance, ownerId, userListService) {
+angular.module('myApp').controller('ModalInstanceCtrl', function ($scope, $rootScope, $uibModalInstance, ownerId, listService) {
 
     $scope.ownerId = ownerId;
 
     $scope.save = function (model, listForm) {
         if (listForm.$valid) {
-            var promiseObj = userListService.addList(model);
+            var promiseObj = listService.addList(model);
 
             promiseObj.then(function (value) {
 

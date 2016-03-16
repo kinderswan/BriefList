@@ -18,6 +18,5 @@ namespace Epam.BriefList.Services.API.Interfaces
         Task<bool> UpdatePassword(BllPassword model);
         void UpdatePersonalData(BllUserProfile blluserprofile);
         void UpdatePhoto(int id, byte[] photo);
-        Task<byte[]> GetImageByUserId(int id);
     }
 }

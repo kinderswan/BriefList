@@ -91,18 +91,6 @@ namespace Epam.BriefList.WebUI.Controllers.Api
 
         }
 
-        [System.Web.Http.HttpGet]
-        [System.Web.Http.Route("api/users/getImage/{id}")]
-        public async Task<JsonResult<HttpResponseMessage>> GetImage(int id)
-        {
-            var image = await _userService.GetImageByUserId(id);
-            if (image == null)
-            {
-                return Json(new HttpResponseMessage(HttpStatusCode.NoContent));
-            }
-            return Json(Request.CreateResponse(HttpStatusCode.OK, image));//Json(Request.CreateResponse()new HttpResponseMessage(HttpStatusCode.NoContent)));
-
-        }
         #endregion
     }
 }

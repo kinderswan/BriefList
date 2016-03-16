@@ -24,9 +24,6 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider.Repository
         public async Task<DalUserProfile> Get(int id) => Mapper.ToDalUserProfile(await DbSet.FirstOrDefaultAsync(t => t.Id == id));
         public async Task<bool> UserEmailExist(string email) => await DbSet.FirstOrDefaultAsync(dbuser => dbuser.Email.Equals(email)) != null;
         public async Task<bool> UserNameExist(string name) => await DbSet.FirstOrDefaultAsync(dbuser => dbuser.Name.Equals(name)) != null;
-        
-        public async Task<byte[]> GetImage(int id)
-            => await Task.Run(() => DbSet.Where(t => t.Id == id).Select(t => t.Photo).FirstOrDefaultAsync());//.FirstOrDefaultAsync(db=>db.Photo));
 
         public DalUserProfile Get(Expression<Func<DalUserProfile, bool>> where)
         {

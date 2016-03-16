@@ -105,11 +105,5 @@ namespace Epam.BriefList.Services.Services
             _uow.Commit();
         }
 
-        public async Task<byte[]> GetImageByUserId(int id)
-        {
-            return await _userRep.GetImage(id);
-        }
-
-
     }
 }

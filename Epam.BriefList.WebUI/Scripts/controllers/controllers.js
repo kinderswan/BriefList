@@ -1,24 +1,4 @@
 ﻿angular.module('myApp')
-    .controller('RouteController', function ($scope, $routeParams, listService) {
-
-        $scope.message = "routecontroller";
-
-        var promiseObj = listService.getUserById($routeParams.id);
-        promiseObj.then(function (value) {
-            $scope.user = value.data;
-        });
-
-    })
-    .controller('HomeController', function ($scope, $routeParams, listService) {
-
-        $scope.message = "homecontroller";
-
-        var promiseObj = listService.getlists();
-        promiseObj.then(function (value) {
-            $scope.phones = value.data;
-        });
-
-    })
     .controller('LoginController', [
         '$scope', '$window', 'loginService', function ($scope, $window, loginService) {
 
@@ -54,9 +34,9 @@
             };
         }
     ])
-    .controller('GetListController', [
+    .controller('ListController', [
         '$timeout',
-        '$scope', '$location', 'userListService', function ($timeout, $scope, $location, userListService) {
+        '$scope', '$location', 'listService', function ($timeout, $scope, $location, listService) {
 
             $scope.message = 'GetListController';
 
@@ -74,7 +54,7 @@
             });
 
             $scope.getAllLists = function (userId) {
-                var promiseObj = userListService.getUserLists(userId);
+                var promiseObj = listService.getUserLists(userId);
                 promiseObj.then(function (value) {
                     $scope.lists = value.data;
                     $scope.$parent.userId = userId;
@@ -83,7 +63,7 @@
 
             $scope.deleteList = function (listId) {
                 if (listId !== undefined) {
-                    userListService.deleteList(listId);
+                    listService.deleteList(listId);
 
                     var arr = $scope.lists;
                     for (var i = arr.length - 1; i >= 0; i--) {
@@ -93,6 +73,10 @@
                     }
                     $scope.lists = arr;
                     $scope.$parent.currentList = null;
+
+                    var toggleEl = angular.element(document.querySelector('#detail'));
+                    toggleEl.css('width', '0px');
+
                     $timeout(function () {
                         $location.path('/');
                     });
@@ -105,7 +89,7 @@
 
         }
     ])
-    .controller('GetItemController', ['$scope', '$routeParams', 'itemService',
+    .controller('ItemController', ['$scope', '$routeParams', 'itemService',
         function ($scope, $routeParams, itemService) {
 
             $scope.message = 'GetItemController';
@@ -252,16 +236,41 @@
             $scope.showDetails = function (item) {
                 $scope.$parent.toggle(item);
             }
+
+            $scope.dragstartitem = function () {
+                var toggleEl = angular.element(document.querySelector('#detail'));
+                toggleEl.css('width', '0px');
+            };
+            $scope.dragenditem = function (model) {
+                var promiseObj = itemService.getTodoItems($routeParams.id);
+                promiseObj.then(function (value) {
+                    var olditems = value.data;
+                    for (var i = 0; i <= model.length; i++) {
+                        if (model[i].Id !== olditems[i].Id) {
+                            var uploadModel = {
+                                Id: olditems[i].Id,
+                                ListId: model[i].ListId,
+                                Title: model[i].Title,
+                                TimeComplete: model[i].TimeComplete,
+                                Completed: model[i].Completed,
+                                Starred: model[i].Starred,
+                                Comment: model[i].Comment
+                            };
+                            itemService.updateItem(uploadModel);
+                        }
+                    }
+                });
+            }
         }
     ])
-    .controller('IndexCtrl', [
-        '$scope', '$routeParams', 'itemService', 'userListService',
-        function ($scope, $routeParams, itemService, userListService) {
+    .controller('ItemEditController', [
+        '$scope', '$routeParams', 'itemService', 'listService',
+        function ($scope, $routeParams, itemService, listService) {
 
             $scope.message = 'IndexCtrl';
 
             $scope.currList = function () {
-                var promiseObj = userListService.getUserListsById($scope.userId, $routeParams.id);
+                var promiseObj = listService.getUserListsById($scope.userId, $routeParams.id);
                 promiseObj.then(function (value) {
                     $scope.currentList = value.data;
                     console.log($scope.currentList);

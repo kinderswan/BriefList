@@ -46,19 +46,8 @@
             });
 
         return deferred.promise;
-    },
+    }
 
-        getImage: function(userId) {
-            var deferred = $q.defer();
-            $http.get('/api/users/getImage/' + userId)
-                    .then(function (resp) {
-                        deferred.resolve(resp);
-                    },
-                function (error) {
-                    deferred.reject(error);
-                });
-
-            return deferred.promise;
-        }
+        
     }
 });
