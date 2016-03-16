@@ -105,9 +105,11 @@
                                     </g>
                                 </svg>
                             </span>
-            <input name="confirmpassword" ng-model="model.ConfirmPassword" required="" pattern=".{6,}" minlength="6" placeholder="Password" title="Пароль должен содержать не меньше 8&nbsp;символов, в том числе в нижнем и верхнем регистре, а также цифры или специальные знаки (например, !#$)." type="password">
+            <input name="confirmpassword" ng-model="model.ConfirmPassword" required="" pattern=".{6,}" minlength="6" placeholder="Password" title="Пароль должен содержать не меньше 6&nbsp;символов, в том числе в нижнем и верхнем регистре, а также цифры или специальные знаки (например, !#$)." type="password">
         </div>
-
+        <div ng-repeat="error in Errors">
+            <span>{{error.Key}}: </span><span>{{error.Value[0]}}</span>
+        </div>
         <div class="row submit">
             <input class="button big blue" ng-click="save(model, registerForm)" value="Register" type="submit">
         </div>
@@ -117,8 +119,8 @@
     <br/>
     <br />
     <span class="link login">
-                        Уже зарегистрированы?
-        @Html.ActionLink("LoginWunderList", "Login", "Account")
+                        Уже зарегистрированы? &nbsp;
+        @Html.ActionLink("Login", "Login", "Account")
                     </span>
 
 

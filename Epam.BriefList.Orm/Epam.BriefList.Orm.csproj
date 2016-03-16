@@ -41,11 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\IOrmEntity.cs" />
-    <Compile Include="Models\OrmComments.cs" />
     <Compile Include="Models\OrmItem.cs" />
-    <Compile Include="Models\OrmItemFile.cs" />
     <Compile Include="Models\OrmList.cs" />
-    <Compile Include="Models\OrmSubItem.cs" />
     <Compile Include="Models\OrmUserProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -66,7 +66,6 @@ namespace Epam.BriefList.WebUI.Mapping
             return null;
         }
 
-
         internal static ApiList ToApiList(BllList list)
         {
             if (list != null)
@@ -99,14 +98,60 @@ namespace Epam.BriefList.WebUI.Mapping
                 return new ApiItem
                 {
                     Id = item.Id,
-                    BllListId = item.BllListId,
+                    ListId = item.BllListId,
                     Title = item.Title,
                     Completed = item.Completed,
                     Starred = item.Starred,
-                    TimeComplete = item.TimeComplete
+                    TimeComplete = item.TimeComplete,
+                    Comment = item.Comment
                 };
             return null;
         }
+
+        internal static BllItem ToBllItem(ApiItem item)
+        {
+            if (item != null)
+                return new BllItem
+                {
+                    Id = item.Id,
+                    BllListId = item.ListId,
+                    Title = item.Title,
+                    Completed = item.Completed,
+                    Starred = item.Starred,
+                    TimeComplete = item.TimeComplete,
+                    Comment = item.Comment
+                };
+            return null;
+        }
+
+
         #endregion
+
+        internal static BllUserProfile ToBllUserProfile(ApiUserProfile model)
+        {
+            if (model != null)
+                return new BllUserProfile
+                {
+                    TimeRegister = model.TimeRegister,
+                    Photo = model.Photo,
+                    Id = model.Id,
+                    Password = model.Password,
+                    Email = model.Email,
+                    Name = model.Name
+                };
+            return null;
+        }
+        
+        internal static BllPassword ToBllPassword(PasswordModel model)
+        {
+            if (model != null)
+                return new BllPassword
+                {
+                    Id = model.Id,
+                    NewPassword = model.NewPassword,
+                    OldPassword = model.OldPassword,
+                };
+            return null;
+        }
     }
 }

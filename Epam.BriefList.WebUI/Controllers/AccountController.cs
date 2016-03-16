@@ -1,10 +1,13 @@
-﻿using System.Security.Claims;
+﻿using System.Net;
+using System.Net.Http;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Epam.BriefList.Services.API.Interfaces;
 using Epam.BriefList.WebUI.Filters;
+using Epam.BriefList.WebUI.HelperExtension;
 using Epam.BriefList.WebUI.Mapping;
 using Epam.BriefList.WebUI.Models;
 using Microsoft.Owin.Security;
@@ -33,23 +36,22 @@ namespace Epam.BriefList.WebUI.Controllers
             return Content("Anonymous");
         }
 
-        [HttpGet]
-        public ActionResult _Login() => View();
-
-        [HttpGet]
+        [System.Web.Mvc.HttpGet]
         public ActionResult Login() => View();
-        [HttpGet]
-        public ActionResult _Register() => View();
+        [System.Web.Mvc.HttpGet]
         public ActionResult Register() => View();
 
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         [AntiForgeryValidate]
-        public async Task<ActionResult> Login(LoginModel model)
+        public async Task<JsonResult> Login(LoginModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                ClaimsIdentity claim = await _userProfileService.Autorization(Mapper.ToBllUserProfileLoginModel(model));
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(ModelState.Errors());
+            }
+            ClaimsIdentity claim = await _userProfileService.Autorization(Mapper.ToBllUserProfileLoginModel(model));
 
                 if (claim != null)
                 {
@@ -58,29 +60,36 @@ namespace Epam.BriefList.WebUI.Controllers
                     {
                         IsPersistent = true
                     }, claim);
-                    return RedirectToAction("StartPage", "Home");
+                    return Json(new HttpResponseMessage(HttpStatusCode.NoContent));
                 }
-                ModelState.AddModelError("", "Incorrect login or password");
-            }
-            return View(model);
+                ModelState.AddModelError("Error", "Incorrect login or password");
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json(ModelState.Errors());
         }
+   
 
-        [HttpPost]
+        [System.Web.Mvc.HttpPost]
         [AntiForgeryValidate]
-        public async Task<ActionResult> Register(RegisterModel model)
+        public async Task<JsonResult> Register(RegisterModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                if (!(await _userProfileService.UserNameExist(model.Name) && await _userProfileService.UserEmailExist(model.Email)))
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json(ModelState.Errors());
+            }
+            if (!(await _userProfileService.UserNameExist(model.Name) && await _userProfileService.UserEmailExist(model.Email)))
                 {
                     _userProfileService.CreateUserProfile(Mapper.ToBllUserProfileRegisterModel(model));
-                    return RedirectToAction("StartPage", "Home");
+                    return Json(new HttpResponseMessage(HttpStatusCode.NoContent));
                 }
-                ModelState.AddModelError("", "User with this login or email already exist");
-            }
-            return View(model);
+                ModelState.AddModelError("Error", "User with this login or email already exist");
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return Json(ModelState.Errors());
         }
 
+
+
+        [System.Web.Mvc.HttpPost]
         public ActionResult Logoff()
         {
             if (User.Identity.IsAuthenticated)

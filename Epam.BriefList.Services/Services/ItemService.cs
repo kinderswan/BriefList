@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Epam.BriefList.DataAccess.API.Interfaces;
@@ -23,6 +24,8 @@ namespace Epam.BriefList.Services.Services
 
         public async Task<IEnumerable<BllItem>> GetToDoItems() => (await _itemRep.GetAll()).Select(Mapper.ToBllItem);
 
+        public async Task<BllItem> GetToDoItem(int id) => Mapper.ToBllItem(await _itemRep.Get(id));
+
         public async Task<IEnumerable<BllItem>> GetUserToDoItems(int id)
         {
             var listIds = (await _listRep.GetAll()).Where(t => t.OwnerId == id).Select(t => t.Id);
@@ -45,7 +48,25 @@ namespace Epam.BriefList.Services.Services
             return new List<BllItem>();
         }
 
-        public async Task<IEnumerable<BllItem>> GetListToDoItems(int listId,bool completed)=> (await _itemRep.GetByListId(listId,completed)).Select(Mapper.ToBllItem);
-        
+        public async Task<IEnumerable<BllItem>> GetListToDoItems(int listId,bool completed) => (await _itemRep.GetByListId(listId,completed)).Select(Mapper.ToBllItem);
+
+        public void AddItem(BllItem bllItem)
+        {
+            _itemRep.Add(Mapper.ToDalItem(bllItem));
+            _uow.Commit();
+        }
+
+        public async void Delete(int id)
+        {
+            if ( await _itemRep.Get(id) == null) return;
+            _itemRep.Delete(id);
+            _uow.Commit();
+        }
+
+        public void UpdateItem(BllItem bllItem)
+        {
+            _itemRep.Update(Mapper.ToDalItem(bllItem));
+            _uow.Commit();
+        }
     }
 }

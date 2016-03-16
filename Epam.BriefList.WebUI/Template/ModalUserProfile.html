@@ -1,0 +1,164 @@
+﻿<div class="content">
+    <div class="settings-content-inner-wrapper">
+        <div class="settings-content-inner account">
+            <div class="settings">
+                <!-- Picture -->
+                <div class="separator">
+                    <div class="cols">
+                        <div class="col-32">
+                            <ul class="thumbnails">
+                                <li class="span4">
+                                    <a href="#" class="avatar large">
+                                        <img ng-model="userProfile.Photo" data-ng-src="data:image/jpeg;base64,{{image}}" />
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-68">
+                            <form ng-submit="SaveFile()">
+                                <p style="display:none">{{userId=userProfile.Id}}</p>
+                                <div class="input-group">
+                                    <input class="btn pull-left" required="" type="file" name="file" accept="image/*" onchange="angular.element(this).scope().selectFileforUpload(this.files)" />
+                                    <input class="btn btn-success pull-right" type="submit" value="Upload File" />
+                                </div>
+                               </form>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--<form ng-submit="SaveFile()">
+                    <p style="display:none">{{userId=userProfile.Id}}</p>
+                    <input type="file" name="file" accept="image/*" onchange="angular.element(this).scope().selectFileforUpload(this.files)" />
+                    <input type="submit" value="Upload File" />
+                </form>-->
+                <!-----------------------------------------------PERSONAL------------------------------------------------------>
+                <!-----------------------------------------------PERSONAL------------------------------------------------------>
+
+                <div class="modal-body">
+
+
+                    <!-- Форма -->
+                    <form name="personalForm" role="form" class="form-horizontal">
+
+
+                        <p style="display:none">{{model.Id=userProfile.Id}}</p>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Name:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input class="form-control" pattern="[A-Za-z]{2,12}" ng-model="model.Name" value={{userProfile.Name}} placeholder={{userProfile.Name}} required="required" />
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Email:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input class="form-control" type="Email" ng-model="model.Email" value={{userProfile.Email}} placeholder={{userProfile.Email}} required="required" />
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="cols">
+                            <div class="col-50">
+                                <button aria-label="Отмена" ng-click="cancel()" class="full" data-key-aria-label="button_cancel" tabindex="0">
+                                    <text rel="button_cancel">
+                                        Cancel
+                                    </text>
+                                </button>
+                            </div>
+                            <div class="col-50">
+                                <button aria-label="Сохранить" ng-click="savePersonal(model,personalForm)" class="full blue" tabindex="0">
+                                    <text rel="button_save">
+                                        Save
+                                    </text>
+                                </button>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="modal-footer">
+                        </div>
+
+                    </form>
+
+                </div>
+
+                <!-----------------------------------------------PASSWORD------------------------------------------------------>
+                <!-----------------------------------------------PASSWORD------------------------------------------------------>
+                <div class="modal-body">
+
+
+                    <!-- Форма-->
+                    <form name="passwordForm" role="form" class="form-horizontal">
+
+                        <p style="display: none">{{passmodel.Id=userProfile.Id}}</p>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Password:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                                    <input class="form-control" type="password" ng-model="passmodel.OldPassword" placeholder="Password" pattern="{6,}" required="required"/>
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">New Password:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                                    <input class="form-control" type="password" ng-model="passmodel.NewPassword" pattern="{6,}" placeholder="New Password" required="required"/>
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Confirm Password:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-credit-card"></i></span>
+                                    <input class="form-control" type="password" ng-model="passmodel.ConfirmPassword" pattern="{6,}" placeholder="Confirm Password" required="required"/>
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+
+                        <div class="cols">
+                            <div class="col-100">
+                                <button aria-label="Сохранить" ng-click="changePassword(passmodel,passwordForm)" class="full blue" tabindex="0">
+                                    <text rel="button_save">
+                                        Change
+                                    </text>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <hr />
+                    <div class="cols">
+                        <div class="col-100">
+                            <button aria-label="Sign out" ng-click="signOut()" class="full" style="background-color: #A94234" tabindex="0">
+                                <text>
+                                    Sign out from {{userProfile.Name}}
+                                </text>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

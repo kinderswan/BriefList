@@ -1,34 +1,25 @@
-﻿var myApp = angular.module('myApp', ["ngRoute"])
-    .config(function($routeProvider, $locationProvider) {
-
+﻿angular.module('myApp', ['ui.bootstrap', 'ngRoute', 'ngAnimate', 'dndLists'])
+.config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when("/user/:id/lists", {
-            templateUrl: "/Template/List.html",
-            controller: 'GetListController'
+                templateUrl: "/Template/List.html",
+                controller: 'ListController'
             })
             .when("/", {
-                controller: 'GetListController'
+                controller: 'ListController'
             })
             .when("/:id", {
                 redirectTo: "/user/:id/lists",
-                controller: 'GetListController'
+                controller: 'ListController'
             })
             .when("/list/:id/todoitems", {
                 templateUrl: "/Template/TodoItem.html",
-                controller: 'GetItemController'
-            })
-               .when("/home", {
-                templateUrl: "/Template/Home.html",
-                controller: 'HomeController'
-            })
-            .when("/route/:id", {
-                templateUrl: "/Template/Route.html",
-                controller: 'RouteController'
+                controller: 'ItemController'
             })
             .otherwise({
                 templateUrl: "/Template/Error.html",
                 controller: 'ErrorController'
-            })
+            });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
     })

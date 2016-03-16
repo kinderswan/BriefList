@@ -1,0 +1,52 @@
+﻿<div class="modal-header" style="background-color: crimson" id="osx-modal-title">
+    Create List
+</div>
+
+
+<div class="modal-body" id="osx-modal-data">
+
+
+            <!-- Форма для регистрации -->
+            <form name="listForm" role="form" class="form-horizontal">
+
+                    <!-- Основная часть модального окна, содержащая форму для регистрации -->
+                <!-- OwnerId -->
+                <p style="display: none">{{model.OwnerId=ownerId}}</p>
+                        <!-- Блок для ввода логина -->
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Title:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-file"></i></span>
+                                    <input class="form-control" ng-model="model.Title" placeholder={{model.Title}} required="required" />
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <!-- Блок для ввода email -->
+                        <div class="form-group has-feedback">
+                            <label class="control-label col-xs-3">Description:</label>
+                            <div class="col-xs-6">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-duplicate"></i></span>
+                                    <input class="form-control" ng-model="model.Description" placeholder={{model.Description}} required="required" />
+                                </div>
+                                <span class="glyphicon form-control-feedback"></span>
+                            </div>
+                        </div>
+                        <!-- Конец блока для ввода email-->
+
+               
+                    <!-- Нижняя часть модального окна -->
+                    <div class="modal-footer">
+                        <button type="button" ng-click="cancel()" class="simplemodal-close">Close</button>
+                        <button id="save" type="button" ng-click="save(model,listForm)" style="background-color: steelblue" class="btn btn-primary">Save</button>
+
+                    </div>
+             
+            </form>
+
+
+
+</div>
+

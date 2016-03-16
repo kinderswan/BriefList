@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -17,6 +18,13 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         public ToDoItemsController(IItemService itemService)
         {
             _itemService = itemService;
+        }
+
+        [HttpGet]
+        [Route("api/todoitems/{id}")]
+        public async Task<ApiItem> GetToDoItems(int id)
+        {
+            return Mapper.ToApiItem(await _itemService.GetToDoItem(id));
         }
         [HttpGet]
         [Route("api/users/{userId}/todoitems")]
@@ -53,5 +61,25 @@ namespace Epam.BriefList.WebUI.Controllers.Api
             return Json((await _itemService.GetListToDoItems(listId, completed)).Select(Mapper.ToApiItem));
         }
 
+        [HttpPost]
+        [Route("api/todoitems")]
+        public void AddItems([FromBody]ApiItem model)
+        {
+           _itemService.AddItem(Mapper.ToBllItem(model));
+        }
+
+        [HttpDelete]
+        [Route("api/todoitems/delete/{id}")]
+        public void DeleteItems(int id)
+        {
+            _itemService.Delete(id);
+        }
+
+        [HttpPut]
+        [Route("api/todoitems/update")]
+        public void UpdateItems([FromBody]ApiItem model)
+        {
+            _itemService.UpdateItem(Mapper.ToBllItem(model));
+        }
     }
 }

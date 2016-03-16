@@ -36,18 +36,12 @@ namespace Epam.BriefList.DependencyResolver
             }
 
             kernel.Bind<IUserProfileRepository>().To<UserProfileRepository>();
-            kernel.Bind<ISubItemRepository>().To<SubItemRepository>();
             kernel.Bind<IListRepository>().To<ListRepository>();
             kernel.Bind<IItemRepository>().To<ItemRepository>();
-            kernel.Bind<IItemFileRepository>().To<ItemFileRepository>();
-            kernel.Bind<ICommentsRepository>().To<CommentsRepository>();
 
             kernel.Bind<IUserProfileService>().To<UserProfileService>();
-            kernel.Bind<ISubItemService>().To<SubItemService>();
             kernel.Bind<IListService>().To<ListService>();
             kernel.Bind<IItemService>().To<ItemService>();
-            kernel.Bind<IItemFileService>().To<ItemFileService>();
-            kernel.Bind<ICommentsService>().To<CommentsService>();
         }
     }
 

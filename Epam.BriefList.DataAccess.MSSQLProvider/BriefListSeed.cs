@@ -1,24 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Web.Helpers;
 using Epam.BriefList.Orm.Models;
 
 namespace Epam.BriefList.DataAccess.MSSQLProvider
 {
-    internal class BriefListSeed :/* DropCreateDatabaseAlways*/ DropCreateDatabaseIfModelChanges<EntityModelContext>
+    internal class BriefListSeed : DropCreateDatabaseIfModelChanges<EntityModelContext>
     {
         protected override void Seed(EntityModelContext context)
         {
-            GetUserProfiles().ToList().ForEach(e=>context.OrmUserProfiles.Add(e));
+            GetUserProfiles().ToList().ForEach(e => context.OrmUserProfiles.Add(e));
             context.SaveChanges();
             GetLists().ToList().ForEach(e => context.OrmLists.Add(e));
             context.SaveChanges();
             GetItems().ToList().ForEach(e => context.OrmItems.Add(e));
-            context.SaveChanges();
-         //   GetSubItems().ToList().ForEach(e => context.OrmSubItems.Add(e));
-        //    GetItemFiles().ToList().ForEach(e => context.OrmItemFiles.Add(e));
-            GetComments().ToList().ForEach(e => context.OrmComments.Add(e));
             context.SaveChanges();
         }
 
@@ -63,44 +62,8 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
                 }
             };
         }
-        /*
-        private static IEnumerable<OrmItemFile> GetItemFiles()
-        {
-            return new List<OrmItemFile>
-            {
-                new OrmItemFile
-                {
 
-                }
-            };
-        }
-
-        private static IEnumerable<OrmSubItem> GetSubItems()
-        {
-            return new List<OrmSubItem>
-            {
-                new OrmSubItem
-            {
-
-            }
-
-            };
-        }
-
-    */
-        private static IEnumerable<OrmComments> GetComments()
-        {
-            return new List<OrmComments>
-            {
-                new OrmComments
-                {
-                    OrmItemId = 1,
-                    Comment = "xexexex",
-                }
-            };
-        }
-
-
+      
         private static IEnumerable<OrmList> GetLists()
         {
             return new List<OrmList>
@@ -110,14 +73,14 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
                     OwnerId = 1,
                     Description = "tytty",
                     Title = "table",
-                    
+
                 },
                 new OrmList
                 {
                     OwnerId = 1,
-                    Description ="grown",
-                    Title ="triks",
-                    
+                    Description = "grown",
+                    Title = "triks",
+
                 },
             };
         }
@@ -125,16 +88,26 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
 
         private static IEnumerable<OrmUserProfile> GetUserProfiles()
         {
-            return new List<OrmUserProfile>
+            string path = AppDomain.CurrentDomain.BaseDirectory + "\\fonts\\index.jpg";
+            OrmUserProfile userProfile;
+            using (FileStream fStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
-                new OrmUserProfile()
+                Byte[] imageBytes = new byte[fStream.Length];
+                fStream.Read(imageBytes, 0, imageBytes.Length);
+                userProfile = new OrmUserProfile()
                 {
+                    Photo = imageBytes,
                     TimeRegister = DateTime.Now,
-                    Password ="000000",
+                    Password = Crypto.SHA1("000000"),
                     Name = "vadim",
                     Email = "vadp@tut.by",
-                    
-                }
+
+                };
+            }
+
+            return new List<OrmUserProfile>
+            {
+                userProfile
             };
         }
     }

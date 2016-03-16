@@ -9,11 +9,13 @@ namespace Epam.BriefList.Services.API.Interfaces
     {
         void CreateUserProfile(BllUserProfile userProfile);
         void DeleteUserProfile(int id);
-        Task<IEnumerable<BllUserProfile>> GetUserProfiles();
         Task<BllUserProfile> GetUserProfile(int id);
         Task<BllUserProfile> GetUserProfile(string name);
         Task<ClaimsIdentity> Autorization(BllUserProfile blluserprofile);
         Task<bool> UserNameExist(string name);
         Task<bool> UserEmailExist(string email);
+        Task<bool> UpdatePassword(BllPassword model);
+        void UpdatePersonalData(BllUserProfile blluserprofile);
+        void UpdatePhoto(int id, byte[] photo);
     }
 }
