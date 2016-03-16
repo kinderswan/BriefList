@@ -69,14 +69,14 @@ namespace Epam.BriefList.WebUI.Controllers.Api
         }
 
         [HttpDelete]
-        [Route("api/deletetodoitems/{id}")]
+        [Route("api/todoitems/delete/{id}")]
         public void DeleteItems(int id)
         {
             _itemService.Delete(id);
         }
 
         [HttpPut]
-        [Route("api/updatetodoitems")]
+        [Route("api/todoitems/update")]
         public void UpdateItems([FromBody]ApiItem model)
         {
             _itemService.UpdateItem(Mapper.ToBllItem(model));

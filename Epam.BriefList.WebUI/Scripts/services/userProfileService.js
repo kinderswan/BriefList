@@ -17,13 +17,13 @@
         update: function(path, model) {
 
             var deferred = $q.defer();
-            $http.put(path, model).
-             success(function(data, status) {
-                deferred.resolve(status);
-            }).
-            error(function(data, status) {
-                deferred.reject(status);
-            });
+            $http.put(path, model)
+            .then(function (resp) {
+                deferred.resolve(resp);
+            },
+                function (error) {
+                    deferred.reject(error);
+                });
 
             return deferred.promise;
         },
