@@ -40,7 +40,7 @@
                             </g>
                         </svg>
                     </span>
-                <input name="email" ng-model="model.Email" value="" required="" autofocus="" title="Enter your email" placeholder="Email">
+                <input name="email" ng-model="model.Email" value="" required="" autofocus="" placeholder="Email" title="Enter your email address." type="email">
             </div>
 
             <div class="row password">
@@ -61,9 +61,11 @@
                             </g>
                         </svg>
                     </span>
-                <input name="password" ng-model="model.Password" required="" placeholder="Password" type="password">
+                <input name="password" ng-model="model.Password" placeholder="Password" required="" pattern=".{6,}" minlength="6" title="Пароль должен содержать не меньше 6&nbsp;символов, в том числе в нижнем и верхнем регистре, а также цифры или специальные знаки (например, !#$)." type="password">
             </div>
-
+            <div ng-repeat="error in Errors">
+                <span>{{error.Key}}: </span><span>{{error.Value[0]}}</span>
+            </div>
             <div class="row submit">
                 <input class="button big blue" ng-click="save(model, loginForm)" value="Enter" type="submit">
             </div>

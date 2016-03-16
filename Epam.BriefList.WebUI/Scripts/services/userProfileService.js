@@ -6,10 +6,10 @@
             $http.get('/api/users/' + userId)
                     .then(function(resp) {
                         deferred.resolve(resp);
-                    }),
+                    },
                 function(error) {
-                    deferred.reject({ success: false, data: error });
-                };
+                    deferred.reject(error);
+                });
 
             return deferred.promise;
         },
@@ -37,23 +37,28 @@
             withCredentials: true,
             headers: { 'Content-Type': undefined },
             transformRequest:angular.identity
-            }).
-         success(function(data, status) {
-             deferred.resolve(status);
-         }).
-        error(function(data, status) {
-            deferred.reject(status);
-        });
+        }).
+            then(function (resp) {
+                deferred.resolve(resp);
+            },
+            function (error) {
+                deferred.reject(error);
+            });
 
         return deferred.promise;
     },
 
         getImage: function(userId) {
-
+            var deferred = $q.defer();
             $http.get('/api/users/getImage/' + userId)
-                .success(function(data) {
-                    return data.data;
+                    .then(function (resp) {
+                        deferred.resolve(resp);
+                    },
+                function (error) {
+                    deferred.reject(error);
                 });
+
+            return deferred.promise;
         }
     }
 });

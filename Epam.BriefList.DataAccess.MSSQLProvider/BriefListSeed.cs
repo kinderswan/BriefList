@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Web.Helpers;
 using Epam.BriefList.Orm.Models;
 
 namespace Epam.BriefList.DataAccess.MSSQLProvider
@@ -96,7 +98,7 @@ namespace Epam.BriefList.DataAccess.MSSQLProvider
                 {
                     Photo = imageBytes,
                     TimeRegister = DateTime.Now,
-                    Password = "000000",
+                    Password = Crypto.SHA1("000000"),
                     Name = "vadim",
                     Email = "vadp@tut.by",
 

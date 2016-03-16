@@ -23,6 +23,9 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
         promiseObj.then(function(value) {
             $scope.userProfile = value.data;
             $scope.image = value.data.Photo;
+        },
+        function (error) {
+            console.log(error);
         });
     };
 
@@ -76,16 +79,14 @@ angular.module('myApp').controller('ModalProfileInstanceCtrl', function ($scope,
 
     $scope.SaveFile = function () {
         var promiseObj = userProfileService.uploadFile($scope.SelectedFileForUpload, $scope.userId);
-        promiseObj.then(
-            function (value) {
-                    $http.get('/api/users/' + userId).success(function(data) {
-                        $scope.image = data.Photo;
-                    });
-            console.log(value);
-        },
-            function (error) {
-                console.log(error);
-            });
+        promiseObj.then(function (resp) {
+            console.log(resp);
+            getUserProfile();
+
+            },
+        function (error) {
+            console.log(error);
+        });
 
     };
 

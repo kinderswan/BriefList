@@ -3,27 +3,20 @@
         postLogin: function (model) {
             var deferred = $q.defer();
             $http.post('/Account/Login', model)
-                    .then(function (resp) {
+                    .then(function(resp) {
                         deferred.resolve(resp);
-                    }),
+                    },
                 function (error) {
-                    deferred.reject({ success: false, data: error });
-                };
+                    deferred.reject(error);
+                });
 
             return deferred.promise;
         },
         signOut: function() {
-            var deferred = $q.defer();
             $http.post('/Account/Logoff')
-                    .then(function () {
-                        window.location.href = '../Home/Start';
-                    }),
-                function (error) {
-                    deferred.reject({ success: false, data: error });
-                };
-
-            return deferred.promise;
-            
+                .then(function() {
+                    window.location.href = '../Home/Start';
+                });
         }
 
     }

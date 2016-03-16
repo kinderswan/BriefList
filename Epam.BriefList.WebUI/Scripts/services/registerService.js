@@ -5,13 +5,14 @@
             $http.post('/Account/Register', model)
                     .then(function (resp) {
                         deferred.resolve(resp);
-                    }),
+                    },
                 function (error) {
-                    deferred.reject({ success: false, data: error });
-                };
+                    deferred.reject(error);
+                });
 
             return deferred.promise;
         }
 
     }
 }]);
+
